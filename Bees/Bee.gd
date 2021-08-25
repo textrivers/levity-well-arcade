@@ -25,8 +25,6 @@ func _ready():
 	$XTimer.start()
 	$YTimer.wait_time = 0.2
 	$YTimer.start()
-	$ZTimer.wait_time = 0.2
-	$YTimer.start()
 	target = hive
 
 
@@ -37,32 +35,27 @@ func _process(delta):
 		target = get_global_mouse_position()
 	diff = position - target
 	x_speed += delta * -diff.x
-	#x_speed += delta * speed_mod * -sign(diff.x)
 	if right && diff.x > 0:
-		x_speed += delta * -diff.x
+		x_speed += delta * -diff.x *2
 	if !right && diff.x < 0:
-		x_speed += delta * -diff.x
+		x_speed += delta * -diff.x *2
 	y_speed += delta * -diff.y
 	if down && diff.y > 0:
-		y_speed += delta * -diff.y
+		y_speed += delta * -diff.y * 2
 	if !down && diff.y < 0:
-		y_speed += delta * -diff.y
+		y_speed += delta * -diff.y *2
 	
-	if pollinating:
-		if x_speed < 5 && y_speed < 5:
+	if !following && abs(x_speed) < 5 && abs(y_speed) < 5 && abs(diff.x) < 5 && abs(diff.y) < 5:
+		print(str(x_speed) + " | " + str(y_speed))
+		x_speed = 0
+		y_speed = 0
+		if $PollenTimer.is_stopped():
+			$PollenTimer.wait_time = 5.0
+			$PollenTimer.start()
+		if pollinating:
 			$AnimatedSprite.stop()
-			x_speed = 0
-			y_speed = 0
-			if $PollenTimer.is_stopped():
-				$PollenTimer.start()
-	
-	if depositing:
-		if x_speed < 5 && y_speed < 5:
+		if depositing:
 			$AnimatedSprite.hide()
-			x_speed = 0
-			y_speed = 0
-			if $PollenTimer.is_stopped():
-				$PollenTimer.start()
 	
 # warning-ignore:return_value_discarded
 	move_and_slide(Vector2(x_speed, y_speed), up_dir, false, 4, 0.5, false)
@@ -111,8 +104,12 @@ func _on_PollenTimer_timeout():
 	pollinating = !pollinating
 	depositing = !depositing
 	if target == hive:
+		$AnimatedSprite.show()
 		target = flower
+		if randi() % 5 == 0:
+			get_parent().spawn_bee()
 	elif target == flower:
+		$AnimatedSprite.play()
 		target = hive
 	else:
 		target = hive

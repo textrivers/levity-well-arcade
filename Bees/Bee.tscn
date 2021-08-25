@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Node2D.gd" type="Script" id=1]
+[ext_resource path="res://Bee.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/bee_move.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/bee.png" type="Texture" id=3]
 
@@ -15,7 +15,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Bee" type="KinematicBody2D"]
+[node name="Bee" type="KinematicBody2D" groups=[
+"bee",
+]]
+input_pickable = true
 collision_mask = 2
 script = ExtResource( 1 )
 
@@ -37,10 +40,11 @@ one_shot = true
 [node name="YTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="ZTimer" type="Timer" parent="."]
+[node name="PollenTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[connection signal="input_event" from="." to="." method="_on_Bee_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_Bee_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Bee_mouse_exited"]
 [connection signal="timeout" from="XTimer" to="." method="_on_XTimer_timeout"]
 [connection signal="timeout" from="YTimer" to="." method="_on_YTimer_timeout"]
-[connection signal="timeout" from="ZTimer" to="." method="_on_ZTimer_timeout"]
+[connection signal="timeout" from="PollenTimer" to="." method="_on_PollenTimer_timeout"]
