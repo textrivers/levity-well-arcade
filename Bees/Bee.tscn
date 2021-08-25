@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Node2D.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/bee_move.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/bee.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 20.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "fly",
+"speed": 5.0
+} ]
+
+[node name="Bee" type="KinematicBody2D"]
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+animation = "fly"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="XTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="YTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ZTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+[connection signal="timeout" from="XTimer" to="." method="_on_XTimer_timeout"]
+[connection signal="timeout" from="YTimer" to="." method="_on_YTimer_timeout"]
+[connection signal="timeout" from="ZTimer" to="." method="_on_ZTimer_timeout"]
