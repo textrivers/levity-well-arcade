@@ -5,6 +5,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_Beehive_body_entered(body):
-	body.target = self.position
-	body.following = false
-	body._on_Bee_mouse_exited()
+	if body.following:
+		body.target = self.position
+		body.following = false
+		body._on_Bee_mouse_exited()

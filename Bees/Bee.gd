@@ -33,22 +33,20 @@ func _process(delta):
 	## update target and move_sign
 	if following:
 		target = get_global_mouse_position()
-	diff = position - target
-	x_speed += delta * -diff.x
-	if right && diff.x > 0:
-		x_speed += delta * -diff.x *2
-	if !right && diff.x < 0:
-		x_speed += delta * -diff.x *2
-	y_speed += delta * -diff.y
-	if down && diff.y > 0:
-		y_speed += delta * -diff.y * 2
-	if !down && diff.y < 0:
-		y_speed += delta * -diff.y *2
+	diff = target - position
+	x_speed += delta * diff.x
+	x_speed = clamp(x_speed, -150, 150)
+	y_speed += delta * diff.y
+	y_speed = clamp(y_speed, -150, 150)
+	## braking when overshoot
+	adjust_speed(delta)
 	
+	## pause to pollinate
 	if !following && abs(x_speed) < 5 && abs(y_speed) < 5 && abs(diff.x) < 5 && abs(diff.y) < 5:
-		print(str(x_speed) + " | " + str(y_speed))
 		x_speed = 0
 		y_speed = 0
+		$XTimer.set_paused(true)
+		$YTimer.set_paused(true)
 		if $PollenTimer.is_stopped():
 			$PollenTimer.wait_time = 5.0
 			$PollenTimer.start()
@@ -66,6 +64,14 @@ func _process(delta):
 	scale.x = clamp(scale.x, 0.1, 1.4)
 	scale.y = clamp(scale.y, 0.1, 1.4)
 
+func adjust_speed(delta):
+	if sign(x_speed) != sign(diff.x):
+		if sign(float(right)) != sign(diff.x):
+			x_speed += delta * diff.x * 3
+	if sign(y_speed) != sign(diff.y):
+		if sign(float(down)) != sign(diff.y):
+			y_speed += delta * diff.y * 3
+
 func _on_XTimer_timeout():
 	if target.x > position.x:
 		right = true
@@ -73,7 +79,7 @@ func _on_XTimer_timeout():
 	else:
 		right = false
 		$AnimatedSprite.flip_h = false
-	$XTimer.wait_time = rand_range(0, 1) + 1.5
+	$XTimer.wait_time = rand_range(0, 1) + 0.5
 	$XTimer.start()
 
 func _on_YTimer_timeout():
@@ -81,32 +87,33 @@ func _on_YTimer_timeout():
 		down = true
 	else:
 		down = false
-	$YTimer.wait_time = rand_range(0, 1) + 1.5
+	$YTimer.wait_time = rand_range(0, 1) + 0.5
 	$YTimer.start()
 
-func _on_ZTimer_timeout():
-	zoom_in = !zoom_in
-	$ZTimer.wait_time = rand_range(0, 1) + 1.5
-	$ZTimer.start()
-
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
 func _on_Bee_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == 1:
-		following = true
+		if !pollinating && !depositing:
+			following = true
 
 func _on_Bee_mouse_entered():
-	$AnimatedSprite.modulate = Color(1, 0.5, 0.5)
+	if !pollinating && !depositing:
+		$AnimatedSprite.modulate = Color(1, 0.5, 0.5)
 
 func _on_Bee_mouse_exited():
 	if !following:
 		$AnimatedSprite.modulate = Color(1, 1, 1)
 
 func _on_PollenTimer_timeout():
+	$XTimer.set_paused(false)
+	$YTimer.set_paused(false)
 	pollinating = !pollinating
 	depositing = !depositing
 	if target == hive:
 		$AnimatedSprite.show()
 		target = flower
-		if randi() % 5 == 0:
+		if randi() % 2 == 0:
 			get_parent().spawn_bee()
 	elif target == flower:
 		$AnimatedSprite.play()
