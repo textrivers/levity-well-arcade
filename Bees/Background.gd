@@ -16,5 +16,5 @@ func spawn_bee():
 	bee_array = get_tree().get_nodes_in_group("bee")
 	if bee_array.size() < 6:
 		var new_bee = bee.instance()
-		new_bee. position = Vector2(20, 410)
+		new_bee.position = Vector2(20, 410)
 		add_child(new_bee)

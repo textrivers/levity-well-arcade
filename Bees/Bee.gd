@@ -5,7 +5,7 @@ var y_speed = 0
 var z_speed = 0
 var speed_mod = 200
 
-var target = Vector2(0, 0)
+var target = Vector2(0, 400)
 var hive = Vector2(0, 400)
 var flower = Vector2(0, 0)
 var diff = Vector2(0, 0)
