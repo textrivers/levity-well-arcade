@@ -25,6 +25,24 @@ position = Vector2( 512, 0 )
 rotation = 1.5708
 scale = Vector2( 0.606, 1 )
 
+[node name="PurpleWall7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 343.171, -71.8155 )
+rotation = 1.5708
+scale = Vector2( 0.3, 1 )
+
+[node name="PurpleWall8" parent="." instance=ExtResource( 1 )]
+position = Vector2( -320.808, 61.7362 )
+rotation = 1.5708
+scale = Vector2( 0.3, 1 )
+
+[node name="PurpleWall5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 86.9345, 168.968 )
+scale = Vector2( 0.6, 1 )
+
+[node name="PurpleWall6" parent="." instance=ExtResource( 1 )]
+position = Vector2( -73.0754, -172.47 )
+scale = Vector2( 0.6, 1 )
+
 [node name="Ring" parent="." instance=ExtResource( 3 )]
 position = Vector2( -97.5439, 266.564 )
 
