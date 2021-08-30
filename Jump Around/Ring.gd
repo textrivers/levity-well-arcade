@@ -6,12 +6,12 @@ var dir = Vector2()
 var jump_speed = 1000
 var up = Vector2()
 var down = Vector2()
-var eye
+var rig
 
 func _ready():
 	up = Vector2(0, -1)
 	down = Vector2(0, 1)
-	eye = $Sprite/Sprite
+	rig = $Rig
 
 func _physics_process(_delta):
 	mouse_pos = get_global_mouse_position()
@@ -30,5 +30,12 @@ func _physics_process(_delta):
 		var collision = get_slide_collision(get_slide_count() - 1)
 		up = collision.normal
 		down = up * -1
+		
+		## TODO adjust arms
+		## get angle to collision site; plus/minus to get angles for arm rays
+		## cast to those directions, draw line to position of ray collision
+		var coll_angle = position.angle_to(collision.position)
+		var cast_to_angle = coll_angle - 0.2
+		
 	
-	eye.look_at(mouse_pos)
+	rig.look_at(mouse_pos)
