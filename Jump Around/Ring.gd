@@ -8,17 +8,16 @@ var gravity = 1500
 var up = Vector2()
 var down = Vector2()
 var flying = false
-var rig
-var lerp_rot
-var old_rot
 var right = 1
+var stand = preload("res://assets/images/squirrel_stand.png")
+var jump1 = preload("res://assets/images/squirrel_jump1.png")
+var jump2 = preload("res://assets/images/squirrel_jump2.png")
+var butt
 
 func _ready():
 	up = Vector2(0, -1)
 	down = Vector2(0, 1)
-	rig = $Rig
-	lerp_rot = rotation
-	old_rot = rotation
+	butt = $Sprite/Butt
 
 func _physics_process(delta):
 	mouse_pos = get_global_mouse_position()
@@ -31,37 +30,29 @@ func _physics_process(delta):
 		else: 
 			right = -1
 		dir = dir.normalized()
-		up = dir
-		lerp_rot = up.angle() + deg2rad(90)
+		up = Vector2(0, -1)
+		rotation = get_angle_to(mouse_pos) + rotation
+		if right == -1:
+			rotation += 60
 		velocity = dir * jump_speed
-		## rotation = lerp_rot
-		## rotate(lerp_rot - rotation)
 	
 	if flying:
-		rotation = lerp_angle(rotation, lerp_rot, 0.2)
 		velocity.y += gravity * delta
-	else: rotation = lerp_rot
-	velocity = move_and_slide_with_snap(velocity, down, up, true, 1, 0.8, false)
+		$Sprite.texture = jump1
+		rotation += right * 0.05
+	velocity = move_and_slide(velocity, up, false, 4, 0.8, false)
+	
+	$Sprite.scale.x = right
 	
 	## collision
 	if get_slide_count() > 0 && flying == true:
+		var collision = get_slide_collision(get_slide_count() - 1)
+		print(get_slide_count())
+		$Sprite.texture = stand
 		flying = false
 		velocity = Vector2(0, 0)
-		var collision = get_slide_collision(get_slide_count() - 1)
 		up = collision.normal
 		down = -up 
 		## rotation
-		lerp_rot = up.angle() + deg2rad(90)
-		old_rot = rotation
-		## TODO fix arms
-		## var coll_angle = position.angle_to(collision.position)
-		## var cast_to_angle = coll_angle - 0.05
-		## $LimbRay.cast_to = Vector2(cos(cast_to_angle), sin(cast_to_angle)) * 30
-		## print($LimbRay.cast_to)
-		## if $LimbRay.is_colliding():
-	## 		print("collision at " + str(OS.get_ticks_msec()))
-		## 	$LimbRay/ArmLeft.points[1] = $LimbRay.get_collision_point()
-	
-		
-	
-	rig.look_at(mouse_pos)
+		rotation = up.angle() + deg2rad(90)
+

@@ -3,13 +3,13 @@
 [ext_resource path="res://Tail.gd" type="Script" id=1]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0.581818 ), 0.0, 0.138675, 0, 0, Vector2( 1, 0.263636 ), -5.72728, -5.8182, 0, 0 ]
+_data = [ Vector2( 0, 0.0909091 ), 0.0, 0.138675, 0, 0, Vector2( 0.811111, 0.664773 ), 0.11157, 0.11157, 0, 0, Vector2( 1, 0.4375 ), -3.19091, -5.8182, 0, 0 ]
 
 [node name="Tail" type="Line2D"]
 show_behind_parent = true
 width = 20.0
 width_curve = SubResource( 1 )
-default_color = Color( 0.184314, 0.556863, 0.592157, 1 )
+default_color = Color( 0, 0, 0, 1 )
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
