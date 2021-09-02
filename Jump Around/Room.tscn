@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/gray_bg.png" type="Texture" id=2]
-[ext_resource path="res://Ring.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Squirrel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PauseButton.gd" type="Script" id=4]
 
 [node name="Room" type="Node2D"]
@@ -44,12 +44,11 @@ scale = Vector2( 0.6, 1 )
 position = Vector2( -73.0754, -172.47 )
 scale = Vector2( 0.6, 1 )
 
-[node name="Ring" parent="." instance=ExtResource( 3 )]
-position = Vector2( -97.5439, 266.564 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
 [node name="PauseButton" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 4 )
+
+[node name="Squirrel" parent="." instance=ExtResource( 3 )]
