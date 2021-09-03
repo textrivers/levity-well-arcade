@@ -1,23 +1,24 @@
 extends Line2D
 
-export var length = 15
+export var max_dist = 15
 var squirrel 
 var squirrel_pos = Vector2()
 var offsets = [
 	Vector2(0, 0),
-	Vector2(8, -2),
-	Vector2(8, -3),
-	Vector2(8, -4),
-	Vector2(8, -3),
-	Vector2(8, -2),
-	Vector2(8, -2),
-	Vector2(8, 0),
-	Vector2(8, 1),
-	Vector2(8, 1),
-	Vector2(8, 1),
-	Vector2(8, 0),
-	Vector2(8, 0),
+	Vector2(5, -2),
+	Vector2(5, -3),
+	Vector2(5, -4),
+	Vector2(5, -3),
+	Vector2(5, -2),
+	Vector2(5, -2),
+	Vector2(5, 0),
+	Vector2(5, 1),
+	Vector2(5, 1),
+	Vector2(5, 1),
+	Vector2(5, 0),
+	Vector2(5, 0),
 	]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
