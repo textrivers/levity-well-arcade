@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/gray_bg.png" type="Texture" id=2]
 [ext_resource path="res://Squirrel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PauseButton.gd" type="Script" id=4]
+[ext_resource path="res://Counter.gd" type="Script" id=5]
+[ext_resource path="res://assets/fonts/trebuc.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 79
+outline_size = 2
+use_filter = true
+font_data = ExtResource( 6 )
 
 [node name="Room" type="Node2D"]
 
@@ -28,12 +36,12 @@ scale = Vector2( 0.606, 1 )
 
 [node name="PurpleWall7" parent="." instance=ExtResource( 1 )]
 position = Vector2( 343.171, -71.8155 )
-rotation = 1.5708
+rotation = 1.82387
 scale = Vector2( 0.3, 1 )
 
 [node name="PurpleWall8" parent="." instance=ExtResource( 1 )]
 position = Vector2( -320.808, 61.7362 )
-rotation = 1.5708
+rotation = 1.31772
 scale = Vector2( 0.3, 1 )
 
 [node name="PurpleWall5" parent="." instance=ExtResource( 1 )]
@@ -52,3 +60,32 @@ pause_mode = 2
 script = ExtResource( 4 )
 
 [node name="Squirrel" parent="." instance=ExtResource( 3 )]
+
+[node name="Counter" type="RichTextLabel" parent="."]
+margin_left = -477.0
+margin_top = -283.0
+margin_right = -356.0
+margin_bottom = -155.0
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_constants/shadow_as_outline = 2
+text = "0"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Counter"]
+anchor_left = 0.108
+anchor_top = 0.731
+anchor_right = 0.591
+anchor_bottom = 0.742
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Reset?"
+
+[connection signal="mouse_entered" from="Counter" to="Counter" method="_on_RichTextLabel_mouse_entered"]
+[connection signal="mouse_exited" from="Counter" to="Counter" method="_on_RichTextLabel_mouse_exited"]
+[connection signal="mouse_entered" from="Counter/Button" to="Counter" method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="Counter/Button" to="Counter" method="_on_Button_pressed"]

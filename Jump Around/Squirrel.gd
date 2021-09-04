@@ -14,6 +14,8 @@ var jump1 = preload("res://assets/images/squirrel_jump1.png")
 var jump2 = preload("res://assets/images/squirrel_jump2.png")
 var butt
 
+signal jump
+
 func _ready():
 	up = Vector2(0, -1)
 	down = Vector2(0, 1)
@@ -23,6 +25,7 @@ func _physics_process(delta):
 	mouse_pos = get_global_mouse_position()
 	
 	if Input.is_action_just_pressed("jump") && flying == false:
+		emit_signal("jump")
 		flying = true
 		dir = mouse_pos - position
 		if dir.x > 0:
@@ -40,19 +43,20 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		$Sprite.texture = jump1
 		rotation += right * 0.05
-	velocity = move_and_slide(velocity, up, false, 4, 0.8, false)
+	velocity = move_and_slide(velocity, Vector2.UP, true, 1, 0.785, false)
 	
 	$Sprite.scale.x = right
 	
 	## collision
 	if get_slide_count() > 0 && flying == true:
 		var collision = get_slide_collision(get_slide_count() - 1)
-		print(get_slide_count())
-		$Sprite.texture = stand
-		flying = false
-		velocity = Vector2(0, 0)
-		up = collision.normal
-		down = -up 
-		## rotation
-		rotation = up.angle() + deg2rad(90)
+		var ang = collision.normal.angle()
+		if ang < 0 || is_equal_approx(PI, ang) || is_equal_approx(0, ang):
+			$Sprite.texture = stand
+			flying = false
+			velocity = Vector2(0, 0)
+			up = collision.normal
+			down = -up 
+			## rotation
+			rotation = up.angle() + deg2rad(90)
 
