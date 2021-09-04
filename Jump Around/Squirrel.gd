@@ -51,7 +51,7 @@ func _physics_process(delta):
 	if get_slide_count() > 0 && flying == true:
 		var collision = get_slide_collision(get_slide_count() - 1)
 		var ang = collision.normal.angle()
-		if ang < 0 || is_equal_approx(PI, ang) || is_equal_approx(0, ang):
+		if sin(ang) <= 0.01:
 			$Sprite.texture = stand
 			flying = false
 			velocity = Vector2(0, 0)

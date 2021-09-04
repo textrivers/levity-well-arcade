@@ -7,8 +7,8 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
-		get_tree().set_pause(!get_tree().is_paused())
-		print("pause pressed")
+		get_tree().call_deferred("set_pause", !get_tree().is_paused())
+
 
 
 func _on_RichTextLabel_mouse_exited():

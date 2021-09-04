@@ -43,6 +43,7 @@ scale = Vector2( 0.3, 1 )
 position = Vector2( -320.808, 61.7362 )
 rotation = 1.31772
 scale = Vector2( 0.3, 1 )
+constant_angular_velocity = 20.0
 
 [node name="PurpleWall5" parent="." instance=ExtResource( 1 )]
 position = Vector2( 86.9345, 168.968 )
@@ -77,6 +78,7 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="Counter"]
+visible = false
 anchor_left = 0.108
 anchor_top = 0.731
 anchor_right = 0.591
