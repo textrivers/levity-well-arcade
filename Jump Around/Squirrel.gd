@@ -24,35 +24,31 @@ func _ready():
 
 func _physics_process(delta):
 	mouse_pos = get_global_mouse_position()
-	
-	if Input.is_action_just_pressed("jump") && flying == false:
-		emit_signal("jump")
-		flying = true
-		dir = mouse_pos - position
-		if dir.x > 0:
-			right = 1
-		else: 
-			right = -1
-		dir = dir.normalized()
-		up = Vector2(0, -1)
-		rotation = get_angle_to(mouse_pos) + rotation
-		if right == -1:
-			rotation += PI
-		velocity = dir * jump_speed
-	
-	if flying:
-		velocity.y += gravity * delta
-		$Sprite.texture = jump1
-		rotation += right * 0.05
-	else:
-		print(velocity)
-	
 	var snap
+	
 	if flying: 
 		snap = Vector2(0, 0)
+		velocity.y += gravity * delta
+		rotation += right * 0.05
 	else:
-		snap = Vector2.DOWN * 8
-	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, true, 1, PI / 2, false)
+		snap = down * 32
+		if Input.is_action_just_pressed("jump"):
+			emit_signal("jump")
+			flying = true
+			$Sprite.texture = jump1
+			dir = mouse_pos - position
+			if dir.x > 0:
+				right = 1
+			else: 
+				right = -1
+			dir = dir.normalized()
+			up = Vector2(0, -1)
+			rotation = get_angle_to(mouse_pos) + rotation
+			if right == -1:
+				rotation += PI
+			velocity = dir * jump_speed
+	
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 1, PI / 2, false)
 	
 	$Sprite.scale.x = right
 	

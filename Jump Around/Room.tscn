@@ -84,10 +84,6 @@ text = "Reset?"
 position = Vector2( -70.5555, -233.085 )
 z_index = -1
 
-[node name="MovingPlatform" parent="." instance=ExtResource( 8 )]
-position = Vector2( -279.702, 97.0139 )
-travel = Vector2( 200, -40 )
-
 [node name="MovingPlatform2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 217.966, -45.3571 )
 rotation = 2.53945
