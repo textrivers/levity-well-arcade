@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/gray_bg.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://PauseButton.gd" type="Script" id=4]
 [ext_resource path="res://Counter.gd" type="Script" id=5]
 [ext_resource path="res://assets/fonts/trebuc.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Acorn.tscn" type="PackedScene" id=7]
+[ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 79
@@ -16,6 +18,7 @@ font_data = ExtResource( 6 )
 [node name="Room" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
+z_index = -5
 texture = ExtResource( 2 )
 
 [node name="PurpleWall" parent="." instance=ExtResource( 1 )]
@@ -33,17 +36,6 @@ scale = Vector2( 0.606, 1 )
 position = Vector2( 512, 0 )
 rotation = 1.5708
 scale = Vector2( 0.606, 1 )
-
-[node name="PurpleWall7" parent="." instance=ExtResource( 1 )]
-position = Vector2( 343.171, -71.8155 )
-rotation = 1.82387
-scale = Vector2( 0.3, 1 )
-
-[node name="PurpleWall8" parent="." instance=ExtResource( 1 )]
-position = Vector2( -320.808, 61.7362 )
-rotation = 1.31772
-scale = Vector2( 0.3, 1 )
-constant_angular_velocity = 20.0
 
 [node name="PurpleWall5" parent="." instance=ExtResource( 1 )]
 position = Vector2( 86.9345, 168.968 )
@@ -78,6 +70,7 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="Counter"]
+pause_mode = 2
 visible = false
 anchor_left = 0.108
 anchor_top = 0.731
@@ -86,6 +79,19 @@ anchor_bottom = 0.742
 margin_right = 12.0
 margin_bottom = 20.0
 text = "Reset?"
+
+[node name="Acorn" parent="." instance=ExtResource( 7 )]
+position = Vector2( -70.5555, -233.085 )
+z_index = -1
+
+[node name="MovingPlatform" parent="." instance=ExtResource( 8 )]
+position = Vector2( -279.702, 97.0139 )
+travel = Vector2( 200, -40 )
+
+[node name="MovingPlatform2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 217.966, -45.3571 )
+rotation = 2.53945
+travel = Vector2( 100, 0 )
 
 [connection signal="mouse_entered" from="Counter" to="Counter" method="_on_RichTextLabel_mouse_entered"]
 [connection signal="mouse_exited" from="Counter" to="Counter" method="_on_RichTextLabel_mouse_exited"]

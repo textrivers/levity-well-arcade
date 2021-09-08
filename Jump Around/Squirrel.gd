@@ -8,6 +8,7 @@ var gravity = 1800
 var up = Vector2()
 var down = Vector2()
 var flying = true
+var stop_slope_threshold = 64.0
 var right = 1
 var stand = preload("res://assets/images/squirrel_stand.png")
 var jump1 = preload("res://assets/images/squirrel_jump1.png")
@@ -43,7 +44,15 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		$Sprite.texture = jump1
 		rotation += right * 0.05
-	velocity = move_and_slide(velocity, Vector2.UP, true, 1, 0.785, false)
+	else:
+		print(velocity)
+	
+	var snap
+	if flying: 
+		snap = Vector2(0, 0)
+	else:
+		snap = Vector2.DOWN * 8
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, true, 1, PI / 2, false)
 	
 	$Sprite.scale.x = right
 	
@@ -59,4 +68,6 @@ func _physics_process(delta):
 			down = -up 
 			## rotation
 			rotation = up.angle() + deg2rad(90)
+		else: 
+			flying = true
 
