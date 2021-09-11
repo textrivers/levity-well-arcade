@@ -5,7 +5,7 @@ var pos_b: Vector2 = Vector2(0, 0)
 export var travel: Vector2 = Vector2(0, 0)
 export var speed: float = 300.0
 var tween
-var delay = 1.0
+export var delay = 1.0
 
 func _ready():
 	pos_a = global_position

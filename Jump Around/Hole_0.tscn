@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://BlackWall141.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Squirrel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Acorn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/images/gray_bg.png" type="Texture" id=5]
+[ext_resource path="res://BlackWall100.tscn" type="PackedScene" id=6]
+
+[node name="Hole" type="Node2D" groups=[
+"hole",
+]]
+z_index = -1
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Box"]
+z_index = -5
+texture = ExtResource( 5 )
+
+[node name="PurpleWall" parent="Box" instance=ExtResource( 3 )]
+position = Vector2( 0, 300 )
+
+[node name="PurpleWall2" parent="Box" instance=ExtResource( 3 )]
+position = Vector2( 0, -300 )
+
+[node name="PurpleWall3" parent="Box" instance=ExtResource( 3 )]
+position = Vector2( -512, 0 )
+rotation = 1.5708
+scale = Vector2( 0.606, 1 )
+
+[node name="PurpleWall4" parent="Box" instance=ExtResource( 3 )]
+position = Vector2( 512, 0 )
+rotation = 1.5708
+scale = Vector2( 0.606, 1 )
+
+[node name="Contents" type="Node2D" parent="."]
+
+[node name="Squirrel" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -450, -250 )
+
+[node name="Acorn" parent="Contents" instance=ExtResource( 4 )]
+position = Vector2( 450, 250 )
+z_index = -1
+
+[node name="BlackWall141" parent="Contents" instance=ExtResource( 1 )]
+position = Vector2( -350, -150 )
+rotation = -0.785398
+
+[node name="BlackWall146" parent="Contents" instance=ExtResource( 1 )]
+position = Vector2( 350, 150 )
+rotation = -0.785398
+
+[node name="BlackWall100" parent="Contents" instance=ExtResource( 6 )]
+position = Vector2( -452, -200 )
+
+[node name="BlackWall142" parent="Contents" instance=ExtResource( 1 )]
+position = Vector2( -250, -50 )
+rotation = -0.785398
+scale = Vector2( 3, 1 )
+
+[node name="BlackWall145" parent="Contents" instance=ExtResource( 1 )]
+position = Vector2( 250, 50 )
+rotation = -0.785398
+scale = Vector2( 3, 1 )
+
+[node name="BlackWall143" parent="Contents" instance=ExtResource( 1 )]
+position = Vector2( -50, -50 )
+rotation = -0.785398
+scale = Vector2( 5, 1 )
+
+[node name="BlackWall144" parent="Contents" instance=ExtResource( 1 )]
+position = Vector2( 50, 50 )
+rotation = -0.785398
+scale = Vector2( 5, 1 )
