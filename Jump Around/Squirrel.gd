@@ -21,6 +21,8 @@ func _ready():
 	up = Vector2(0, -1)
 	down = Vector2(0, 1)
 	butt = $Sprite/Butt
+# warning-ignore:return_value_discarded
+	self.connect("jump", get_parent().get_parent().get_parent().get_node("UI"), "on_squirrel_jump")
 
 func _physics_process(delta):
 	mouse_pos = get_global_mouse_position()

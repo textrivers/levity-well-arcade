@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://BlackWall100.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Acorn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Squirrel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/images/gray_bg.png" type="Texture" id=5]
+
+[node name="Hole" type="Node2D" groups=[
+"hole",
+]]
+z_index = -1
+__meta__ = {
+"_edit_horizontal_guides_": [ -100.118 ],
+"_edit_vertical_guides_": [ -49.9664, 49.7769, 150.031, 249.811, 350.0 ]
+}
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Box"]
+z_index = -5
+texture = ExtResource( 5 )
+
+[node name="PurpleWall" parent="Box" instance=ExtResource( 1 )]
+position = Vector2( 0, 300 )
+
+[node name="PurpleWall2" parent="Box" instance=ExtResource( 1 )]
+position = Vector2( 0, -300 )
+
+[node name="PurpleWall3" parent="Box" instance=ExtResource( 1 )]
+position = Vector2( -512, 0 )
+rotation = 1.5708
+scale = Vector2( 0.606, 1 )
+
+[node name="PurpleWall4" parent="Box" instance=ExtResource( 1 )]
+position = Vector2( 512, 0 )
+rotation = 1.5708
+scale = Vector2( 0.606, 1 )
+
+[node name="Contents" type="Node2D" parent="."]
+
+[node name="Squirrel" parent="Contents" instance=ExtResource( 4 )]
+position = Vector2( -375, -225 )
+
+[node name="Acorn" parent="Contents" instance=ExtResource( 3 )]
+position = Vector2( 450, -250 )
+z_index = -1
+
+[node name="BlackWall100" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -350, -152 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall101" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -350, 48 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall102" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -350, 248 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall103" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -250, -252 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall104" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -250, -52 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall105" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -250, 148 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall112" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -49.9664, -152 )
+rotation = 1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall113" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -49.9664, 48 )
+rotation = 1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall114" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( -49.9664, 248 )
+rotation = 1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall115" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( 50.0336, -252 )
+rotation = 1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall116" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( 50.0336, -52 )
+rotation = 1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall117" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( 50.0336, 148 )
+rotation = 1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall106" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( 249.811, -152 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall107" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( 249.811, 48 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall108" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( 249.811, 248 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall109" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( 349.811, -252 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall110" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( 349.811, -52 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )
+
+[node name="BlackWall111" parent="Contents" instance=ExtResource( 2 )]
+position = Vector2( 349.811, 148 )
+rotation = -1.10654
+scale = Vector2( 2.236, 1 )

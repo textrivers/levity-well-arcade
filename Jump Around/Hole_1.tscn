@@ -48,21 +48,22 @@ position = Vector2( -450, 250 )
 z_index = -1
 
 [node name="Cup" type="Node2D" parent="Contents"]
+position = Vector2( 300, 0 )
 
 [node name="BlackWall100" parent="Contents/Cup" instance=ExtResource( 4 )]
-position = Vector2( 400, 50 )
+position = Vector2( 100, 50 )
 rotation = 1.5708
 
 [node name="BlackWall101" parent="Contents/Cup" instance=ExtResource( 4 )]
-position = Vector2( 200, 50 )
+position = Vector2( -100, 50 )
 rotation = 1.5708
 
 [node name="BlackWall102" parent="Contents/Cup" instance=ExtResource( 4 )]
-position = Vector2( 300, 100 )
+position = Vector2( 0, 100 )
 scale = Vector2( 2, 1 )
 
 [node name="MovingPlatform" parent="Contents/Cup" instance=ExtResource( 6 )]
-position = Vector2( 300, -50 )
+position = Vector2( 0, -50 )
 rotation = 1.5708
 scale = Vector2( 0.25, 1 )
 travel = Vector2( -300, 0 )
