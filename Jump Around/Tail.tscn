@@ -7,6 +7,7 @@ _data = [ Vector2( 0, 0.0909091 ), 0.0, 0.138675, 0, 0, Vector2( 0.811111, 0.664
 
 [node name="Tail" type="Line2D"]
 show_behind_parent = true
+z_index = -1
 width = 20.0
 width_curve = SubResource( 1 )
 default_color = Color( 0, 0, 0, 1 )

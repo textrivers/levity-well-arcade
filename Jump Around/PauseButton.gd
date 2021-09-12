@@ -8,5 +8,5 @@ func _ready():
 # warning-ignore:unused_argument
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
-		get_tree().call_deferred("set_pause", !get_tree().is_paused())
+		get_parent().get_node("UI").on_pause_pressed()
 

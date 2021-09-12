@@ -7,7 +7,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.0
 
-[node name="Squirrel" type="KinematicBody2D"]
+[node name="Squirrel" type="KinematicBody2D" groups=[
+"squirrel",
+]]
 collision/safe_margin = 1.0
 script = ExtResource( 3 )
 
