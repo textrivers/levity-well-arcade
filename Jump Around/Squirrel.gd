@@ -15,12 +15,15 @@ var jump1 = preload("res://assets/images/squirrel_jump1.png")
 var jump2 = preload("res://assets/images/squirrel_jump2.png")
 var butt
 
+var assist
+
 signal jump
 
 func _ready():
 	up = Vector2(0, -1)
 	down = Vector2(0, 1)
 	butt = $Sprite/Butt
+	assist = $AimAssist
 # warning-ignore:return_value_discarded
 	self.connect("jump", get_parent().get_parent().get_parent().get_node("UI"), "on_squirrel_jump")
 
@@ -35,6 +38,8 @@ func _physics_process(delta):
 	else:
 		snap = down * 32
 		if Input.is_action_just_pressed("jump"):
+			assist.set_physics_process(false)
+			assist.get_node("Line2D").clear_points()
 			emit_signal("jump")
 			flying = true
 			$Sprite.texture = jump1
@@ -54,12 +59,14 @@ func _physics_process(delta):
 	
 	$Sprite.scale.x = right
 	
+	
 	## collision
 	if get_slide_count() > 0 && flying == true:
 		var collision = get_slide_collision(get_slide_count() - 1)
 		var ang = collision.normal.angle()
 		if sin(ang) <= 0.01:
 			$Sprite.texture = stand
+			assist.set_physics_process(true)
 			flying = false
 			velocity = Vector2(0, 0)
 			up = collision.normal
@@ -68,4 +75,6 @@ func _physics_process(delta):
 			rotation = up.angle() + deg2rad(90)
 		else: 
 			flying = true
-
+	
+	if flying == false && !$RayCast2D.is_colliding():
+			flying = true

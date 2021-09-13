@@ -49,125 +49,125 @@ z_index = -1
 [node name="MovingPlatform" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( -350, -200 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
-travel = Vector2( 0, 100 )
+travel = Vector2( 0, -100 )
+speed = 400.0
 delay = 0.5
 
 [node name="MovingPlatform2" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( -350, 100 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
 travel = Vector2( 0, 100 )
+speed = 400.0
 delay = 0.5
 
 [node name="MovingPlatform9" parent="Contents" instance=ExtResource( 4 )]
-position = Vector2( -249.893, -100.206 )
+position = Vector2( -249.893, -200 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
 travel = Vector2( 0, -100 )
+speed = 400.0
 initial_delay = 0.1
 delay = 0.5
 
 [node name="MovingPlatform10" parent="Contents" instance=ExtResource( 4 )]
-position = Vector2( -249.893, 199.794 )
+position = Vector2( -249.893, 100 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
-travel = Vector2( 0, -100 )
+travel = Vector2( 0, 100 )
+speed = 400.0
 initial_delay = 0.1
 delay = 0.5
 
 [node name="MovingPlatform3" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( -149.843, -200.188 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
-travel = Vector2( 0, 100 )
+travel = Vector2( 0, -100 )
+speed = 400.0
 initial_delay = 0.2
 delay = 0.5
 
 [node name="MovingPlatform4" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( -149.843, 99.8117 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
 travel = Vector2( 0, 100 )
+speed = 400.0
 initial_delay = 0.2
 delay = 0.5
 
 [node name="MovingPlatform11" parent="Contents" instance=ExtResource( 4 )]
-position = Vector2( -49.7919, -100.206 )
+position = Vector2( -49.7919, -200 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
 travel = Vector2( 0, -100 )
+speed = 400.0
 initial_delay = 0.3
 delay = 0.5
 
 [node name="MovingPlatform12" parent="Contents" instance=ExtResource( 4 )]
-position = Vector2( -49.7919, 199.794 )
+position = Vector2( -49.7919, 100 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
-travel = Vector2( 0, -100 )
+travel = Vector2( 0, 100 )
+speed = 400.0
 initial_delay = 0.3
 delay = 0.5
 
 [node name="MovingPlatform5" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( 50.2587, -200.188 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
-travel = Vector2( 0, 100 )
+travel = Vector2( 0, -100 )
+speed = 400.0
 initial_delay = 0.4
 delay = 0.5
 
 [node name="MovingPlatform6" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( 50.2587, 99.8117 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
 travel = Vector2( 0, 100 )
+speed = 400.0
 initial_delay = 0.4
 delay = 0.5
 
 [node name="MovingPlatform13" parent="Contents" instance=ExtResource( 4 )]
-position = Vector2( 150.309, -100.206 )
+position = Vector2( 150.309, -200 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
 travel = Vector2( 0, -100 )
+speed = 400.0
 initial_delay = 0.5
 delay = 0.5
 
 [node name="MovingPlatform14" parent="Contents" instance=ExtResource( 4 )]
-position = Vector2( 150.309, 199.794 )
+position = Vector2( 150.309, 100 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
-travel = Vector2( 0, -100 )
+travel = Vector2( 0, 100 )
+speed = 400.0
 initial_delay = 0.5
 delay = 0.5
 
 [node name="MovingPlatform7" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( 250.36, -200.188 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
-travel = Vector2( 0, 100 )
+travel = Vector2( 0, -100 )
+speed = 400.0
 initial_delay = 0.6
 delay = 0.5
 
 [node name="MovingPlatform8" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( 250.36, 99.8117 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
 travel = Vector2( 0, 100 )
+speed = 400.0
 initial_delay = 0.6
 delay = 0.5
 
 [node name="MovingPlatform15" parent="Contents" instance=ExtResource( 4 )]
-position = Vector2( 350.411, -100.206 )
+position = Vector2( 350.411, -200 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
 travel = Vector2( 0, -100 )
+speed = 400.0
 initial_delay = 0.7
 delay = 0.5
 
 [node name="MovingPlatform16" parent="Contents" instance=ExtResource( 4 )]
-position = Vector2( 350.411, 199.794 )
+position = Vector2( 350.411, 100 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1 )
-travel = Vector2( 0, -100 )
+travel = Vector2( 0, 100 )
+speed = 400.0
 initial_delay = 0.7
 delay = 0.5

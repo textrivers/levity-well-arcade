@@ -35,7 +35,6 @@ func on_acorn_collected():
 	get_tree().set_pause(true)
 
 func on_acorn_zoom_complete():
-	print("acorn zoom completed")
 	count = int(0)
 	counter.text = "Total = " + str(total)
 	$OrangeScreen.modulate.a = 1.0
@@ -54,13 +53,17 @@ func on_acorn_zoom_complete():
 
 func _on_GameStart_pressed():
 	count = 0
+	total = 0
 	counter.text = str(count)
 	counter.show()
+	clear_scores($CenterContainer/VBoxContainer/ScoreBoxFrontNine)
+	clear_scores($CenterContainer/VBoxContainer/ScoreBoxBackNine)
 	$CenterContainer/VBoxContainer/Buttons/GameStart.text = "Start Game"
 	$CenterContainer/VBoxContainer/Logo.hide()
 	$CenterContainer/VBoxContainer/ScoreBoxFrontNine.show()
 	$CenterContainer.hide()
 	$OrangeScreen.modulate.a = 0
+	$Light2D/Timer.start()
 	hide_buttons()
 	var new_hole = load("res://Hole_" + str(hole_num) + ".tscn").instance()
 	get_parent().call_deferred("add_child", new_hole)
@@ -90,15 +93,20 @@ func _on_NextHole_pressed():
 	$CenterContainer.hide()
 
 func _on_QuitMenu_pressed():
+	get_tree().set_pause(false)
 	hide_buttons()
 	counter.hide()
 	count = 0
+	total = 0
 	hole_num = 0
 	$OrangeScreen.modulate.a = 1.0
+	$Light2D/Timer.start()
 	var holes = get_tree().get_nodes_in_group("hole")
 	if holes.size() > 0:
 		for hole in holes:
 			hole.queue_free()
+	clear_scores($CenterContainer/VBoxContainer/ScoreBoxFrontNine)
+	clear_scores($CenterContainer/VBoxContainer/ScoreBoxBackNine)
 	$CenterContainer/VBoxContainer/ScoreBoxFrontNine.hide()
 	$CenterContainer/VBoxContainer/ScoreBoxBackNine.hide()
 	$CenterContainer/VBoxContainer/Logo.show()
@@ -112,3 +120,11 @@ func hide_buttons():
 	var buttons = $CenterContainer/VBoxContainer/Buttons.get_children()
 	for button in buttons:
 		button.hide()
+
+func clear_scores(parent):
+	for child in parent.get_children():
+		if child.name == "Score":
+			child.text = "-"
+			continue
+		else:
+			clear_scores(child)

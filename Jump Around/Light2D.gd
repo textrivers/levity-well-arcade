@@ -10,5 +10,5 @@ func _ready():
 func _on_Timer_timeout():
 	$Timer.wait_time = 4.0
 	$Timer.start()
-	$Tween.interpolate_property(self, "global_position", pos_a, pos_b, 2.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property(self, "global_position", pos_a, pos_b, 2.0, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
 	$Tween.start()

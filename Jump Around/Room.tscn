@@ -526,6 +526,21 @@ text = "Quit to Desktop"
 
 [node name="Tween" type="Tween" parent="UI"]
 
+[node name="Light2D" type="Light2D" parent="UI"]
+light_mask = 2
+position = Vector2( 1136.02, 115.653 )
+texture = ExtResource( 3 )
+texture_scale = 0.1
+energy = 3.14
+range_item_cull_mask = 2
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="UI/Light2D"]
+one_shot = true
+autostart = true
+
+[node name="Tween" type="Tween" parent="UI/Light2D"]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
@@ -533,24 +548,9 @@ current = true
 pause_mode = 2
 script = ExtResource( 4 )
 
-[node name="Light2D" type="Light2D" parent="."]
-light_mask = 2
-position = Vector2( 624.024, -184.347 )
-texture = ExtResource( 3 )
-texture_scale = 0.1
-energy = 3.14
-range_item_cull_mask = 2
-script = ExtResource( 2 )
-
-[node name="Timer" type="Timer" parent="Light2D"]
-one_shot = true
-autostart = true
-
-[node name="Tween" type="Tween" parent="Light2D"]
-
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Buttons/GameStart" to="UI" method="_on_GameStart_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Buttons/NextHole" to="UI" method="_on_NextHole_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Buttons/Resume" to="UI" method="_on_Resume_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Buttons/QuitMenu" to="UI" method="_on_QuitMenu_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Buttons/QuitDesktop" to="UI" method="_on_QuitDesktop_pressed"]
-[connection signal="timeout" from="Light2D/Timer" to="Light2D" method="_on_Timer_timeout"]
+[connection signal="timeout" from="UI/Light2D/Timer" to="UI/Light2D" method="_on_Timer_timeout"]

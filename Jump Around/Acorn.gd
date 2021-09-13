@@ -24,6 +24,6 @@ func _on_Acorn_body_entered(body):
 		tween.interpolate_property(self, "scale", Vector2(1, 1), Vector2(100, 100), dur, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 		tween.start()
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(_object, _key):
 	if scale.x == 1:
 		$CollisionShape2D.disabled = false
