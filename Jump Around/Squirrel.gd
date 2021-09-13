@@ -39,7 +39,7 @@ func _physics_process(delta):
 		snap = down * 32
 		if Input.is_action_just_pressed("jump"):
 			assist.set_physics_process(false)
-			assist.get_node("Line2D").clear_points()
+			##assist.get_node("Line2D").clear_points()
 			emit_signal("jump")
 			flying = true
 			$Sprite.texture = jump1

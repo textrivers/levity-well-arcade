@@ -3,7 +3,7 @@
 [ext_resource path="res://AimAssist.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 5.0
+radius = 5.5
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0.681818 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.354545 ), 0.0399113, 1.00413, 0, 0 ]
