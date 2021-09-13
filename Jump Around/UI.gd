@@ -35,6 +35,7 @@ func on_acorn_collected():
 	get_tree().set_pause(true)
 
 func on_acorn_zoom_complete():
+	print("zoom complete")
 	count = int(0)
 	counter.text = "Total = " + str(total)
 	$OrangeScreen.modulate.a = 1.0
