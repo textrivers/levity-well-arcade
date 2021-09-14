@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/images/portal_green.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/portal_teal.png" type="Texture" id=1]
 [ext_resource path="res://Portal.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/small_circle.png" type="Texture" id=3]
 
@@ -9,13 +9,13 @@ radius = 5.14645
 height = 38.0244
 
 [sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 0.717647, 0.937255, 0.25098, 1, 0.564706, 0.729412, 0.215686, 0.262745 )
+colors = PoolColorArray( 0.235294, 0.941176, 0.941176, 1, 0.235294, 0.941176, 0.941176, 0.705882 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
 
 [sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 0.603409 ), 0.0, 0.0, 0, 0, Vector2( 0.453947, 0.8125 ), 0.0, 0.0, 0, 0, Vector2( 0.927632, 0.457955 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.614773 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.603409 ), 0.0, 0.0, 0, 0, Vector2( 0.453947, 0.8125 ), 0.0, 0.0, 0, 0, Vector2( 0.959854, 0.428256 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=5]
 curve = SubResource( 4 )
@@ -28,7 +28,7 @@ flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 30.0
 orbit_velocity = 0.0
-orbit_velocity_random = 0.0
+orbit_velocity_random = 1.0
 damping = 15.0
 scale = 0.8
 scale_random = 1.0
@@ -36,7 +36,7 @@ scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
 
 [sub_resource type="Curve" id=7]
-_data = [ Vector2( 0, 0.431818 ), 0.0, 0.0, 0, 0, Vector2( 0.493421, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.468182 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.431818 ), 0.0, 0.0, 0, 0, Vector2( 0.493421, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0352273 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=8]
 curve = SubResource( 7 )
@@ -57,7 +57,7 @@ damping = 100.0
 scale = 0.8
 scale_random = 0.39
 scale_curve = SubResource( 8 )
-color = Color( 0.713726, 0.929412, 0.25098, 1 )
+color = Color( 0.235294, 0.941176, 0.941176, 1 )
 
 [node name="Portal" type="Area2D" groups=[
 "portal",
@@ -71,7 +71,6 @@ shape = SubResource( 1 )
 texture = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( 5, 0 )
 scale = Vector2( 0.8, 0.8 )
 amount = 10
 lifetime = 2.0

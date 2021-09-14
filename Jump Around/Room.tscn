@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/images/gosoc_logo.png" type="Texture" id=1]
 [ext_resource path="res://Light2D.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://assets/fonts/pala.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/images/big_acorn.png" type="Texture" id=9]
 [ext_resource path="res://assets/images/scorebox_cell.png" type="Texture" id=10]
-[ext_resource path="res://Hole_Portal_Test.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 79
@@ -23,16 +22,15 @@ size = 54
 outline_size = 1
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 8 )
 
 [node name="Room" type="Node2D"]
 
 [node name="UI" type="Control" parent="."]
-visible = false
 margin_left = -512.0
 margin_top = -300.0
 margin_right = 512.0
@@ -495,7 +493,7 @@ alignment = 1
 [node name="AimAssist" type="CheckButton" parent="UI/CenterContainer/VBoxContainer/Buttons"]
 margin_right = 165.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Aim Assist?"
 
@@ -503,7 +501,7 @@ text = "Aim Assist?"
 margin_left = 169.0
 margin_right = 259.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Start Game"
 
 [node name="NextHole" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -511,7 +509,7 @@ visible = false
 margin_left = 94.0
 margin_right = 179.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Next Hole"
 
 [node name="Resume" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -519,7 +517,7 @@ visible = false
 margin_left = 94.0
 margin_right = 164.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Resume"
 
 [node name="QuitMenu" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -527,14 +525,14 @@ visible = false
 margin_left = 87.0
 margin_right = 184.0
 margin_bottom = 20.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Quit to Menu"
 
 [node name="QuitDesktop" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
 margin_left = 263.0
 margin_right = 390.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Quit to Desktop"
 
 [node name="Tween" type="Tween" parent="UI"]
@@ -560,8 +558,6 @@ current = true
 [node name="PauseButton" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 4 )
-
-[node name="Hole" parent="." instance=ExtResource( 11 )]
 
 [connection signal="toggled" from="UI/CenterContainer/VBoxContainer/Buttons/AimAssist" to="UI" method="_on_AimAssist_toggled"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Buttons/GameStart" to="UI" method="_on_GameStart_pressed"]

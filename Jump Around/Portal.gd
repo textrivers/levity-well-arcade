@@ -16,6 +16,8 @@ func _on_Portal_body_entered(body):
 func lock_portal():
 	locked = true
 	modulate = Color(0.8, 0.2, 0.2, 1)
+	$Particles2D.emitting == false
 	yield(get_tree().create_timer(0.5), "timeout")
 	locked = false
 	modulate = Color(1, 1, 1, 1)
+	$Particles2D.emitting == true
