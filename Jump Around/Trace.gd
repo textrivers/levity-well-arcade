@@ -8,6 +8,6 @@ func _ready():
 
 func _draw():
 	for spoint in squirrel_points:
-		draw_circle(spoint, 4.0, Color.webgray)
+		draw_circle(spoint, 4.0, Color.firebrick)
 	for lpoint in line_points:
 		draw_circle(lpoint, 4.0, Color.dodgerblue)

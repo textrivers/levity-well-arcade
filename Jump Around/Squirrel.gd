@@ -6,6 +6,7 @@ var dir = Vector2()
 var jump_speed = 800
 var gravity = 1800
 var up = Vector2()
+var snap: Vector2
 var down = Vector2()
 var flying = true
 var stop_slope_threshold = 64.0
@@ -27,7 +28,6 @@ func _ready():
 
 func _physics_process(delta):
 	mouse_pos = get_global_mouse_position()
-	var snap
 	
 	if flying: 
 		snap = Vector2(0, 0)
@@ -38,6 +38,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("jump"):
 			emit_signal("jump")
 			flying = true
+			snap = Vector2(0, 0)
 			$Sprite.texture = jump1
 			dir = mouse_pos - position
 			if dir.x > 0:
@@ -54,7 +55,6 @@ func _physics_process(delta):
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 1, PI / 2, false)
 	
 	$Sprite.scale.x = right
-	
 	
 	## collision
 	if get_slide_count() > 0 && flying == true:
