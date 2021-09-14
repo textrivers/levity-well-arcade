@@ -14,7 +14,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Jump Around"
+config/name="Golf of Squirrels of Champions"
 run/main_scene="res://Room.tscn"
 config/icon="res://icon.png"
 
