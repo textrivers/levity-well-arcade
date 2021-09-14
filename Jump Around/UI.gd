@@ -22,6 +22,7 @@ func on_pause_pressed():
 		$CenterContainer.show()
 		$CenterContainer/VBoxContainer/Buttons/Resume.show()
 		$CenterContainer/VBoxContainer/Buttons/QuitMenu.show()
+		$CenterContainer/VBoxContainer/Buttons/AimAssist.show()
 	else:
 		_on_Resume_pressed()
 
@@ -35,7 +36,6 @@ func on_acorn_collected():
 	get_tree().set_pause(true)
 
 func on_acorn_zoom_complete():
-	print("zoom complete")
 	count = int(0)
 	counter.text = "Total = " + str(total)
 	$OrangeScreen.modulate.a = 1.0
@@ -51,6 +51,7 @@ func on_acorn_zoom_complete():
 	else:
 		$CenterContainer/VBoxContainer/Buttons/NextHole.show()
 	$CenterContainer/VBoxContainer/Buttons/QuitMenu.show()
+	$CenterContainer/VBoxContainer/Buttons/AimAssist.show()
 
 func _on_GameStart_pressed():
 	count = 0
@@ -66,9 +67,7 @@ func _on_GameStart_pressed():
 	$OrangeScreen.modulate.a = 0
 	$Light2D/Timer.start()
 	hide_buttons()
-	var new_hole = load("res://Hole_" + str(hole_num) + ".tscn").instance()
-	get_parent().call_deferred("add_child", new_hole)
-	get_tree().set_pause(false)
+	add_hole()
 
 func _on_Resume_pressed():
 	get_tree().set_pause(false)
@@ -85,13 +84,19 @@ func _on_NextHole_pressed():
 		## error checking, quit to menu
 		_on_QuitMenu_pressed()
 	else: 
-		var new_hole = load("res://Hole_" + str(hole_num) + ".tscn").instance()
-		get_parent().call_deferred("add_child", new_hole)
-		get_tree().set_pause(false)
+		add_hole()
 	$OrangeScreen.modulate.a = 0.0
 	counter.text = str(0)
 	hide_buttons()
 	$CenterContainer.hide()
+
+func add_hole():
+	var new_hole = load("res://Hole_" + str(hole_num) + ".tscn").instance()
+	get_parent().call_deferred("add_child", new_hole)
+	var assist = new_hole.get_node("Contents/Squirrel/AimAssist")
+	assist.visible = $CenterContainer/VBoxContainer/Buttons/AimAssist.pressed
+	assist.get_node("Line2D").visible = $CenterContainer/VBoxContainer/Buttons/AimAssist.pressed
+	get_tree().set_pause(false)
 
 func _on_QuitMenu_pressed():
 	get_tree().set_pause(false)
@@ -113,6 +118,7 @@ func _on_QuitMenu_pressed():
 	$CenterContainer/VBoxContainer/Logo.show()
 	$CenterContainer/VBoxContainer/Buttons/GameStart.show()
 	$CenterContainer/VBoxContainer/Buttons/QuitDesktop.show()
+	$CenterContainer/VBoxContainer/Buttons/AimAssist.show()
 
 func _on_QuitDesktop_pressed():
 	get_tree().quit()
@@ -129,3 +135,11 @@ func clear_scores(parent):
 			continue
 		else:
 			clear_scores(child)
+
+func _on_AimAssist_toggled(button_pressed):
+	var holes = get_tree().get_nodes_in_group("hole")
+	if holes.size() > 0:
+		for hole in holes: 
+			var assist = hole.get_node("Contents/Squirrel/AimAssist")
+			assist.visible = button_pressed
+			assist.get_node("Line2D").visible = button_pressed

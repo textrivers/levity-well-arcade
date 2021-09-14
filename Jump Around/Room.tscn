@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/images/gosoc_logo.png" type="Texture" id=1]
 [ext_resource path="res://Light2D.gd" type="Script" id=2]
@@ -21,6 +21,9 @@ font_data = ExtResource( 6 )
 size = 54
 outline_size = 1
 font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 8 )
@@ -68,19 +71,19 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
-margin_left = 389.0
-margin_top = 150.0
-margin_right = 610.0
-margin_bottom = 177.0
+margin_left = 305.0
+margin_top = 142.0
+margin_right = 695.0
+margin_bottom = 186.0
 
 [node name="Logo" type="TextureRect" parent="UI/CenterContainer/VBoxContainer"]
-margin_right = 221.0
+margin_right = 390.0
 expand = true
 stretch_mode = 1
 
 [node name="Sprite" type="Sprite" parent="UI/CenterContainer/VBoxContainer/Logo"]
 light_mask = 2
-position = Vector2( 112.303, -37.0812 )
+position = Vector2( 206.595, -43.438 )
 texture = ExtResource( 1 )
 normal_map = ExtResource( 7 )
 
@@ -284,9 +287,9 @@ __meta__ = {
 
 [node name="ScoreBoxBackNine" type="GridContainer" parent="UI/CenterContainer/VBoxContainer"]
 visible = false
-margin_top = 176.0
+margin_top = 4.0
 margin_right = 932.0
-margin_bottom = 276.0
+margin_bottom = 104.0
 columns = 9
 __meta__ = {
 "_edit_use_anchors_": false
@@ -483,29 +486,37 @@ __meta__ = {
 [node name="Buttons" type="HBoxContainer" parent="UI/CenterContainer/VBoxContainer"]
 pause_mode = 2
 margin_top = 4.0
-margin_right = 221.0
-margin_bottom = 27.0
+margin_right = 390.0
+margin_bottom = 44.0
 alignment = 1
 
+[node name="AimAssist" type="CheckButton" parent="UI/CenterContainer/VBoxContainer/Buttons"]
+margin_right = 165.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Aim Assist?"
+
 [node name="GameStart" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
-margin_right = 90.0
-margin_bottom = 23.0
+margin_left = 169.0
+margin_right = 259.0
+margin_bottom = 40.0
 custom_fonts/font = SubResource( 3 )
 text = "Start Game"
 
 [node name="NextHole" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
 visible = false
-margin_left = 87.0
-margin_right = 163.0
-margin_bottom = 20.0
+margin_left = 94.0
+margin_right = 179.0
+margin_bottom = 23.0
 custom_fonts/font = SubResource( 3 )
 text = "Next Hole"
 
 [node name="Resume" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
 visible = false
-margin_left = 87.0
-margin_right = 151.0
-margin_bottom = 20.0
+margin_left = 94.0
+margin_right = 164.0
+margin_bottom = 23.0
 custom_fonts/font = SubResource( 3 )
 text = "Resume"
 
@@ -518,9 +529,9 @@ custom_fonts/font = SubResource( 3 )
 text = "Quit to Menu"
 
 [node name="QuitDesktop" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
-margin_left = 94.0
-margin_right = 221.0
-margin_bottom = 23.0
+margin_left = 263.0
+margin_right = 390.0
+margin_bottom = 40.0
 custom_fonts/font = SubResource( 3 )
 text = "Quit to Desktop"
 
@@ -548,6 +559,7 @@ current = true
 pause_mode = 2
 script = ExtResource( 4 )
 
+[connection signal="toggled" from="UI/CenterContainer/VBoxContainer/Buttons/AimAssist" to="UI" method="_on_AimAssist_toggled"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Buttons/GameStart" to="UI" method="_on_GameStart_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Buttons/NextHole" to="UI" method="_on_NextHole_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Buttons/Resume" to="UI" method="_on_Resume_pressed"]

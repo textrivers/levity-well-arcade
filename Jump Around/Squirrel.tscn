@@ -31,3 +31,4 @@ enabled = true
 cast_to = Vector2( 0, 25 )
 
 [node name="AimAssist" parent="." instance=ExtResource( 4 )]
+visible = false
