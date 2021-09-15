@@ -50,7 +50,7 @@ func _physics_process(delta):
 
 func on_squirrel_jump():
 	trace.line_points = $Line2D.points
-	#$Line2D.clear_points()
+	$Line2D.clear_points()
 	trace.squirrel_points.clear()
 	trace.squirrel_points.append(get_parent().global_position)
 	flying = true

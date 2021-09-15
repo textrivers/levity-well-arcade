@@ -50,9 +50,29 @@ position = Vector2( -70.5555, -233.085 )
 z_index = -1
 
 [node name="Portal" parent="Contents" instance=ExtResource( 5 )]
+modulate = Color( 0.937255, 0.439216, 0.439216, 1 )
 position = Vector2( 438, 231 )
 rotation = 4.71239
 
 [node name="Portal2" parent="Contents" instance=ExtResource( 5 )]
+modulate = Color( 0.937255, 0.439216, 0.439216, 1 )
 position = Vector2( -457, 124 )
 rotation = -1.41895
+
+[node name="Portal3" parent="Contents" instance=ExtResource( 5 )]
+modulate = Color( 0.439216, 0.937255, 0.494118, 1 )
+position = Vector2( 217.365, -110.922 )
+rotation = -3.61109
+id = 1
+
+[node name="Portal4" parent="Contents" instance=ExtResource( 5 )]
+modulate = Color( 0.439216, 0.937255, 0.494118, 1 )
+position = Vector2( 119.453, -64.8952 )
+rotation = -0.469494
+id = 1
+
+[node name="Portal5" parent="Contents" instance=ExtResource( 5 )]
+modulate = Color( 0.439216, 0.937255, 0.494118, 1 )
+position = Vector2( -250.565, 167.115 )
+rotation = 4.71413
+id = 1
