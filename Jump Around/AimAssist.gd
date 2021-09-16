@@ -7,16 +7,19 @@ var gravity: float = 1800
 var flying = true
 var trace
 var dot_trans = 0.8
+var squirrel
+var max_length: float = 50
 
 var small_x = preload("res://assets/images/small_x.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Line2D.set_as_toplevel(true)
+	squirrel = get_parent()
 # warning-ignore:return_value_discarded
-	get_parent().connect("jump", self, "on_squirrel_jump")
+	squirrel.connect("jump", self, "on_squirrel_jump")
 # warning-ignore:return_value_discarded
-	get_parent().connect("land", self, "on_squirrel_land")
+	squirrel.connect("land", self, "on_squirrel_land")
 	trace = $Trace
 
 func _physics_process(delta):
@@ -43,6 +46,7 @@ func _physics_process(delta):
 				var ang = coll.normal.angle()
 				if sin(ang) <= 0.01:
 					update()
+					print($Line2D.gradient.offsets[1])
 					break
 			$Line2D.add_point(global_position)
 			velocity.y += gravity * delta
@@ -68,5 +72,6 @@ func _draw():
 		collision = get_slide_collision(get_slide_count() - 1)
 	if collision != null:
 		circ_pos = collision.position - self.global_position
-		draw_circle(circ_pos, 4.0, Color(0.12, 0.56, 1, dot_trans))
+		##$Line2D.add_point(collision.position)
+		draw_circle(circ_pos, 4.0, Color(1, 0.18, 0.12, dot_trans))
 		# draw_texture(small_x, circ_pos - Vector2(5, 5), Color(1, 1, 1, dot_trans))

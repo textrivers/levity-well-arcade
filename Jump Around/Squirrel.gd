@@ -35,6 +35,7 @@ func _physics_process(delta):
 		rotation += right * 0.05
 	else:
 		snap = down * 32
+		velocity = Vector2(0, 0)
 		if Input.is_action_just_pressed("jump"):
 			emit_signal("jump")
 			flying = true

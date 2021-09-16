@@ -1,0 +1,190 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Portal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Squirrel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Acorn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/images/gray_bg.png" type="Texture" id=5]
+[ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://BlackWall100.tscn" type="PackedScene" id=7]
+
+[node name="Hole" type="Node2D" groups=[
+"hole",
+]]
+z_index = -1
+
+[node name="Box" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Box"]
+z_index = -5
+texture = ExtResource( 5 )
+
+[node name="PurpleWall" parent="Box" instance=ExtResource( 1 )]
+position = Vector2( 0, 300 )
+
+[node name="PurpleWall2" parent="Box" instance=ExtResource( 1 )]
+position = Vector2( 0, -300 )
+
+[node name="PurpleWall3" parent="Box" instance=ExtResource( 1 )]
+position = Vector2( -512, 0 )
+rotation = 1.5708
+scale = Vector2( 0.606, 1 )
+
+[node name="PurpleWall4" parent="Box" instance=ExtResource( 1 )]
+position = Vector2( 512, 0 )
+rotation = 1.5708
+scale = Vector2( 0.606, 1 )
+
+[node name="Contents" type="Node2D" parent="."]
+
+[node name="Squirrel" parent="Contents" instance=ExtResource( 3 )]
+position = Vector2( 464.564, 229.782 )
+
+[node name="Acorn" parent="Contents" instance=ExtResource( 4 )]
+position = Vector2( 459, 69 )
+z_index = -1
+
+[node name="Red1" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.937255, 0.439216, 0.439216, 1 )
+position = Vector2( 378.745, 150 )
+rotation = 1.5708
+
+[node name="Red2" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.937255, 0.439216, 0.439216, 1 )
+position = Vector2( 264.16, 194.189 )
+rotation = 1.5708
+
+[node name="Magenta1" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.705882, 0.247059, 0.768627, 1 )
+position = Vector2( 461.806, -171.861 )
+rotation = 1.5708
+id = 5
+
+[node name="Magenta2" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.705882, 0.247059, 0.768627, 1 )
+position = Vector2( 397.503, 109 )
+rotation = 3.14159
+id = 5
+
+[node name="Orange1" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.509804, 0.133333, 1 )
+position = Vector2( 264.16, 254.189 )
+rotation = 4.71239
+id = 4
+
+[node name="Orange2" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.509804, 0.133333, 1 )
+position = Vector2( 138.16, 194.189 )
+rotation = 1.5708
+id = 4
+
+[node name="Green1" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.937255, 0.494118, 1 )
+position = Vector2( 0, 253.189 )
+rotation = -1.5708
+id = 1
+
+[node name="Green2" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.937255, 0.494118, 1 )
+position = Vector2( -167.84, 192.189 )
+rotation = 1.5708
+id = 1
+
+[node name="Purple1" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.494118, 0.937255, 1 )
+position = Vector2( -167.84, 252.189 )
+rotation = -1.5708
+id = 2
+
+[node name="Purple2" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.494118, 0.937255, 1 )
+position = Vector2( -378.745, 250 )
+rotation = -1.5708
+id = 2
+
+[node name="Yellow1" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.956863, 0.694118, 0.188235, 1 )
+position = Vector2( 138.16, 254.189 )
+rotation = -1.5708
+id = 3
+
+[node name="Yellow2" parent="Contents" instance=ExtResource( 2 )]
+modulate = Color( 0.956863, 0.694118, 0.188235, 1 )
+position = Vector2( 0, 193.189 )
+rotation = 1.5708
+id = 3
+
+[node name="BlackWall100" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( 0, 150 )
+scale = Vector2( 7, 1 )
+
+[node name="BlackWall104" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( 0, -200 )
+scale = Vector2( 7, 1 )
+
+[node name="BlackWall107" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( 72, -115 )
+scale = Vector2( 7, 1 )
+
+[node name="BlackWall109" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( 72, 69 )
+scale = Vector2( 7, 1 )
+
+[node name="BlackWall108" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( 5.72205e-06, -24 )
+scale = Vector2( 7, 1 )
+
+[node name="BlackWall103" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( 417, -25 )
+rotation = 1.5708
+scale = Vector2( 3.7, 1 )
+
+[node name="BlackWall106" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( -340, -25 )
+rotation = 1.5708
+scale = Vector2( 3.7, 1 )
+
+[node name="BlackWall101" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( 457, 150 )
+
+[node name="BlackWall105" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( 457, -200 )
+
+[node name="BlackWall102" parent="Contents" instance=ExtResource( 7 )]
+position = Vector2( -457, 150 )
+
+[node name="MovingPlatform" parent="Contents" instance=ExtResource( 6 )]
+position = Vector2( 379, -49.5 )
+rotation = 1.5708
+travel = Vector2( -683, 0 )
+speed = 200.0
+initial_delay = 1.0
+delay = 1.0
+
+[node name="MovingPlatform2" parent="Contents" instance=ExtResource( 6 )]
+position = Vector2( 335, 150 )
+scale = Vector2( 0.5, 1 )
+travel = Vector2( -683, 0 )
+speed = 200.0
+initial_delay = 1.0
+delay = 1.0
+
+[node name="MovingPlatform4" parent="Contents" instance=ExtResource( 6 )]
+position = Vector2( 529.941, 150 )
+scale = Vector2( 0.5, 1 )
+travel = Vector2( -683, 0 )
+speed = 200.0
+initial_delay = 1.0
+delay = 1.0
+
+[node name="MovingPlatform3" parent="Contents" instance=ExtResource( 6 )]
+position = Vector2( -132, 150 )
+scale = Vector2( 1.5, 1 )
+travel = Vector2( -683, 0 )
+speed = 200.0
+initial_delay = 1.0
+delay = 1.0

@@ -17,7 +17,7 @@ func on_squirrel_jump():
 
 func on_pause_pressed():
 	if get_tree().paused == false:
-		get_tree().set_pause(true)
+		get_tree().call_deferred("set_pause", true)
 		$OrangeScreen.modulate.a = 0.5
 		$CenterContainer.show()
 		$CenterContainer/VBoxContainer/Buttons/Resume.show()
