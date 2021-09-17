@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Hole_Level_Edit_Test.tscn" type="PackedScene" id=1]
+[ext_resource path="res://EditorElement.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/images/black_wall_100.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 50, 10 )
+
+[node name="Level_Edit" type="Node2D"]
+
+[node name="Hole" parent="." instance=ExtResource( 1 )]
+position = Vector2( -93, 50 )
+
+[node name="EditorElement" parent="." instance=ExtResource( 2 )]
+position = Vector2( 400, -94 )
+element_name = "BlackWall100"
+scene = "res://BlackWall100.tscn"
+
+[node name="CollisionShape2D" parent="EditorElement" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="EditorElement" index="1"]
+texture = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Helper2D" type="Position2D" parent="."]
+position = Vector2( -365.104, 281.706 )
+
+[editable path="EditorElement"]
