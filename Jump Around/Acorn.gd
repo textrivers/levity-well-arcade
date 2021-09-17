@@ -6,6 +6,11 @@ var pos_a
 var pos_b
 var dur = 1.0
 
+export var move: bool = false
+export var init_pos: Vector2
+export var dest_pos: Vector2
+export var duration: float
+
 func _ready():
 # warning-ignore:return_value_discarded
 	self.connect("acorn_collected", get_parent().get_parent().get_parent().get_node("UI"), "on_acorn_collected")
@@ -15,6 +20,17 @@ func _ready():
 	tween.interpolate_property(self, "global_position", pos_b, pos_a, dur, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.interpolate_property(self, "scale", Vector2(100, 100), Vector2(1, 1), dur, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
+	## toggle movement animation
+	if move == true:
+		$AnimationPlayer.set_current_animation("move") 
+		var move_anim = $AnimationPlayer.get_animation("move")
+		move_anim.length = duration
+		move_anim.track_set_key_value(0, 0, init_pos)
+		move_anim.track_set_key_value(0, 1, dest_pos)
+		move_anim.track_set_key_time(0, 1, duration / 2.0)
+		move_anim.track_set_key_value(0, 2, init_pos)
+		move_anim.track_set_key_time(0, 2, duration)
+		$AnimationPlayer.play("move")
 
 func _on_Acorn_body_entered(body):
 	if body.is_in_group("squirrel"):
@@ -27,3 +43,8 @@ func _on_Acorn_body_entered(body):
 func _on_Tween_tween_completed(_object, _key):
 	if scale.x == 1:
 		$CollisionShape2D.disabled = false
+
+func _process(delta):
+	if Input.is_action_just_pressed("jump"):
+		var acorn_png = load($Sprite.texture.resource_path)
+		print(acorn_png.get_size())

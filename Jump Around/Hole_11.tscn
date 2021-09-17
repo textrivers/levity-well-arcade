@@ -47,6 +47,10 @@ position = Vector2( 3.5636, 1.78181 )
 [node name="Acorn" parent="Contents" instance=ExtResource( 1 )]
 position = Vector2( 0, -250 )
 z_index = -1
+move = true
+init_pos = Vector2( 100, -250 )
+dest_pos = Vector2( -100, -250 )
+duration = 4.0
 
 [node name="Portal" parent="Contents" instance=ExtResource( 3 )]
 modulate = Color( 0.937255, 0.439216, 0.439216, 1 )

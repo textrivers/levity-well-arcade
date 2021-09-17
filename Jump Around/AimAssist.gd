@@ -46,7 +46,6 @@ func _physics_process(delta):
 				var ang = coll.normal.angle()
 				if sin(ang) <= 0.01:
 					update()
-					print($Line2D.gradient.offsets[1])
 					break
 			$Line2D.add_point(global_position)
 			velocity.y += gravity * delta
