@@ -9,6 +9,7 @@ extents = Vector2( 30, 30 )
 [node name="EditorElement" type="Area2D" groups=[
 "editorelement",
 ]]
+scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

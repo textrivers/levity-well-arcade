@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://EditorElement.tscn" type="PackedScene" id=1]
+[ext_resource path="res://EditorElementPair.gd" type="Script" id=2]
+[ext_resource path="res://EditorElement.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 30 )
+
+[node name="EditorElementPair" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Child" type="Area2D" parent="." index="2"]
+position = Vector2( 100, 0 )
+script = ExtResource( 3 )
+source = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Child" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Child" index="1"]
+
+[node name="Line2D" type="Line2D" parent="." index="3"]
+
+[connection signal="mouse_entered" from="Child" to="Child" method="_on_EditorElement_mouse_entered"]
+[connection signal="mouse_exited" from="Child" to="." method="_on_EditorElement_mouse_exited"]

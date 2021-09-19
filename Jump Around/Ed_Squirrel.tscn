@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Ed_Squirrel.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/squirrel_stand.png" type="Texture" id=2]
+[ext_resource path="res://Tail.tscn" type="PackedScene" id=3]
+[ext_resource path="res://AimAssist.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.0
+
+[node name="Ed_Squirrel" type="KinematicBody2D" groups=[
+"ed_squirrel",
+]]
+scale = Vector2( 0.8, 0.8 )
+collision_layer = 2
+collision/safe_margin = 1.0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Tail" parent="Sprite" instance=ExtResource( 3 )]
+
+[node name="Butt" type="Position2D" parent="Sprite"]
+position = Vector2( -8, -3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 25 )
+
+[node name="AimAssist" parent="." instance=ExtResource( 4 )]
+visible = false
