@@ -6,9 +6,9 @@
 [node name="Hole" type="Node2D" groups=[
 "hole",
 ]]
-scale = Vector2( 0.8, 0.8 )
 
 [node name="Box" type="Node2D" parent="."]
+scale = Vector2( 0.8, 0.8 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
