@@ -69,9 +69,11 @@ func _process(_delta):
 
 func _on_EditorElement_mouse_entered():
 	can_click = true
+	print(can_click)
 
 func _on_EditorElement_mouse_exited():
 	can_click = false
+	print(can_click)
 
 func _on_EditorElement_area_entered(area):
 	if area.is_in_group("trashcan"):

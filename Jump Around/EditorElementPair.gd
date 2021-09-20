@@ -1,10 +1,14 @@
 extends "res://EditorElement.gd"
 
+var twin
+var has_twin = false
+
 func _ready():
-	$Child/Sprite.texture = $Sprite.texture
 	$Line2D.set_as_toplevel(true)
 
-func _process(delta):
-	$Line2D.clear_points()
-	$Line2D.add_point(self.position)
-	$Line2D.add_point($Child.global_position)
+func _process(_delta):
+	if has_twin:
+		$Line2D.clear_points()
+		$Line2D.add_point(self.position)
+		$Line2D.add_point(twin.global_position)
+
