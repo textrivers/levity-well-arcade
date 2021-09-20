@@ -10,6 +10,17 @@ var drag_offset: Vector2
 export var source = true
 var hole
 
+var element_data = {
+	"scale": Vector2(1.0, 1.0),
+	"rotation": 0.0,
+	"modulate": Color(0, 0, 0, 1),
+	"ID": 0,
+	"travel": Vector2(0, 0),
+	"speed": 300, 
+	"initial_delay": 1.0,
+	"delay": 0.0 
+}
+
 var clone = load("res://EditorElement.tscn")
 
 var can_trash = false
@@ -17,11 +28,12 @@ var can_trash = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hole = get_parent().get_node_or_null("Hole")
+	$Particles2D.texture = $Sprite.texture
 
 func _process(_delta):
 	if selected: 
 		## TODO visual feedback for user
-		pass
+		$Particles2D.visible = true
 		## ROTATE -----------------------
 		if Input.is_action_just_pressed("rightclick"):
 			rotation += PI / 2
@@ -29,6 +41,8 @@ func _process(_delta):
 			rotation += deg2rad(15)
 		if Input.is_action_just_pressed("scroll_down"):
 			rotation += deg2rad(-15)
+	else:
+		$Particles2D.visible = false
 	
 	## CLICK ------------------------
 	if Input.is_action_just_pressed("leftclick"):
@@ -42,6 +56,7 @@ func _process(_delta):
 			drag_offset = (position - get_viewport().get_mouse_position())
 		dragging = can_click
 		selected = can_click
+		## TODO send or retrieve element data to/from UI
 	
 	## DRAG -------------------------
 	if dragging:
