@@ -37,7 +37,6 @@ shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 visible = false
-scale = Vector2( 1, 1 )
 lifetime = 4.0
 process_material = SubResource( 4 )
 texture = ExtResource( 1 )

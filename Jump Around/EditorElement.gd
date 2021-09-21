@@ -9,11 +9,12 @@ var dragging = false
 var drag_offset: Vector2
 export var source = true
 var hole
+var UI
 
 var element_data = {
+	"modulate": Color(0, 0, 0, 1),
 	"scale": Vector2(1.0, 1.0),
 	"rotation": 0.0,
-	"modulate": Color(0, 0, 0, 1),
 	"ID": 0,
 	"travel": Vector2(0, 0),
 	"speed": 300, 
@@ -29,6 +30,7 @@ var can_trash = false
 func _ready():
 	hole = get_parent().get_node_or_null("Hole")
 	$Particles2D.texture = $Sprite.texture
+	UI = get_parent().get_node("LevelEditUI")
 
 func _process(_delta):
 	if selected: 
@@ -54,9 +56,18 @@ func _process(_delta):
 				get_parent().remove_child(self)
 				hole.add_child(self)
 			drag_offset = (position - get_viewport().get_mouse_position())
-		dragging = can_click
+			if !selected:
+				UI.update_display(element_data, element_name)
 		selected = can_click
-		## TODO send or retrieve element data to/from UI
+		dragging = can_click
+		var any_selected = false
+		for element in get_tree().get_nodes_in_group("editorelement"):
+			if element.selected == true:
+				any_selected = true
+		if any_selected == false:
+			UI.update_display(element_data, "none")
+			
+
 	
 	## DRAG -------------------------
 	if dragging:
