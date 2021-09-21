@@ -1,6 +1,8 @@
 extends Panel
 
-var element_data = {
+var mouse_over = false
+
+var default_element_data = {
 	"modulate": Color(0, 0, 0, 1),
 	"scale": Vector2(1.0, 1.0),
 	"rotation": 0.0,
@@ -13,7 +15,8 @@ var element_data = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	update_display(default_element_data, "none")
+
 
 # warning-ignore:shadowed_variable
 func update_display(element_data, element_name):
@@ -94,3 +97,15 @@ func update_display(element_data, element_name):
 			$VBoxContainer/Speed.hide()
 			$VBoxContainer/InitialDelay.hide()
 			$VBoxContainer/Delay.hide()
+
+func _on_LevelEditUI_mouse_entered():
+	mouse_over = true
+	print(mouse_over)
+
+func _on_LevelEditUI_mouse_exited():
+	mouse_over = false
+	print(mouse_over)
+
+func _on_ColorPickerButton_pressed():
+	$VBoxContainer/Color/ColorPickerButton.get_popup().rect_position = Vector2(200, -200)
+	$VBoxContainer/Color/ColorPickerButton.get_popup().rect_scale = Vector2(0.8, 0.8)

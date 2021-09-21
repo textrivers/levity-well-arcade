@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Hole_Level_Edit_Test.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EditorElement.tscn" type="PackedScene" id=2]
@@ -8,6 +8,11 @@
 [ext_resource path="res://assets/images/squirrel_outline.png" type="Texture" id=6]
 [ext_resource path="res://LevelEditUI.gd" type="Script" id=7]
 [ext_resource path="res://assets/images/portal_neutral.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/big_acorn.png" type="Texture" id=9]
+[ext_resource path="res://SaveButton.tscn" type="PackedScene" id=10]
+[ext_resource path="res://PlayButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Level_Edit.gd" type="Script" id=12]
+[ext_resource path="res://LoadButton.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 10 )
@@ -16,11 +21,25 @@ extents = Vector2( 50, 10 )
 extents = Vector2( 50, 10 )
 
 [node name="Level_Edit" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="LoadButton" parent="." instance=ExtResource( 13 )]
+position = Vector2( 452, -300 )
+
+[node name="SaveButton" parent="." instance=ExtResource( 10 )]
+position = Vector2( 511, -300 )
+
+[node name="PlayButton" parent="." instance=ExtResource( 11 )]
+position = Vector2( 569, -300 )
+
+[node name="Trashcan" parent="." instance=ExtResource( 5 )]
+position = Vector2( 511.872, 198.476 )
+z_index = -1
 
 [node name="Hole" parent="." instance=ExtResource( 1 )]
 
 [node name="EditorAcorn" parent="." instance=ExtResource( 2 )]
-position = Vector2( -373.991, -301.947 )
+position = Vector2( -373.991, -300 )
 element_name = "acorn"
 scene = "res://Acorn.tscn"
 
@@ -28,16 +47,19 @@ scene = "res://Acorn.tscn"
 texture = ExtResource( 4 )
 
 [node name="EditorSquirrel" parent="." instance=ExtResource( 2 )]
-position = Vector2( -241.558, -299.828 )
+position = Vector2( -241.558, -300 )
 element_name = "squirrel"
 scene = "res://Squirrel.tscn"
 
+[node name="Particles2D" parent="EditorSquirrel" index="1"]
+position = Vector2( -30, 0 )
+
 [node name="Sprite" parent="EditorSquirrel" index="2"]
+position = Vector2( -30, 0 )
 texture = ExtResource( 6 )
-offset = Vector2( -29, -8 )
 
 [node name="EditorWall" parent="." instance=ExtResource( 2 )]
-position = Vector2( -130.217, -302.893 )
+position = Vector2( -130.217, -300 )
 element_name = "wall"
 scene = "res://BlackWall100.tscn"
 
@@ -53,7 +75,8 @@ texture = ExtResource( 3 )
 shape = SubResource( 2 )
 
 [node name="EditorMovingWall" parent="." instance=ExtResource( 2 )]
-position = Vector2( -1.00002, -301 )
+self_modulate = Color( 0.85098, 0.0823529, 0.0823529, 1 )
+position = Vector2( -1.00002, -300 )
 element_name = "moving_platform"
 scene = "res://MovingPlatform.tscn"
 
@@ -77,12 +100,9 @@ texture = ExtResource( 8 )
 position = Vector2( 93, -50 )
 current = true
 
-[node name="Helper2D" type="Position2D" parent="."]
-position = Vector2( -365.104, 281.706 )
-
-[node name="Trashcan" parent="." instance=ExtResource( 5 )]
-position = Vector2( 510.872, 196.476 )
-z_index = -1
+[node name="Sprite" type="Sprite" parent="Camera2D"]
+z_index = -10
+texture = ExtResource( 9 )
 
 [node name="LevelEditUI" type="Panel" parent="."]
 margin_left = 430.0
@@ -125,7 +145,11 @@ text = "Color:"
 margin_left = 41.0
 margin_right = 150.0
 margin_bottom = 20.0
+mouse_filter = 1
 size_flags_horizontal = 3
+text = "click to choose"
+clip_text = true
+edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -146,11 +170,11 @@ text = "Width:"
 margin_left = 46.0
 margin_right = 150.0
 margin_bottom = 24.0
+mouse_filter = 1
 size_flags_horizontal = 3
 max_value = 10.0
-step = 0.0
+step = 0.1
 value = 1.0
-editable = false
 
 [node name="Rotation" type="HBoxContainer" parent="LevelEditUI/VBoxContainer"]
 margin_top = 196.0
@@ -168,10 +192,10 @@ text = "Rotation:"
 margin_left = 61.0
 margin_right = 150.0
 margin_bottom = 24.0
+mouse_filter = 1
 size_flags_horizontal = 3
 min_value = -360.0
 max_value = 360.0
-step = 0.0
 
 [node name="ID" type="HBoxContainer" parent="LevelEditUI/VBoxContainer"]
 margin_top = 224.0
@@ -194,6 +218,7 @@ margin_right = 150.0
 margin_bottom = 24.0
 grow_horizontal = 2
 rect_min_size = Vector2( 0, 20 )
+mouse_filter = 1
 size_flags_horizontal = 15
 
 [node name="TravelX" type="HBoxContainer" parent="LevelEditUI/VBoxContainer"]
@@ -212,10 +237,10 @@ text = "Travel (x):"
 margin_left = 65.0
 margin_right = 150.0
 margin_bottom = 24.0
+mouse_filter = 1
 size_flags_horizontal = 3
 min_value = -1000.0
 max_value = 1000.0
-step = 0.0
 
 [node name="TravelY" type="HBoxContainer" parent="LevelEditUI/VBoxContainer"]
 margin_top = 280.0
@@ -233,10 +258,10 @@ text = "Travel (y):"
 margin_left = 65.0
 margin_right = 150.0
 margin_bottom = 24.0
+mouse_filter = 1
 size_flags_horizontal = 3
 min_value = -1000.0
 max_value = 1000.0
-step = 0.0
 
 [node name="Speed" type="HBoxContainer" parent="LevelEditUI/VBoxContainer"]
 margin_top = 308.0
@@ -254,10 +279,11 @@ text = "Speed:"
 margin_left = 47.0
 margin_right = 150.0
 margin_bottom = 24.0
+mouse_filter = 1
 size_flags_horizontal = 3
 min_value = -1000.0
 max_value = 1000.0
-step = 0.0
+step = 0.1
 value = 300.0
 
 [node name="InitialDelay" type="HBoxContainer" parent="LevelEditUI/VBoxContainer"]
@@ -276,10 +302,9 @@ text = "Init Delay:"
 margin_left = 70.0
 margin_right = 150.0
 margin_bottom = 24.0
+mouse_filter = 1
 size_flags_horizontal = 3
-min_value = -1000.0
-max_value = 1000.0
-step = 0.0
+step = 0.1
 
 [node name="Delay" type="HBoxContainer" parent="LevelEditUI/VBoxContainer"]
 margin_top = 364.0
@@ -297,10 +322,19 @@ text = "Delay:"
 margin_left = 44.0
 margin_right = 150.0
 margin_bottom = 24.0
+mouse_filter = 1
 size_flags_horizontal = 3
-min_value = -1000.0
-max_value = 1000.0
-step = 0.0
+step = 0.1
+
+[connection signal="mouse_entered" from="LoadButton" to="." method="_on_LoadButton_mouse_entered"]
+[connection signal="mouse_exited" from="LoadButton" to="." method="_on_LoadButton_mouse_exited"]
+[connection signal="mouse_entered" from="SaveButton" to="." method="_on_SaveButton_mouse_entered"]
+[connection signal="mouse_exited" from="SaveButton" to="." method="_on_SaveButton_mouse_exited"]
+[connection signal="mouse_entered" from="PlayButton" to="." method="_on_PlayButton_mouse_entered"]
+[connection signal="mouse_exited" from="PlayButton" to="." method="_on_PlayButton_mouse_exited"]
+[connection signal="mouse_entered" from="LevelEditUI" to="LevelEditUI" method="_on_LevelEditUI_mouse_entered"]
+[connection signal="mouse_exited" from="LevelEditUI" to="LevelEditUI" method="_on_LevelEditUI_mouse_exited"]
+[connection signal="pressed" from="LevelEditUI/VBoxContainer/Color/ColorPickerButton" to="LevelEditUI" method="_on_ColorPickerButton_pressed"]
 
 [editable path="EditorAcorn"]
 [editable path="EditorSquirrel"]
