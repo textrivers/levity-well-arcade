@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/fonts/pala.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/images/big_acorn.png" type="Texture" id=9]
 [ext_resource path="res://assets/images/scorebox_cell.png" type="Texture" id=10]
-[ext_resource path="res://Hole_14.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Hole_12.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 79
