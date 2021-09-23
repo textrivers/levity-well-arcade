@@ -10,10 +10,6 @@
 [ext_resource path="res://assets/fonts/pala.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/images/big_acorn.png" type="Texture" id=9]
 [ext_resource path="res://assets/images/scorebox_cell.png" type="Texture" id=10]
-<<<<<<< Updated upstream
-[ext_resource path="res://Hole_12.tscn" type="PackedScene" id=11]
-=======
->>>>>>> Stashed changes
 
 [sub_resource type="DynamicFont" id=1]
 size = 79
@@ -29,10 +25,10 @@ font_data = ExtResource( 6 )
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=6]
@@ -520,7 +516,7 @@ margin_left = 169.0
 margin_right = 213.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Play"
 
 [node name="NextHole" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -529,7 +525,7 @@ margin_left = 94.0
 margin_right = 179.0
 margin_bottom = 23.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Next Hole"
 
 [node name="Resume" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -538,7 +534,7 @@ margin_left = 94.0
 margin_right = 164.0
 margin_bottom = 23.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Resume"
 
 [node name="QuitMenu" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -547,7 +543,7 @@ margin_left = 87.0
 margin_right = 184.0
 margin_bottom = 20.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Quit to Menu"
 
 [node name="QuitDesktop" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -555,7 +551,7 @@ margin_left = 217.0
 margin_right = 344.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Quit to Desktop"
 
 [node name="Buttons2" type="HBoxContainer" parent="UI/CenterContainer/VBoxContainer"]
@@ -582,7 +578,7 @@ margin_left = 202.0
 margin_right = 246.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Start"
 
 [node name="QuitMenu2" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons2"]
@@ -590,7 +586,7 @@ margin_left = 250.0
 margin_right = 355.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Wait go back"
 
 [node name="PopupMenu" type="PopupMenu" parent="UI/CenterContainer/VBoxContainer"]
