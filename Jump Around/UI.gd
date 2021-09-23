@@ -5,11 +5,29 @@ var counter
 var total: int = 0
 var hole_num: int = 0
 var tween
-var course_size: int = 9
+var standard_course = [
+	"res://Holes/Hole_0.tscn",
+	"res://Holes/Hole_1.tscn",
+	"res://Holes/Hole_2.tscn",
+	"res://Holes/Hole_3.tscn",
+	"res://Holes/Hole_4.tscn",
+	"res://Holes/Hole_5.tscn",
+	"res://Holes/Hole_6.tscn",
+	"res://Holes/Hole_7.tscn",
+	"res://Holes/Hole_8.tscn",
+	"res://Holes/Hole_9.tscn",
+	"res://Holes/Hole_10.tscn",
+	"res://Holes/Hole_11.tscn",
+	"res://Holes/Hole_12.tscn",
+	"res://Holes/Hole_13.tscn",
+	"res://Holes/Hole_14.tscn"
+	]
+var course = []
 
 func _ready():
 	counter = $Counter
 	tween = $Tween
+	$CenterContainer/VBoxContainer/PopupMenu.set_as_toplevel(true)
 
 func on_squirrel_jump():
 	count += 1
@@ -40,29 +58,44 @@ func on_acorn_zoom_complete():
 	counter.text = "Total = " + str(total)
 	$OrangeScreen.modulate.a = 1.0
 	$CenterContainer.show()
-	if hole_num >= course_size:
+	if hole_num >= course.size():
 		hole_num = 0
 		var holes = get_tree().get_nodes_in_group("hole")
 		if holes.size() > 0:
 			for hole in holes:
 				hole.queue_free()
-		$CenterContainer/VBoxContainer/Buttons/GameStart.text = "Play Again?"
-		$CenterContainer/VBoxContainer/Buttons/GameStart.show()
+		$CenterContainer/VBoxContainer/Buttons2/GameStart.text = "Play Again?"
+		$CenterContainer/VBoxContainer/Buttons2/GameStart.show()
 	else:
 		$CenterContainer/VBoxContainer/Buttons/NextHole.show()
 	$CenterContainer/VBoxContainer/Buttons/QuitMenu.show()
 	$CenterContainer/VBoxContainer/Buttons/AimAssist.show()
+
+func _on_PlayButton_pressed():
+	_on_GameStart_pressed()
+	## TODO fix this
+	#hide_buttons()
+	#$CenterContainer/VBoxContainer/Buttons2.show()
+	## Standard course loads all 18 holes into course array
+	## Select lets users choose holes to play, standard or user-created
+	pass # Replace with function body.
 
 func _on_GameStart_pressed():
 	count = 0
 	total = 0
 	counter.text = str(count)
 	counter.show()
+	## build course
+	if $CenterContainer/VBoxContainer/Buttons2/CustomCourse.pressed == false:
+		course = standard_course
+	else:
+		pass
 	clear_scores($CenterContainer/VBoxContainer/ScoreBoxFrontNine)
 	clear_scores($CenterContainer/VBoxContainer/ScoreBoxBackNine)
-	$CenterContainer/VBoxContainer/Buttons/GameStart.text = "Start Game"
+	$CenterContainer/VBoxContainer/Buttons2/GameStart.text = "Start"
 	$CenterContainer/VBoxContainer/Logo.hide()
 	$CenterContainer/VBoxContainer/ScoreBoxFrontNine.show()
+	$CenterContainer/VBoxContainer/ScoreBoxBackNine.show()
 	$CenterContainer.hide()
 	$OrangeScreen.modulate.a = 0
 	$Light2D/Timer.start()
@@ -80,7 +113,7 @@ func _on_NextHole_pressed():
 	if holes.size() > 0:
 		for hole in holes:
 			hole.queue_free()
-	if hole_num >= course_size:
+	if hole_num >= course.size():
 		## error checking, quit to menu
 		_on_QuitMenu_pressed()
 	else: 
@@ -91,7 +124,7 @@ func _on_NextHole_pressed():
 	$CenterContainer.hide()
 
 func add_hole():
-	var new_hole = load("res://Hole_" + str(hole_num) + ".tscn").instance()
+	var new_hole = load(course[hole_num]).instance()
 	get_parent().call_deferred("add_child", new_hole)
 	var assist = new_hole.get_node("Contents/Squirrel/AimAssist")
 	assist.visible = $CenterContainer/VBoxContainer/Buttons/AimAssist.pressed
@@ -116,7 +149,7 @@ func _on_QuitMenu_pressed():
 	$CenterContainer/VBoxContainer/ScoreBoxFrontNine.hide()
 	$CenterContainer/VBoxContainer/ScoreBoxBackNine.hide()
 	$CenterContainer/VBoxContainer/Logo.show()
-	$CenterContainer/VBoxContainer/Buttons/GameStart.show()
+	$CenterContainer/VBoxContainer/Buttons/PlayButton.show()
 	$CenterContainer/VBoxContainer/Buttons/QuitDesktop.show()
 	$CenterContainer/VBoxContainer/Buttons/AimAssist.show()
 
@@ -127,6 +160,7 @@ func hide_buttons():
 	var buttons = $CenterContainer/VBoxContainer/Buttons.get_children()
 	for button in buttons:
 		button.hide()
+	$CenterContainer/VBoxContainer/Buttons2.hide()
 
 func clear_scores(parent):
 	for child in parent.get_children():
@@ -143,3 +177,9 @@ func _on_AimAssist_toggled(button_pressed):
 			var assist = hole.get_node("Contents/Squirrel/AimAssist")
 			assist.visible = button_pressed
 			assist.get_node("Line2D").visible = button_pressed
+
+func _on_CustomCourse_toggled(button_pressed):
+	if button_pressed == false:
+		course = standard_course
+	else:
+		$CenterContainer/VBoxContainer/PopupMenu.popup_centered()

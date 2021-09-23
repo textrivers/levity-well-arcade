@@ -4,7 +4,7 @@
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Portal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Squirrel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Hole_11.gd" type="Script" id=5]
+[ext_resource path="res://Holes/Hole_11.gd" type="Script" id=5]
 [ext_resource path="res://assets/images/gray_bg.png" type="Texture" id=6]
 
 [node name="Hole" type="Node2D" groups=[
