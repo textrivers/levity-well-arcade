@@ -38,7 +38,6 @@ func _physics_process(delta):
 		$Line2D.add_point(global_position)
 		while point_count < 100:
 			if point_count == 1:
-				# velocity.y += (gravity * delta) * 0.6
 				pass
 			velocity = move_and_slide_with_snap(velocity, Vector2(0, 0), Vector2.UP, false, 1, PI / 2, false)
 			if get_slide_count() > 0:

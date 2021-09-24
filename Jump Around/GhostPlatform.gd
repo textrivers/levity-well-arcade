@@ -1,9 +1,7 @@
 extends StaticBody2D
 
-
-
 func _process(delta):
-	$Sprite.modulate.a = 1 - $Timer.time_left
+	$Sprite.modulate.a = 0
 
 func ghost_protocol():
 	$Timer.wait_time = 1.0
