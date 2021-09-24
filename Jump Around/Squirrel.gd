@@ -60,6 +60,7 @@ func _physics_process(delta):
 	## collision
 	if get_slide_count() > 0 && flying == true:
 		var collision = get_slide_collision(get_slide_count() - 1)
+		## orientation
 		var ang = collision.normal.angle()
 		if sin(ang) <= 0.01:
 			emit_signal("land")
