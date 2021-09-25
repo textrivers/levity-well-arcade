@@ -20,7 +20,10 @@ var standard_course = [
 	"res://Holes/Hole_11.tscn",
 	"res://Holes/Hole_12.tscn",
 	"res://Holes/Hole_13.tscn",
-	"res://Holes/Hole_14.tscn"
+	"res://Holes/Hole_14.tscn",
+	"res://Holes/Hole_15.tscn",
+	"res://Holes/Hole_16.tscn",
+	"res://Holes/Hole_17.tscn"
 	]
 var course = []
 

@@ -4,7 +4,7 @@ signal acorn_collected
 var tween
 var pos_a
 var pos_b
-var dur = 1.0
+var dur: float = 1.0
 
 export var move: bool = false
 export var init_pos: Vector2
