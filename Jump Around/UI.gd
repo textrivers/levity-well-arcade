@@ -30,7 +30,6 @@ var course = []
 func _ready():
 	counter = $Counter
 	tween = $Tween
-	$CenterContainer/VBoxContainer/PopupMenu.set_as_toplevel(true)
 
 func on_squirrel_jump():
 	count += 1
@@ -75,13 +74,16 @@ func on_acorn_zoom_complete():
 	$CenterContainer/VBoxContainer/Buttons/AimAssist.show()
 
 func _on_PlayButton_pressed():
-	_on_GameStart_pressed()
-	## TODO fix this
-	#hide_buttons()
-	#$CenterContainer/VBoxContainer/Buttons2.show()
-	## Standard course loads all 18 holes into course array
-	## Select lets users choose holes to play, standard or user-created
-	pass # Replace with function body.
+	hide_buttons()
+	$CenterContainer/VBoxContainer/Buttons2.show()
+
+func _on_LevelEditor_pressed():
+	$CenterContainer.hide()
+	$OrangeScreen.modulate.a = 0
+	hide_buttons()
+	var new_editor = load("res://Level_Edit.tscn").instance()
+	new_editor.name = "Level_Edit"
+	get_parent().call_deferred("add_child", new_editor)
 
 func _on_GameStart_pressed():
 	count = 0
@@ -89,20 +91,21 @@ func _on_GameStart_pressed():
 	counter.text = str(count)
 	counter.show()
 	## build course
-	if $CenterContainer/VBoxContainer/Buttons2/CustomCourse.pressed == false:
+	if $CenterContainer/VBoxContainer/Buttons2/CustomCourse.pressed == true:
+		build_custom_course()
+	if course == []:
 		course = standard_course
-	else:
-		pass
 	clear_scores($CenterContainer/VBoxContainer/ScoreBoxFrontNine)
 	clear_scores($CenterContainer/VBoxContainer/ScoreBoxBackNine)
 	$CenterContainer/VBoxContainer/Buttons2/GameStart.text = "Start"
-	$CenterContainer/VBoxContainer/Logo.hide()
+	$CenterContainer/VBoxContainer/Sprite.hide()
 	$CenterContainer/VBoxContainer/ScoreBoxFrontNine.show()
 	$CenterContainer/VBoxContainer/ScoreBoxBackNine.show()
 	$CenterContainer.hide()
 	$OrangeScreen.modulate.a = 0
-	$Light2D/Timer.start()
+	$Light2D/Timer.stop()
 	hide_buttons()
+	$CenterContainer/VBoxContainer/ItemList.hide()
 	add_hole()
 
 func _on_Resume_pressed():
@@ -129,7 +132,14 @@ func _on_NextHole_pressed():
 func add_hole():
 	var new_hole = load(course[hole_num]).instance()
 	get_parent().call_deferred("add_child", new_hole)
-	var assist = new_hole.get_node("Contents/Squirrel/AimAssist")
+	yield(get_tree().create_timer(0.02), "timeout")
+	## a few lines hacky bullshit just below
+	var assist = new_hole.get_node_or_null("Contents/Squirrel/AimAssist")
+	if assist == null:
+		assist = new_hole.get_node_or_null("Squirrel/AimAssist")
+	if assist == null:
+		get_tree().set_pause(false)
+		return
 	assist.visible = $CenterContainer/VBoxContainer/Buttons/AimAssist.pressed
 	assist.get_node("Line2D").visible = $CenterContainer/VBoxContainer/Buttons/AimAssist.pressed
 	get_tree().set_pause(false)
@@ -141,20 +151,30 @@ func _on_QuitMenu_pressed():
 	count = 0
 	total = 0
 	hole_num = 0
+	course = []
 	$OrangeScreen.modulate.a = 1.0
 	$Light2D/Timer.start()
 	var holes = get_tree().get_nodes_in_group("hole")
 	if holes.size() > 0:
 		for hole in holes:
 			hole.queue_free()
+	var editors = get_tree().get_nodes_in_group("level_edit")
+	if editors.size() > 0:
+		var camera = get_parent().get_node("Camera2D")
+		camera.current = true
+		for editor in editors:
+			editor.queue_free()
 	clear_scores($CenterContainer/VBoxContainer/ScoreBoxFrontNine)
 	clear_scores($CenterContainer/VBoxContainer/ScoreBoxBackNine)
+	$CenterContainer/VBoxContainer/Buttons2/GameStart.text = "Start"
 	$CenterContainer/VBoxContainer/ScoreBoxFrontNine.hide()
 	$CenterContainer/VBoxContainer/ScoreBoxBackNine.hide()
-	$CenterContainer/VBoxContainer/Logo.show()
+	$CenterContainer/VBoxContainer/Sprite.show()
+	$CenterContainer/VBoxContainer/Buttons/AimAssist.show()
+	$CenterContainer/VBoxContainer/Buttons/LevelEditor.show()
 	$CenterContainer/VBoxContainer/Buttons/PlayButton.show()
 	$CenterContainer/VBoxContainer/Buttons/QuitDesktop.show()
-	$CenterContainer/VBoxContainer/Buttons/AimAssist.show()
+	$CenterContainer/VBoxContainer/ItemList.hide()
 
 func _on_QuitDesktop_pressed():
 	get_tree().quit()
@@ -177,7 +197,9 @@ func _on_AimAssist_toggled(button_pressed):
 	var holes = get_tree().get_nodes_in_group("hole")
 	if holes.size() > 0:
 		for hole in holes: 
-			var assist = hole.get_node("Contents/Squirrel/AimAssist")
+			var assist = hole.get_node_or_null("Contents/Squirrel/AimAssist")
+			if assist == null:
+				assist = hole.get_node_or_null("Squirrel/AimAssist")
 			assist.visible = button_pressed
 			assist.get_node("Line2D").visible = button_pressed
 
@@ -185,4 +207,26 @@ func _on_CustomCourse_toggled(button_pressed):
 	if button_pressed == false:
 		course = standard_course
 	else:
-		$CenterContainer/VBoxContainer/PopupMenu.popup_centered()
+		course = []
+		$CenterContainer/VBoxContainer/ItemList.clear()
+		$CenterContainer/VBoxContainer/ItemList.show()
+		var dir = Directory.new()
+		if dir.open("user://") == OK:
+			dir.list_dir_begin()
+			var file_name = dir.get_next()
+			while file_name != "":
+				if dir.current_is_dir():
+					pass
+				else:
+					$CenterContainer/VBoxContainer/ItemList.add_item(file_name)
+				file_name = dir.get_next()
+		else:
+			print("An error occurred when trying to access the path.")
+
+
+func build_custom_course():
+	if $CenterContainer/VBoxContainer/ItemList.get_selected_items().size() > 0:
+		for index in $CenterContainer/VBoxContainer/ItemList.get_selected_items():
+			course.append("user://" + $CenterContainer/VBoxContainer/ItemList.get_item_text(index))
+	else:
+		course = []

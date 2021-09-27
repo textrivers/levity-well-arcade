@@ -17,6 +17,8 @@ var jump2 = preload("res://assets/images/squirrel_jump2.png")
 var butt
 
 signal land
+# warning-ignore:unused_signal
+signal jump
 
 func _ready():
 	up = Vector2(0, -1)

@@ -20,7 +20,9 @@ extents = Vector2( 50, 10 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 50, 10 )
 
-[node name="Level_Edit" type="Node2D"]
+[node name="Level_Edit" type="Node2D" groups=[
+"level_edit",
+]]
 script = ExtResource( 12 )
 
 [node name="LoadButton" parent="." instance=ExtResource( 13 )]
@@ -78,7 +80,7 @@ shape = SubResource( 2 )
 self_modulate = Color( 0.85098, 0.0823529, 0.0823529, 1 )
 position = Vector2( -1.00002, -300 )
 element_name = "moving_platform"
-scene = "res://MovingPlatform.tscn"
+scene = "res://MovingPlatformEd.tscn"
 
 [node name="Sprite" parent="EditorMovingWall" index="2"]
 texture = ExtResource( 3 )
@@ -97,7 +99,7 @@ scene = "res://Portal.tscn"
 texture = ExtResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 93, -50 )
+position = Vector2( 94, -52 )
 current = true
 
 [node name="Sprite" type="Sprite" parent="Camera2D"]
@@ -109,6 +111,7 @@ margin_left = 430.0
 margin_top = -248.0
 margin_right = 590.0
 margin_bottom = 152.0
+mouse_filter = 1
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -119,6 +122,7 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = 155.0
 margin_bottom = 396.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -326,8 +330,87 @@ mouse_filter = 1
 size_flags_horizontal = 3
 step = 0.1
 
+[node name="InteractPanel" type="Panel" parent="."]
+visible = false
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InteractPanel"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 200 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveContainer" type="HBoxContainer" parent="InteractPanel/VBoxContainer"]
+visible = false
+margin_right = 200.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="InteractPanel/VBoxContainer/SaveContainer"]
+margin_right = 42.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "Name:"
+valign = 1
+
+[node name="TextEdit" type="TextEdit" parent="InteractPanel/VBoxContainer/SaveContainer"]
+margin_left = 46.0
+margin_right = 200.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "My Level"
+
+[node name="ItemList" type="ItemList" parent="InteractPanel/VBoxContainer"]
+visible = false
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 0, 100 )
+mouse_filter = 1
+items = [ "Choose level to edit", null, true ]
+
+[node name="Buttons" type="HBoxContainer" parent="InteractPanel/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 2
+
+[node name="Save" type="Button" parent="InteractPanel/VBoxContainer/Buttons"]
+visible = false
+margin_right = 41.0
+margin_bottom = 20.0
+mouse_filter = 1
+text = "Save"
+
+[node name="Load" type="Button" parent="InteractPanel/VBoxContainer/Buttons"]
+visible = false
+margin_right = 42.0
+margin_bottom = 20.0
+mouse_filter = 1
+text = "Load"
+
+[node name="Exit" type="Button" parent="InteractPanel/VBoxContainer/Buttons"]
+visible = false
+margin_right = 35.0
+margin_bottom = 20.0
+mouse_filter = 1
+text = "Exit"
+
 [connection signal="mouse_entered" from="LoadButton" to="." method="_on_LoadButton_mouse_entered"]
 [connection signal="mouse_exited" from="LoadButton" to="." method="_on_LoadButton_mouse_exited"]
+[connection signal="input_event" from="SaveButton" to="." method="_on_SaveButton_input_event"]
 [connection signal="mouse_entered" from="SaveButton" to="." method="_on_SaveButton_mouse_entered"]
 [connection signal="mouse_exited" from="SaveButton" to="." method="_on_SaveButton_mouse_exited"]
 [connection signal="mouse_entered" from="PlayButton" to="." method="_on_PlayButton_mouse_entered"]
@@ -335,6 +418,8 @@ step = 0.1
 [connection signal="mouse_entered" from="LevelEditUI" to="LevelEditUI" method="_on_LevelEditUI_mouse_entered"]
 [connection signal="mouse_exited" from="LevelEditUI" to="LevelEditUI" method="_on_LevelEditUI_mouse_exited"]
 [connection signal="pressed" from="LevelEditUI/VBoxContainer/Color/ColorPickerButton" to="LevelEditUI" method="_on_ColorPickerButton_pressed"]
+[connection signal="pressed" from="InteractPanel/VBoxContainer/Buttons/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="InteractPanel/VBoxContainer/Buttons/Exit" to="." method="_on_Exit_pressed"]
 
 [editable path="EditorAcorn"]
 [editable path="EditorSquirrel"]

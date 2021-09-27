@@ -48,21 +48,20 @@ position = Vector2( 100, 0 )
 rotation = 0.523599
 scale = Vector2( 1.8, 1 )
 travel = Vector2( -200, 0 )
+speed = 200.0
 delay = 0.2
 
 [node name="MovingPlatform3" parent="Contents" instance=ExtResource( 5 )]
-position = Vector2( 420, 550 )
-rotation = 1.0472
-scale = Vector2( 1.2, 1 )
-travel = Vector2( 0, -1100 )
+position = Vector2( 420, 290 )
+travel = Vector2( 0, -580 )
+speed = 200.0
 delay = 0.2
 wrap = true
 
 [node name="MovingPlatform4" parent="Contents" instance=ExtResource( 5 )]
-position = Vector2( -420, 550 )
-rotation = -1.0472
-scale = Vector2( 1.2, 1 )
-travel = Vector2( 0, -1100 )
+position = Vector2( -420, 290 )
+travel = Vector2( 0, -580 )
+speed = 200.0
 delay = 0.2
 wrap = true
 

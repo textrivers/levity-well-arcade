@@ -106,11 +106,6 @@ position = Vector2( -94.2922, -106.357 )
 rotation = -0.549779
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall157" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
-position = Vector2( -94.2922, -6.35681 )
-rotation = 0.0785398
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall158" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
 position = Vector2( -94.2922, 93.6432 )
 rotation = 0.706858
@@ -146,34 +141,14 @@ position = Vector2( -164.217, -64.6273 )
 rotation = 0.0785398
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall166" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
-position = Vector2( -164.217, 35.3727 )
-rotation = 0.706858
-scale = Vector2( 0.5, 1 )
-
-[node name="BlackWall168" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
-position = Vector2( -212.952, -134.962 )
-rotation = -0.549779
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall169" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
 position = Vector2( -212.952, -34.9623 )
 rotation = 0.0785398
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall170" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
-position = Vector2( -212.952, 65.0377 )
-rotation = 0.706858
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall171" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
 position = Vector2( -212.952, 165.038 )
 rotation = 1.33518
-scale = Vector2( 0.5, 1 )
-
-[node name="BlackWall172" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
-position = Vector2( -258.509, -170.984 )
-rotation = -0.549779
 scale = Vector2( 0.5, 1 )
 
 [node name="BlackWall173" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
@@ -211,11 +186,6 @@ position = Vector2( -319.958, -197.471 )
 rotation = -0.549779
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall181" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
-position = Vector2( -319.958, -97.4707 )
-rotation = 0.0785398
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall183" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
 position = Vector2( -319.958, 102.529 )
 rotation = 1.33518
@@ -231,11 +201,6 @@ position = Vector2( -364.455, -133.492 )
 rotation = 0.0785398
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall186" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
-position = Vector2( -364.455, -33.4925 )
-rotation = 0.706858
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall187" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
 position = Vector2( -364.455, 66.5075 )
 rotation = 1.33518
@@ -244,11 +209,6 @@ scale = Vector2( 0.5, 1 )
 [node name="BlackWall188" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
 position = Vector2( -420.607, -238.79 )
 rotation = -0.549779
-scale = Vector2( 0.5, 1 )
-
-[node name="BlackWall189" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
-position = Vector2( -420.607, -138.79 )
-rotation = 0.0785398
 scale = Vector2( 0.5, 1 )
 
 [node name="BlackWall190" parent="Contents/LeftSide/Reverse2" instance=ExtResource( 5 )]
@@ -310,11 +270,6 @@ position = Vector2( 97.7948, -70.335 )
 rotation = -2.59181
 scale = Vector2( 0.5, -1 )
 
-[node name="BlackWall105" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
-position = Vector2( 97.7948, 29.665 )
-rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
 [node name="BlackWall106" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
 position = Vector2( 97.7948, 129.665 )
 rotation = 2.43473
@@ -365,34 +320,14 @@ position = Vector2( 212.217, -164.627 )
 rotation = -2.59181
 scale = Vector2( 0.5, -1 )
 
-[node name="BlackWall117" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
-position = Vector2( 212.217, -64.6273 )
-rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
 [node name="BlackWall118" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
 position = Vector2( 212.217, 35.3727 )
 rotation = 2.43473
 scale = Vector2( 0.5, -1 )
 
-[node name="BlackWall119" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
-position = Vector2( 212.217, 135.373 )
-rotation = 1.80642
-scale = Vector2( 0.5, -1 )
-
-[node name="BlackWall120" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
-position = Vector2( 260.952, -134.962 )
-rotation = -2.59181
-scale = Vector2( 0.5, -1 )
-
 [node name="BlackWall121" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
 position = Vector2( 260.952, -34.9623 )
 rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
-[node name="BlackWall123" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
-position = Vector2( 260.952, 165.038 )
-rotation = 1.80642
 scale = Vector2( 0.5, -1 )
 
 [node name="BlackWall124" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
@@ -435,11 +370,6 @@ position = Vector2( 367.958, -197.471 )
 rotation = -2.59181
 scale = Vector2( 0.5, -1 )
 
-[node name="BlackWall133" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
-position = Vector2( 367.958, -97.4707 )
-rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
 [node name="BlackWall134" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
 position = Vector2( 367.958, 2.5293 )
 rotation = 2.43473
@@ -458,11 +388,6 @@ scale = Vector2( 0.5, -1 )
 [node name="BlackWall137" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
 position = Vector2( 412.455, -133.492 )
 rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
-[node name="BlackWall139" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
-position = Vector2( 412.455, 66.5075 )
-rotation = 1.80642
 scale = Vector2( 0.5, -1 )
 
 [node name="BlackWall140" parent="Contents/LeftSide/Forward2" instance=ExtResource( 5 )]
@@ -556,11 +481,6 @@ position = Vector2( -94.2922, -106.357 )
 rotation = -0.549779
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall157" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
-position = Vector2( -94.2922, -6.35681 )
-rotation = 0.0785398
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall158" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
 position = Vector2( -94.2922, 93.6432 )
 rotation = 0.706858
@@ -596,34 +516,14 @@ position = Vector2( -164.217, -64.6273 )
 rotation = 0.0785398
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall166" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
-position = Vector2( -164.217, 35.3727 )
-rotation = 0.706858
-scale = Vector2( 0.5, 1 )
-
-[node name="BlackWall168" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
-position = Vector2( -212.952, -134.962 )
-rotation = -0.549779
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall169" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
 position = Vector2( -212.952, -34.9623 )
 rotation = 0.0785398
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall170" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
-position = Vector2( -212.952, 65.0377 )
-rotation = 0.706858
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall171" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
 position = Vector2( -212.952, 165.038 )
 rotation = 1.33518
-scale = Vector2( 0.5, 1 )
-
-[node name="BlackWall172" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
-position = Vector2( -258.509, -170.984 )
-rotation = -0.549779
 scale = Vector2( 0.5, 1 )
 
 [node name="BlackWall173" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
@@ -661,11 +561,6 @@ position = Vector2( -319.958, -197.471 )
 rotation = -0.549779
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall181" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
-position = Vector2( -319.958, -97.4707 )
-rotation = 0.0785398
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall183" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
 position = Vector2( -319.958, 102.529 )
 rotation = 1.33518
@@ -681,11 +576,6 @@ position = Vector2( -364.455, -133.492 )
 rotation = 0.0785398
 scale = Vector2( 0.5, 1 )
 
-[node name="BlackWall186" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
-position = Vector2( -364.455, -33.4925 )
-rotation = 0.706858
-scale = Vector2( 0.5, 1 )
-
 [node name="BlackWall187" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
 position = Vector2( -364.455, 66.5075 )
 rotation = 1.33518
@@ -694,11 +584,6 @@ scale = Vector2( 0.5, 1 )
 [node name="BlackWall188" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
 position = Vector2( -420.607, -238.79 )
 rotation = -0.549779
-scale = Vector2( 0.5, 1 )
-
-[node name="BlackWall189" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
-position = Vector2( -420.607, -138.79 )
-rotation = 0.0785398
 scale = Vector2( 0.5, 1 )
 
 [node name="BlackWall190" parent="Contents/RightSide/Reverse" instance=ExtResource( 5 )]
@@ -760,11 +645,6 @@ position = Vector2( 97.7948, -70.335 )
 rotation = -2.59181
 scale = Vector2( 0.5, -1 )
 
-[node name="BlackWall105" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
-position = Vector2( 97.7948, 29.665 )
-rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
 [node name="BlackWall106" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
 position = Vector2( 97.7948, 129.665 )
 rotation = 2.43473
@@ -815,34 +695,14 @@ position = Vector2( 212.217, -164.627 )
 rotation = -2.59181
 scale = Vector2( 0.5, -1 )
 
-[node name="BlackWall117" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
-position = Vector2( 212.217, -64.6273 )
-rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
 [node name="BlackWall118" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
 position = Vector2( 212.217, 35.3727 )
 rotation = 2.43473
 scale = Vector2( 0.5, -1 )
 
-[node name="BlackWall119" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
-position = Vector2( 212.217, 135.373 )
-rotation = 1.80642
-scale = Vector2( 0.5, -1 )
-
-[node name="BlackWall120" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
-position = Vector2( 260.952, -134.962 )
-rotation = -2.59181
-scale = Vector2( 0.5, -1 )
-
 [node name="BlackWall121" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
 position = Vector2( 260.952, -34.9623 )
 rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
-[node name="BlackWall123" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
-position = Vector2( 260.952, 165.038 )
-rotation = 1.80642
 scale = Vector2( 0.5, -1 )
 
 [node name="BlackWall124" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
@@ -885,11 +745,6 @@ position = Vector2( 367.958, -197.471 )
 rotation = -2.59181
 scale = Vector2( 0.5, -1 )
 
-[node name="BlackWall133" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
-position = Vector2( 367.958, -97.4707 )
-rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
 [node name="BlackWall134" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
 position = Vector2( 367.958, 2.5293 )
 rotation = 2.43473
@@ -908,11 +763,6 @@ scale = Vector2( 0.5, -1 )
 [node name="BlackWall137" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
 position = Vector2( 412.455, -133.492 )
 rotation = 3.06305
-scale = Vector2( 0.5, -1 )
-
-[node name="BlackWall139" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]
-position = Vector2( 412.455, 66.5075 )
-rotation = 1.80642
 scale = Vector2( 0.5, -1 )
 
 [node name="BlackWall140" parent="Contents/RightSide/Forward" instance=ExtResource( 5 )]

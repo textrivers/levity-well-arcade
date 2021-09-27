@@ -58,6 +58,7 @@ position = Vector2( -492, 175 )
 rotation = 1.5708
 scale = Vector2( 0.25, 1 )
 travel = Vector2( 300, -250 )
+speed = 150.0
 initial_delay = 0.2
 delay = 0.5
 
@@ -66,6 +67,7 @@ position = Vector2( -192, 175 )
 rotation = 1.5708
 scale = Vector2( 0.25, 1 )
 travel = Vector2( 300, -250 )
+speed = 150.0
 initial_delay = 0.2
 delay = 0.5
 
@@ -74,6 +76,7 @@ position = Vector2( -192, -75 )
 rotation = 1.5708
 scale = Vector2( 0.25, 1 )
 travel = Vector2( 300, 250 )
+speed = 150.0
 delay = 0.5
 
 [node name="MovingPlatform3" parent="Contents" instance=ExtResource( 2 )]
@@ -81,6 +84,7 @@ position = Vector2( -492, -75 )
 rotation = 1.5708
 scale = Vector2( 0.25, 1 )
 travel = Vector2( 300, 250 )
+speed = 150.0
 delay = 0.5
 
 [node name="MovingPlatform5" parent="Contents" instance=ExtResource( 2 )]
@@ -88,6 +92,7 @@ position = Vector2( 492, 175 )
 rotation = 1.5708
 scale = Vector2( 0.25, 1 )
 travel = Vector2( -300, -250 )
+speed = 150.0
 initial_delay = 0.4
 delay = 0.5
 
@@ -96,6 +101,7 @@ position = Vector2( 192, 175 )
 rotation = 1.5708
 scale = Vector2( 0.25, 1 )
 travel = Vector2( -300, -250 )
+speed = 150.0
 initial_delay = 0.4
 delay = 0.5
 
@@ -104,6 +110,7 @@ position = Vector2( 192, -75 )
 rotation = 1.5708
 scale = Vector2( 0.25, 1 )
 travel = Vector2( -300, 250 )
+speed = 150.0
 initial_delay = 0.2
 delay = 0.5
 
@@ -112,6 +119,7 @@ position = Vector2( 492, -75 )
 rotation = 1.5708
 scale = Vector2( 0.25, 1 )
 travel = Vector2( -300, 250 )
+speed = 150.0
 initial_delay = 0.2
 delay = 0.5
 

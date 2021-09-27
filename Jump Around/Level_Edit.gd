@@ -7,20 +7,6 @@ var can_load = false
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
-	if Input.is_action_just_pressed("leftclick"):
-		if can_save:
-			## popup list of files with text edit for filename
-			## TODO serialize contents of $Hole, all positions x 1.25
-			pass
-		if can_play:
-			## TODO load all contents of $Hole as new level? 
-			pass
-		if can_load:
-			## TODO popup file selector 
-			## TODO populate editor with contents of some file
-			pass
-
 func _on_SaveButton_mouse_entered():
 	can_save = true
 
@@ -38,3 +24,44 @@ func _on_LoadButton_mouse_entered():
 
 func _on_LoadButton_mouse_exited():
 	can_load = false
+
+func _on_Save_pressed():
+	var hole_name = $InteractPanel/VBoxContainer/SaveContainer/TextEdit.text
+	if hole_name == "":
+		return
+	var hole = load("res://Hole_Empty.tscn").instance()
+	##hole.set_owner(hole)
+	for element in $Hole.get_children():
+		if "scene" in element:
+			var el_to_save = load(element.scene).instance()
+			for data in element.element_data:
+				if data in el_to_save:
+					el_to_save[data] = element.element_data[data]
+			el_to_save.position = element.position * 1.25
+			hole.add_child(el_to_save)
+			el_to_save.set_owner(hole)
+	var packed_scene = PackedScene.new()
+	packed_scene.pack(hole)
+	var saved = ResourceSaver.save(str("user://" + str(hole_name) + ".tscn"), packed_scene)
+	if saved == OK:
+		print("file saved!")
+		$InteractPanel.hide()
+		$InteractPanel/VBoxContainer/SaveContainer.hide()
+		$InteractPanel/VBoxContainer/Buttons/Save.hide()
+		$InteractPanel/VBoxContainer/Buttons/Exit.hide()
+
+func _on_Exit_pressed():
+		$InteractPanel.hide()
+		$InteractPanel/VBoxContainer/SaveContainer.hide()
+		$InteractPanel/VBoxContainer/Buttons/Save.hide()
+		$InteractPanel/VBoxContainer/Buttons/Exit.hide()
+
+
+func _on_SaveButton_input_event(viewport, event, shape_idx):
+	if can_save:
+		if event.is_action_pressed("leftclick"):
+			can_save = false
+			$InteractPanel.show()
+			$InteractPanel/VBoxContainer/SaveContainer.show()
+			$InteractPanel/VBoxContainer/Buttons/Save.show()
+			$InteractPanel/VBoxContainer/Buttons/Exit.show()

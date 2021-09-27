@@ -12,7 +12,7 @@ var hole
 var UI
 
 var element_data = {
-	"modulate": Color(0, 0, 0, 1),
+	"modulate": Color(1, 1, 1, 1),
 	"scale": Vector2(1.0, 1.0),
 	"rotation": 0.0,
 	"ID": 0,
@@ -44,13 +44,6 @@ func _ready():
 func _process(_delta):
 	if selected: 
 		$Particles2D.visible = true
-		## ROTATE -----------------------
-		#if Input.is_action_just_pressed("rightclick"):
-			#rotation += PI / 2
-		#if Input.is_action_just_pressed("scroll_up"):
-			#rotation += deg2rad(15)
-		#if Input.is_action_just_pressed("scroll_down"):
-			#rotation += deg2rad(-15)
 	else:
 		$Particles2D.visible = false
 	
@@ -79,6 +72,7 @@ func _process(_delta):
 	## DRAG -------------------------
 	if dragging:
 		modulate.a = 0.5
+		$Particles2D.modulate.a = 0.5
 		position = (get_viewport().get_mouse_position() + drag_offset) 
 	
 	## DROP -------------------------
@@ -86,6 +80,7 @@ func _process(_delta):
 		if dragging:
 			dragging = false
 			modulate.a = 1.0
+			$Particles2D.modulate.a = 1.0
 			drag_offset = Vector2()
 			if element_name == "acorn":
 				rotation = 0

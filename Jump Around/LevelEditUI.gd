@@ -100,12 +100,11 @@ func update_display(element_data, element_name):
 
 func _on_LevelEditUI_mouse_entered():
 	mouse_over = true
-	print(mouse_over)
 
 func _on_LevelEditUI_mouse_exited():
 	mouse_over = false
-	print(mouse_over)
 
 func _on_ColorPickerButton_pressed():
+
 	$VBoxContainer/Color/ColorPickerButton.get_popup().rect_position = Vector2(200, -200)
 	$VBoxContainer/Color/ColorPickerButton.get_popup().rect_scale = Vector2(0.8, 0.8)
