@@ -27,13 +27,13 @@ font_data = ExtResource( 8 )
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=7]
-font_data = ExtResource( 8 )
-
 [sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 8 )
 
 [node name="Room" type="Node2D"]
@@ -543,7 +543,7 @@ margin_left = 450.0
 margin_right = 551.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "Level Editor"
 
 [node name="NextHole" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -552,7 +552,7 @@ margin_left = 94.0
 margin_right = 179.0
 margin_bottom = 23.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Next Hole"
 
 [node name="Resume" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -561,7 +561,7 @@ margin_left = 94.0
 margin_right = 164.0
 margin_bottom = 23.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Resume"
 
 [node name="QuitMenu" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -570,7 +570,7 @@ margin_left = 87.0
 margin_right = 184.0
 margin_bottom = 20.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Quit to Menu"
 
 [node name="QuitDesktop" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons"]
@@ -578,7 +578,7 @@ margin_left = 555.0
 margin_right = 682.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Quit to Desktop"
 
 [node name="Buttons2" type="HBoxContainer" parent="UI/CenterContainer/VBoxContainer"]
@@ -592,7 +592,7 @@ alignment = 1
 margin_right = 198.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -605,7 +605,7 @@ margin_left = 202.0
 margin_right = 246.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Start"
 
 [node name="QuitMenu2" type="Button" parent="UI/CenterContainer/VBoxContainer/Buttons2"]
@@ -613,7 +613,7 @@ margin_left = 250.0
 margin_right = 359.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Quit to Menu"
 
 [node name="ItemList" type="ItemList" parent="UI/CenterContainer/VBoxContainer"]

@@ -48,6 +48,7 @@ tracks/0/keys = {
 
 [node name="Acorn" type="Area2D"]
 pause_mode = 2
+z_index = 5
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

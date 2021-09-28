@@ -46,7 +46,6 @@ position = Vector2( 3.5636, 1.78181 )
 
 [node name="Acorn" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( 0, -250 )
-z_index = -1
 init_pos = Vector2( 50, -250 )
 dest_pos = Vector2( -50, -250 )
 duration = 3.0

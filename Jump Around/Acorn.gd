@@ -43,3 +43,6 @@ func _on_Acorn_body_entered(body):
 func _on_Tween_tween_completed(_object, _key):
 	if scale.x == 1:
 		$CollisionShape2D.disabled = false
+	# make acorn disappear when it finishes zooming
+	# if global_position == Vector2.ZERO:
+		# z_index = 0

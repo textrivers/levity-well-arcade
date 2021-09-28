@@ -15,7 +15,7 @@ var element_data = {
 	"modulate": Color(1, 1, 1, 1),
 	"scale": Vector2(1.0, 1.0),
 	"rotation": 0.0,
-	"ID": 0,
+	"id": 0,
 	"travel": Vector2(0, 0),
 	"speed": 300, 
 	"initial_delay": 1.0,
@@ -34,7 +34,7 @@ func _ready():
 	UI.get_node("VBoxContainer/Color/ColorPickerButton").connect("color_changed", self, "update_modulate")
 	UI.get_node("VBoxContainer/Width/SpinBox").connect("value_changed", self, "update_scale")
 	UI.get_node("VBoxContainer/Rotation/SpinBox").connect("value_changed", self, "update_rotation")
-	UI.get_node("VBoxContainer/ID/IDSpinBox").connect("value_changed", self, "update_ID")
+	UI.get_node("VBoxContainer/ID/IDSpinBox").connect("value_changed", self, "update_id")
 	UI.get_node("VBoxContainer/TravelX/SpinBox").connect("value_changed", self, "update_travelx")
 	UI.get_node("VBoxContainer/TravelY/SpinBox").connect("value_changed", self, "update_travely")
 	UI.get_node("VBoxContainer/Speed/SpinBox").connect("value_changed", self, "update_speed")
@@ -112,6 +112,11 @@ func update_modulate(new_color):
 	if selected:
 		$Sprite.modulate = Color(new_color)
 		element_data.modulate = Color(new_color)
+		if element_name == "portal":
+			for portal in get_tree().get_nodes_in_group("editorportal"):
+				if portal.element_data.id == element_data.id:
+					portal.get_node("Sprite").modulate = Color(new_color)
+					portal.element_data.modulate = Color(new_color)
 
 func update_scale(new_scale):
 	if selected:
@@ -121,11 +126,23 @@ func update_scale(new_scale):
 func update_rotation(new_rot):
 	if selected:
 		rotation = deg2rad(new_rot)
-		element_data.rotation = new_rot
+		element_data.rotation = deg2rad(new_rot)
 
-func update_ID(new_ID):
+func update_id(new_id):
 	if selected:
-		element_data.ID = new_ID
+		element_data.id = new_id
+		if element_name == "portal":
+			var id_match = false
+			for portal in get_tree().get_nodes_in_group("editorportal"):
+				if portal.element_data.id == new_id && portal != self:
+					$Sprite.modulate = portal.get_node("Sprite").modulate
+					element_data.modulate = $Sprite.modulate
+					id_match = true
+					UI.get_node("VBoxContainer/Color/ColorPickerButton").color = $Sprite.modulate
+			if id_match == false:
+				$Sprite.modulate = Color(1, 1, 1, 1)
+				element_data.modulate = Color(1, 1, 1, 1)
+			
 
 func update_travelx(new_travelx):
 	if selected:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Hole_Level_Edit_Test.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EditorElement.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://PlayButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Level_Edit.gd" type="Script" id=12]
 [ext_resource path="res://LoadButton.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/images/neutral_moving_wall_100.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 10 )
@@ -26,12 +27,14 @@ extents = Vector2( 50, 10 )
 script = ExtResource( 12 )
 
 [node name="LoadButton" parent="." instance=ExtResource( 13 )]
+visible = false
 position = Vector2( 452, -300 )
 
 [node name="SaveButton" parent="." instance=ExtResource( 10 )]
 position = Vector2( 511, -300 )
 
 [node name="PlayButton" parent="." instance=ExtResource( 11 )]
+visible = false
 position = Vector2( 569, -300 )
 
 [node name="Trashcan" parent="." instance=ExtResource( 5 )]
@@ -83,14 +86,16 @@ element_name = "moving_platform"
 scene = "res://MovingPlatformEd.tscn"
 
 [node name="Sprite" parent="EditorMovingWall" index="2"]
-texture = ExtResource( 3 )
+texture = ExtResource( 14 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="EditorMovingWall"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EditorMovingWall/StaticBody2D2"]
 shape = SubResource( 2 )
 
-[node name="EditorPortal" parent="." instance=ExtResource( 2 )]
+[node name="EditorPortal" parent="." groups=[
+"editorportal",
+] instance=ExtResource( 2 )]
 position = Vector2( 115, -300 )
 element_name = "portal"
 scene = "res://Portal.tscn"

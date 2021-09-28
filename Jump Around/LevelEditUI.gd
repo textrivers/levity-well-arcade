@@ -6,7 +6,7 @@ var default_element_data = {
 	"modulate": Color(0, 0, 0, 1),
 	"scale": Vector2(1.0, 1.0),
 	"rotation": 0.0,
-	"ID": 0,
+	"id": 0,
 	"travel": Vector2(0, 0),
 	"speed": 300, 
 	"initial_delay": 1.0,
@@ -22,8 +22,8 @@ func _ready():
 func update_display(element_data, element_name):
 	$VBoxContainer/Color/ColorPickerButton.color = element_data["modulate"]
 	$VBoxContainer/Width/SpinBox.value = element_data["scale"].x
-	$VBoxContainer/Rotation/SpinBox.value = element_data["rotation"]
-	$VBoxContainer/ID/IDSpinBox.value = element_data["ID"]
+	$VBoxContainer/Rotation/SpinBox.value = rad2deg(element_data["rotation"])
+	$VBoxContainer/ID/IDSpinBox.value = element_data["id"]
 	$VBoxContainer/TravelX/SpinBox.value = element_data["travel"].x
 	$VBoxContainer/TravelY/SpinBox.value = element_data["travel"].y
 	$VBoxContainer/Speed/SpinBox.value = element_data["speed"]
@@ -105,6 +105,6 @@ func _on_LevelEditUI_mouse_exited():
 	mouse_over = false
 
 func _on_ColorPickerButton_pressed():
-
-	$VBoxContainer/Color/ColorPickerButton.get_popup().rect_position = Vector2(200, -200)
+	$VBoxContainer/Color/ColorPickerButton.get_popup().mouse_filter = Control.MOUSE_FILTER_PASS
+	$VBoxContainer/Color/ColorPickerButton.get_popup().rect_position = Vector2(250, -200)
 	$VBoxContainer/Color/ColorPickerButton.get_popup().rect_scale = Vector2(0.8, 0.8)

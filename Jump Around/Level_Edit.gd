@@ -56,8 +56,7 @@ func _on_Exit_pressed():
 		$InteractPanel/VBoxContainer/Buttons/Save.hide()
 		$InteractPanel/VBoxContainer/Buttons/Exit.hide()
 
-
-func _on_SaveButton_input_event(viewport, event, shape_idx):
+func _on_SaveButton_input_event(_viewport, event, _shape_idx):
 	if can_save:
 		if event.is_action_pressed("leftclick"):
 			can_save = false

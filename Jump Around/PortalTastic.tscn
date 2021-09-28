@@ -1,0 +1,339 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Portal.gd" type="Script" id=1]
+[ext_resource path="res://Squirrel.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/gray_bg.png" type="Texture" id=3]
+[ext_resource path="res://Acorn.gd" type="Script" id=4]
+[ext_resource path="res://Acorn.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Portal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Squirrel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=8]
+
+[node name="Hole" type="Node2D" groups=[
+"hole",
+]]
+
+[node name="Box" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Box"]
+z_index = -5
+texture = ExtResource( 3 )
+
+[node name="PurpleWall" type="StaticBody2D" parent="Box" instance=ExtResource( 8 )]
+position = Vector2( 0, 300 )
+
+[node name="PurpleWall2" type="StaticBody2D" parent="Box" instance=ExtResource( 8 )]
+position = Vector2( 0, -300 )
+
+[node name="PurpleWall3" type="StaticBody2D" parent="Box" instance=ExtResource( 8 )]
+position = Vector2( -512, 0 )
+rotation = 1.5708
+scale = Vector2( 0.606, 1 )
+
+[node name="PurpleWall4" type="StaticBody2D" parent="Box" instance=ExtResource( 8 )]
+position = Vector2( 512, 0 )
+rotation = 1.5708
+scale = Vector2( 0.606, 1 )
+
+[node name="Portal" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( -391.25, -270 )
+rotation = 1.5708
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@147" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( 401.25, -271.25 )
+rotation = 1.5708
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@148" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.893555, 0.446778, 0.643115, 1 )
+position = Vector2( -465, -255 )
+rotation = 0.785398
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@149" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.893555, 0.446778, 0.643115, 1 )
+position = Vector2( -462.5, 253.75 )
+rotation = -0.785398
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@150" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.893555, 0.446778, 0.643115, 1 )
+position = Vector2( 455, -247.5 )
+rotation = 2.35619
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@151" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.893555, 0.446778, 0.643115, 1 )
+position = Vector2( 466.25, 250 )
+rotation = -2.35619
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@152" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( -478.75, -180 )
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@153" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( -477.5, -100 )
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@154" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( -475, -23.75 )
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@155" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( -476.25, 50 )
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@156" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( -477.5, 120 )
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@157" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( -478.75, 190 )
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@158" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( 475, -178.75 )
+rotation = 3.14159
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@159" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( 476.25, -106.25 )
+rotation = 3.14159
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@160" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( 475, -30 )
+rotation = 3.14159
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@161" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( 472.5, 45 )
+rotation = 3.14159
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@162" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( 473.75, 112.5 )
+rotation = 3.14159
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@163" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.0328083, 0.837573, 0.898438, 1 )
+position = Vector2( 475, 185 )
+script = ExtResource( 1 )
+id = 0
+
+[node name="Squirrel" type="KinematicBody2D" parent="." groups=[
+"portable",
+"squirrel",
+] instance=ExtResource( 7 )]
+position = Vector2( -450.697, 173.75 )
+z_index = 10
+collision_layer = 2
+collision/safe_margin = 1.0
+script = ExtResource( 2 )
+
+[node name="@Portal@164" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.996078, 0.729412, 0.0235294, 1 )
+position = Vector2( -392.5, 270 )
+rotation = -1.39626
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@165" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.996078, 0.729412, 0.0235294, 1 )
+position = Vector2( -392.5, 270 )
+rotation = -1.39626
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@166" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.996078, 0.729412, 0.0235294, 1 )
+position = Vector2( 395, 266.25 )
+rotation = -1.74533
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@167" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.996078, 0.729412, 0.0235294, 1 )
+position = Vector2( 322.5, 266.25 )
+rotation = -1.74533
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@168" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.996078, 0.729412, 0.0235294, 1 )
+position = Vector2( -316.25, 272.5 )
+rotation = -1.39626
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@169" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+modulate = Color( 0.996078, 0.729412, 0.0235294, 1 )
+position = Vector2( -316.25, 272.5 )
+rotation = -1.39626
+script = ExtResource( 1 )
+id = 0
+
+[node name="Acorn" type="Area2D" parent="." instance=ExtResource( 5 )]
+pause_mode = 2
+position = Vector2( 6.26125, -1.25 )
+z_index = 5
+script = ExtResource( 4 )
+move = false
+init_pos = Vector2( 0, 0 )
+dest_pos = Vector2( 0, 0 )
+duration = 0.0
+
+[node name="@Portal@170" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+position = Vector2( 65, -1.25 )
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@171" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+position = Vector2( -53.75, -1.25 )
+rotation = 3.14159
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@172" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+position = Vector2( 5, 56.25 )
+rotation = 1.5708
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@173" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+position = Vector2( 7.5, -67.5 )
+rotation = -1.5708
+script = ExtResource( 1 )
+id = 0
+
+[node name="@Portal@174" type="Area2D" parent="." groups=[
+"portal",
+] instance=ExtResource( 6 )]
+position = Vector2( 7.5, -67.5 )
+rotation = -1.5708
+script = ExtResource( 1 )
+id = 0
+
+[connection signal="body_entered" from="Portal" to="Portal" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@147" to="@Portal@147" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@148" to="@Portal@148" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@149" to="@Portal@149" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@150" to="@Portal@150" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@151" to="@Portal@151" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@152" to="@Portal@152" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@153" to="@Portal@153" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@154" to="@Portal@154" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@155" to="@Portal@155" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@156" to="@Portal@156" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@157" to="@Portal@157" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@158" to="@Portal@158" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@159" to="@Portal@159" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@160" to="@Portal@160" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@161" to="@Portal@161" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@162" to="@Portal@162" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@163" to="@Portal@163" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@164" to="@Portal@164" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@165" to="@Portal@165" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@166" to="@Portal@166" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@167" to="@Portal@167" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@168" to="@Portal@168" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@169" to="@Portal@169" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="Acorn" to="Acorn" method="_on_Acorn_body_entered"]
+[connection signal="body_entered" from="@Portal@170" to="@Portal@170" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@171" to="@Portal@171" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@172" to="@Portal@172" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@173" to="@Portal@173" method="_on_Portal_body_entered"]
+[connection signal="body_entered" from="@Portal@174" to="@Portal@174" method="_on_Portal_body_entered"]

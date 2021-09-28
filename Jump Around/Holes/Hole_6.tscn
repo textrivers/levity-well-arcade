@@ -70,4 +70,3 @@ position = Vector2( 6.10352e-05, -143.894 )
 
 [node name="Acorn" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( -0.392288, 134.38 )
-z_index = -1

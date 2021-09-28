@@ -46,7 +46,6 @@ position = Vector2( 464.564, 229.782 )
 
 [node name="Acorn" parent="Contents" instance=ExtResource( 4 )]
 position = Vector2( 459, 69 )
-z_index = -1
 
 [node name="Red1" parent="Contents" instance=ExtResource( 2 )]
 modulate = Color( 0.937255, 0.439216, 0.439216, 1 )

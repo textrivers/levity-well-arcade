@@ -12,6 +12,7 @@ radius = 5.0
 "portable",
 "squirrel",
 ]]
+z_index = 10
 collision_layer = 2
 collision/safe_margin = 1.0
 script = ExtResource( 3 )
@@ -23,6 +24,8 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Tail" parent="Sprite" instance=ExtResource( 1 )]
+z_index = 10
+z_as_relative = false
 
 [node name="Butt" type="Position2D" parent="Sprite"]
 position = Vector2( -8, -3 )

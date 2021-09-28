@@ -42,7 +42,6 @@ func on_pause_pressed():
 		$CenterContainer.show()
 		$CenterContainer/VBoxContainer/Buttons/Resume.show()
 		$CenterContainer/VBoxContainer/Buttons/QuitMenu.show()
-		$CenterContainer/VBoxContainer/Buttons/AimAssist.show()
 	else:
 		_on_Resume_pressed()
 
@@ -60,12 +59,12 @@ func on_acorn_zoom_complete():
 	counter.text = "Total = " + str(total)
 	$OrangeScreen.modulate.a = 1.0
 	$CenterContainer.show()
+	var holes = get_tree().get_nodes_in_group("hole")
+	if holes.size() > 0:
+		for hole in holes:
+			hole.queue_free()
 	if hole_num >= course.size():
 		hole_num = 0
-		var holes = get_tree().get_nodes_in_group("hole")
-		if holes.size() > 0:
-			for hole in holes:
-				hole.queue_free()
 		$CenterContainer/VBoxContainer/Buttons2/GameStart.text = "Play Again?"
 		$CenterContainer/VBoxContainer/Buttons2/GameStart.show()
 	else:
@@ -79,6 +78,7 @@ func _on_PlayButton_pressed():
 
 func _on_LevelEditor_pressed():
 	$CenterContainer.hide()
+	$CenterContainer/VBoxContainer/Sprite.hide()
 	$OrangeScreen.modulate.a = 0
 	hide_buttons()
 	var new_editor = load("res://Level_Edit.tscn").instance()
@@ -133,7 +133,7 @@ func add_hole():
 	var new_hole = load(course[hole_num]).instance()
 	get_parent().call_deferred("add_child", new_hole)
 	yield(get_tree().create_timer(0.02), "timeout")
-	## a few lines hacky bullshit just below
+	## a few lines of hacky bullshit are just below this comment
 	var assist = new_hole.get_node_or_null("Contents/Squirrel/AimAssist")
 	if assist == null:
 		assist = new_hole.get_node_or_null("Squirrel/AimAssist")
@@ -206,6 +206,7 @@ func _on_AimAssist_toggled(button_pressed):
 func _on_CustomCourse_toggled(button_pressed):
 	if button_pressed == false:
 		course = standard_course
+		$CenterContainer/VBoxContainer/ItemList.hide()
 	else:
 		course = []
 		$CenterContainer/VBoxContainer/ItemList.clear()
