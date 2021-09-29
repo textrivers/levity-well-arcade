@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-func _process(delta):
+func _process(_delta):
 	if $Timer.is_stopped():
 		$Sprite.modulate.a = 0
 	else:
@@ -14,7 +14,6 @@ func ghost_protocol():
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("squirrel"):
 		ghost_protocol()
-
 
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("squirrel"):
