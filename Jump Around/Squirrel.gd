@@ -38,6 +38,8 @@ func _physics_process(delta):
 		velocity = Vector2(0, 0)
 		if Input.is_action_just_pressed("jump"):
 			emit_signal("jump")
+			## Attention, Brendan! The line below this one is where the audio magic happens
+			$JumpSound.play()
 			flying = true
 			snap = Vector2(0, 0)
 			$Sprite.texture = jump1
