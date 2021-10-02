@@ -19,7 +19,7 @@ func _process(_delta):
 			build_boolean_field()
 			
 			## convert boolean field to SDF by marching the parabolas
-			## var SDF = boolean_to_SDF()
+			## var new_SDF = boolean_to_SDF()
 			## create new image texture from the SDF 
 			## load that as sprite texture 
 			display_new_field(bool_field)
@@ -42,18 +42,37 @@ func build_boolean_field():
 	image_raw.unlock()
 
 func boolean_to_SDF():
-	## create new SDF array and make it as big as the bool field, change bools to 0 or INF
-	var new_SDF = []
+	## create new Euclidian Distance transform array 
+	## that replaces true with 0 and false with INF
+	## and inverse
+	var new_real_field = []
+	var new_inv_real_field = []
 	for x in bool_field.size():
-		new_SDF.append([])
+		new_real_field.append([])
+		new_inv_real_field.append([])
 		for y in bool_field[x].size():
-			new_SDF[x].append(null)
 			if bool_field[x][y] == true:
-				bool_field[x][y] = 0
+				new_real_field[x].append(0)
+				new_inv_real_field[x].append(INF)
 			else:
-				bool_field[x][y] = INF
-	## consume the bool_field and populate new_SDF with distance info
-	## refer to https://prideout.net/blog/distance_fields/
+				new_real_field[x].append(INF)
+				new_inv_real_field[x].append(0)
+	## populate both with distance info, from https://prideout.net/blog/distance_fields/
+	### all of the above yields EDT;
+	### subtract inverse from original and return as SDF
+	var new_EDT = compute_EDT(new_real_field)
+	var new_inv_EDT = compute_EDT(new_inv_real_field)
+	var SDF = compute_SDF(new_EDT, new_inv_EDT)
+	return SDF
+
+func compute_EDT(field):
+	### do a pass on each row, then each column, then do a sqrt pass on whole
+	### a pass == find the parabola hull for the row/column from a list of all parabolas, 
+	### then march the parabolas to sample the height at each pixel center
+	pass
+
+func compute_SDF(EDT, invEDT):
+	pass
 
 func display_new_field(field):
 	var new_im = Image.new()
