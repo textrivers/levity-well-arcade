@@ -19,10 +19,10 @@ func _process(_delta):
 			build_boolean_field()
 			
 			## convert boolean field to SDF by marching the parabolas
-			## var new_SDF = boolean_to_SDF()
+			var new_SDF = boolean_to_SDF()
 			## create new image texture from the SDF 
 			## load that as sprite texture 
-			display_new_field(bool_field)
+			display_new_field(new_SDF)
 		else:
 			orig = true
 			$Sprite.texture = orig_tex
@@ -57,22 +57,122 @@ func boolean_to_SDF():
 			else:
 				new_real_field[x].append(INF)
 				new_inv_real_field[x].append(0)
-	## populate both with distance info, from https://prideout.net/blog/distance_fields/
-	### all of the above yields EDT;
-	### subtract inverse from original and return as SDF
 	var new_EDT = compute_EDT(new_real_field)
 	var new_inv_EDT = compute_EDT(new_inv_real_field)
 	var SDF = compute_SDF(new_EDT, new_inv_EDT)
 	return SDF
 
 func compute_EDT(field):
-	### do a pass on each row, then each column, then do a sqrt pass on whole
-	### a pass == find the parabola hull for the row/column from a list of all parabolas, 
+	## see https://prideout.net/blog/distance_fields/
+	### do a pass on each column, rotate; repeat but rotate back; then sqrt whole
+	for column in field:
+		vertical_pass(column)
+	rotate_field(field, true)
+	for column in field:
+		vertical_pass(column)
+	rotate_field(field, false)
+	for x in field.size():
+		for y in field[x].size():
+			field[x][y] = sqrt(field[x][y])
+	return field
+
+func vertical_pass(column):
+	### TODO
+	### find the parabola hull for the row/column from a list of all parabolas, 
 	### then march the parabolas to sample the height at each pixel center
-	pass
+	var hull_vertices = []
+	var hull_intersections = []
+	find_hull_parabolas(column, hull_vertices, hull_intersections)
+	march_parabolas(column, hull_vertices, hull_intersections)
+
+func find_hull_parabolas(col, hull_verts, hull_inters):
+#    d = single_row
+#    v = hull_vertices
+#    z = hull_intersections
+	var k = 0
+#    v[0].x = 0
+	hull_verts.append(Vector2(0, 0))
+#    z[0].x = -INF
+	hull_inters.append(Vector2(-INF, 0))
+#    z[1].x = +INF
+	hull_inters.append(Vector2(INF, 0))
+#    for i in range(1, len(d)):
+	for i in range(1, len(col)):
+#        q = (i, d[i])
+		var q = Vector2(i, col[i])
+#        p = v[k]
+		var p = hull_verts[k]
+#        s = intersect_parabolas(p, q)
+		var s = Vector2(0, 0)
+		s.x = intersect_parabolas(p, q)
+#        while s.x <= z[k].x:
+		while s.x <= hull_inters[k].x:
+#            k = k - 1
+			k = k -1
+#            p = v[k]
+			p = hull_verts[k]
+#            s = intersect_parabolas(p, q)
+			s.x = intersect_parabolas(p, q)
+#        k = k + 1
+		k += 1
+		if k > hull_verts.size() - 1:
+			hull_verts.append(Vector2(0, 0))
+#        v[k] = q
+		hull_verts[k] = q
+#        z[k].x = s.x
+		while hull_inters.size() - 1 < k + 1:
+			hull_inters.append(Vector2(0, 0))
+		hull_inters[k].x = s.x
+#        z[k + 1].x = +INF
+		hull_inters[k + 1].x = INF
+		
+## Find intersection between parabolas at the given vertices.
+#def intersect_parabolas(p, q):
+func intersect_parabolas(_p, _q):
+#    x = ((q.y + q.x*q.x) - (p.y + p.x*p.x)) / (2*q.x - 2*p.x)
+	var _x = ((_q.y + _q.x * _q.x) - (_p.y + _p.x * _p.x)) / (2 * _q.x - 2 * _p.x)
+#    return x, _
+	return _x
+
+func march_parabolas(col, hull_verts, hull_inters):
+#	d = single_row
+#    v = hull_vertices
+#    z = hull_intersections
+#    k = 0
+	var k = 0
+#    for q in range(len(d)):
+	for q in range(len(col)):
+#        while z[k + 1].x < q:
+		while hull_inters[k + 1].x < q:
+#            k = k + 1
+			k += 1
+#        dx = q - v[k].x
+		var dx = q - hull_verts[k].x
+#        d[q] = dx * dx + v[k].y
+		col[q] = dx * dx + hull_verts[k].y
+
+func rotate_field(field, clockwise):
+	var new_field = []
+	new_field.resize(field[0].size())
+	for x in new_field.size():
+		new_field[x] = []
+		new_field[x].resize(field.size())
+	if clockwise:
+		for x in new_field.size():
+			for y in new_field[x].size():
+				new_field[x][y] = field[y][(field[y].size() - 1) - x]
+	else:
+		for x in new_field.size():
+			for y in new_field[x].size():
+				new_field[x][y] = field[field.size() - 1 - y][x]
+	field = new_field
 
 func compute_SDF(EDT, invEDT):
-	pass
+	### subtract inverse from original and return as SDF
+	for x in EDT.size():
+		for y in EDT[0].size():
+			EDT[x][y] -= invEDT[x][y]
+	return EDT
 
 func display_new_field(field):
 	var new_im = Image.new()
@@ -80,10 +180,8 @@ func display_new_field(field):
 	new_im.lock()
 	for x in field.size():
 		for y in field[x].size(): 
-			if field[x][y] == false:
-				new_im.set_pixel(x, y, Color.white)
-			else:
-				new_im.set_pixel(x, y, Color.black)
+			var v = abs(1 / (field[x][y] + 0.001)) 
+			new_im.set_pixel(x, y, Color(v, v, v))
 	new_tex = ImageTexture.new()
 	new_tex.create_from_image(new_im, 1)
 	new_im.unlock()
