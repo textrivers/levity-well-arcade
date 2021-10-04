@@ -12,17 +12,19 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("rightclick"):
+		var startclick = OS.get_ticks_usec()
 		## toggle original texture and SDF representation
 		if orig == true: 
 			orig = false
 			## sample sprite texture to build boolean field
 			build_boolean_field()
-			
 			## convert boolean field to SDF by marching the parabolas
 			var new_SDF = boolean_to_SDF()
 			## create new image texture from the SDF 
 			## load that as sprite texture 
 			display_new_field(new_SDF)
+			var endclick = OS.get_ticks_usec()
+			print(float(endclick - startclick) / 1000000)
 		else:
 			orig = true
 			$Sprite.texture = orig_tex
@@ -58,6 +60,7 @@ func boolean_to_SDF():
 				new_real_field[x].append(INF)
 				new_inv_real_field[x].append(0)
 	var new_EDT = compute_EDT(new_real_field)
+	# return new_EDT
 	var new_inv_EDT = compute_EDT(new_inv_real_field)
 	var SDF = compute_SDF(new_EDT, new_inv_EDT)
 	return SDF
@@ -65,30 +68,39 @@ func boolean_to_SDF():
 func compute_EDT(field):
 	## see https://prideout.net/blog/distance_fields/
 	### do a pass on each column, rotate; repeat but rotate back; then sqrt whole
+	var count = 0
 	for column in field:
-		vertical_pass(column)
+		vertical_pass(column, count)
+		count += 1
 	rotate_field(field, true)
+	count = 0
 	for column in field:
-		vertical_pass(column)
+		vertical_pass(column, count)
+		count += 1
 	rotate_field(field, false)
 	for x in field.size():
 		for y in field[x].size():
 			field[x][y] = sqrt(field[x][y])
 	return field
 
-func vertical_pass(column):
-	### TODO
+func vertical_pass(column, count):
 	### find the parabola hull for the row/column from a list of all parabolas, 
 	### then march the parabolas to sample the height at each pixel center
+	if count == 120:
+		##breakpoint
+		pass
 	var hull_vertices = []
 	var hull_intersections = []
 	find_hull_parabolas(column, hull_vertices, hull_intersections)
 	march_parabolas(column, hull_vertices, hull_intersections)
+	if count == 120:
+		print(hull_vertices)
 
 func find_hull_parabolas(col, hull_verts, hull_inters):
 #    d = single_row
 #    v = hull_vertices
 #    z = hull_intersections
+#    k = 0
 	var k = 0
 #    v[0].x = 0
 	hull_verts.append(Vector2(0, 0))
@@ -104,27 +116,33 @@ func find_hull_parabolas(col, hull_verts, hull_inters):
 		var p = hull_verts[k]
 #        s = intersect_parabolas(p, q)
 		var s = Vector2(0, 0)
-		s.x = intersect_parabolas(p, q)
+		s = intersect_parabolas(p, q)
 #        while s.x <= z[k].x:
 		while s.x <= hull_inters[k].x:
 #            k = k - 1
-			k = k -1
+			k = k - 1
 #            p = v[k]
 			p = hull_verts[k]
 #            s = intersect_parabolas(p, q)
-			s.x = intersect_parabolas(p, q)
+			s = intersect_parabolas(p, q)
 #        k = k + 1
 		k += 1
-		if k > hull_verts.size() - 1:
-			hull_verts.append(Vector2(0, 0))
 #        v[k] = q
-		hull_verts[k] = q
+		if k >= hull_verts.size():
+			hull_verts.append(q)
+		else:
+			hull_verts[k] = q
 #        z[k].x = s.x
-		while hull_inters.size() - 1 < k + 1:
-			hull_inters.append(Vector2(0, 0))
-		hull_inters[k].x = s.x
+		if k >= hull_inters.size():
+			hull_inters.append(Vector2(s.x, 0))
+		else:
+			hull_inters[k].x = s.x
 #        z[k + 1].x = +INF
-		hull_inters[k + 1].x = INF
+		if k + 1 >= hull_inters.size():
+			hull_inters.append(Vector2(INF, 0))
+		else:
+			hull_inters[k + 1].x = INF
+		
 		
 ## Find intersection between parabolas at the given vertices.
 #def intersect_parabolas(p, q):
@@ -132,7 +150,7 @@ func intersect_parabolas(_p, _q):
 #    x = ((q.y + q.x*q.x) - (p.y + p.x*p.x)) / (2*q.x - 2*p.x)
 	var _x = ((_q.y + _q.x * _q.x) - (_p.y + _p.x * _p.x)) / (2 * _q.x - 2 * _p.x)
 #    return x, _
-	return _x
+	return Vector2(_x, 0)
 
 func march_parabolas(col, hull_verts, hull_inters):
 #	d = single_row
