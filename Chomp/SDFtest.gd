@@ -18,6 +18,7 @@ func _process(_delta):
 			orig = false
 			## sample sprite texture to build boolean field
 			build_boolean_field()
+			#display_new_field(bool_field)
 			## convert boolean field to SDF by marching the parabolas
 			var new_SDF = boolean_to_SDF()
 			## create new image texture from the SDF 
@@ -41,7 +42,7 @@ func build_boolean_field():
 				bool_field[x].append(false)
 			else:
 				bool_field[x].append(true)
-	image_raw.unlock()
+	#image_raw.unlock()
 
 func boolean_to_SDF():
 	## create new Euclidian Distance transform array 
@@ -60,8 +61,9 @@ func boolean_to_SDF():
 				new_real_field[x].append(INF)
 				new_inv_real_field[x].append(0)
 	var new_EDT = compute_EDT(new_real_field)
-	## return new_EDT
+	#return new_EDT
 	var new_inv_EDT = compute_EDT(new_inv_real_field)
+	#return new_inv_EDT
 	var SDF = compute_SDF(new_EDT, new_inv_EDT)
 	return SDF
 
@@ -73,7 +75,7 @@ func compute_EDT(field):
 	field = rotate_field(field, true)
 	for column in field.size():
 		vertical_pass(field[column])
-	rotate_field(field, false)
+	field = rotate_field(field, false)
 	for x in field.size():
 		for y in field[x].size():
 			field[x][y] = sqrt(field[x][y])
@@ -167,14 +169,12 @@ func rotate_field(field, clockwise):
 		new_field[x] = []
 		new_field[x].resize(field.size())
 	if clockwise:
-		print("clockwise")
 		for x in new_field.size():
 			field[x].invert()
 		for x in new_field.size():
 			for y in new_field[x].size():
 				new_field[x][y] = field[y][x]
 	else:
-		print("counterclockwise")
 		for x in new_field.size():
 			for y in new_field[x].size():
 				new_field[x][y] = field[y][x]
@@ -195,7 +195,7 @@ func display_new_field(field):
 	new_im.lock()
 	for x in field.size():
 		for y in field[x].size(): 
-			var v = clamp(abs(1 / (field[x][y] + 0.001)), 0.001, 1.0) 
+			var v = clamp(abs(1 - (1 / (float(field[x][y]) + 0.001))), 0.001, 1.0) 
 			new_im.set_pixel(x, y, Color(v, v, v))
 	new_tex = ImageTexture.new()
 	new_tex.create_from_image(new_im, 1)
