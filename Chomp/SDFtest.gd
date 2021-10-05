@@ -60,7 +60,7 @@ func boolean_to_SDF():
 				new_real_field[x].append(INF)
 				new_inv_real_field[x].append(0)
 	var new_EDT = compute_EDT(new_real_field)
-	# return new_EDT
+	## return new_EDT
 	var new_inv_EDT = compute_EDT(new_inv_real_field)
 	var SDF = compute_SDF(new_EDT, new_inv_EDT)
 	return SDF
@@ -68,33 +68,24 @@ func boolean_to_SDF():
 func compute_EDT(field):
 	## see https://prideout.net/blog/distance_fields/
 	### do a pass on each column, rotate; repeat but rotate back; then sqrt whole
-	var count = 0
-	for column in field:
-		vertical_pass(column, count)
-		count += 1
-	rotate_field(field, true)
-	count = 0
-	for column in field:
-		vertical_pass(column, count)
-		count += 1
+	for column in field.size():
+		vertical_pass(field[column])
+	field = rotate_field(field, true)
+	for column in field.size():
+		vertical_pass(field[column])
 	rotate_field(field, false)
 	for x in field.size():
 		for y in field[x].size():
 			field[x][y] = sqrt(field[x][y])
 	return field
 
-func vertical_pass(column, count):
-	### find the parabola hull for the row/column from a list of all parabolas, 
+func vertical_pass(column):
+	### find the parabola hull for the column from a list of all parabolas, 
 	### then march the parabolas to sample the height at each pixel center
-	if count == 120:
-		##breakpoint
-		pass
 	var hull_vertices = []
 	var hull_intersections = []
 	find_hull_parabolas(column, hull_vertices, hull_intersections)
 	march_parabolas(column, hull_vertices, hull_intersections)
-	if count == 120:
-		print(hull_vertices)
 
 func find_hull_parabolas(col, hull_verts, hull_inters):
 #    d = single_row
@@ -176,14 +167,20 @@ func rotate_field(field, clockwise):
 		new_field[x] = []
 		new_field[x].resize(field.size())
 	if clockwise:
+		print("clockwise")
+		for x in new_field.size():
+			field[x].invert()
 		for x in new_field.size():
 			for y in new_field[x].size():
-				new_field[x][y] = field[y][(field[y].size() - 1) - x]
+				new_field[x][y] = field[y][x]
 	else:
+		print("counterclockwise")
 		for x in new_field.size():
 			for y in new_field[x].size():
-				new_field[x][y] = field[field.size() - 1 - y][x]
-	field = new_field
+				new_field[x][y] = field[y][x]
+		for x in new_field.size():
+			new_field[x].invert()
+	return new_field
 
 func compute_SDF(EDT, invEDT):
 	### subtract inverse from original and return as SDF
@@ -198,7 +195,7 @@ func display_new_field(field):
 	new_im.lock()
 	for x in field.size():
 		for y in field[x].size(): 
-			var v = abs(1 / (field[x][y] + 0.001)) 
+			var v = clamp(abs(1 / (field[x][y] + 0.001)), 0.001, 1.0) 
 			new_im.set_pixel(x, y, Color(v, v, v))
 	new_tex = ImageTexture.new()
 	new_tex.create_from_image(new_im, 1)
