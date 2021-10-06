@@ -194,10 +194,10 @@ func display_new_field(field):
 	new_im.lock()
 	for x in field.size():
 		for y in field[x].size(): 
-			#var v = clamp(abs(1 - (1 / (float(field[x][y]) + 0.001))), 0.001, 1.0) 
-			if field[x][y] > 0 && int(field[x][y]) % 10 == 0:
-				new_im.set_pixel(x, y, Color.cornflower)
-			elif field[x][y] == 1:
+			#if field[x][y] > 0 && int(field[x][y]) % 10 == 0:
+				#new_im.set_pixel(x, y, Color.cornflower)
+			#el
+			if field[x][y] == 1:
 				new_im.set_pixel(x, y, Color.crimson)
 			else:
 				var v = clamp(float(field[x][y] * 0.025 + 0.5), 0.0, 1.0)
