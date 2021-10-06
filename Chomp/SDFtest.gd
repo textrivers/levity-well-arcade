@@ -5,6 +5,9 @@ var orig: bool = true
 var new_tex
 var alpha_threshold: float = 0.5
 var bool_field = []
+var startclick
+
+const FIN = 100000
 
 func _ready():
 	$HSlider.value = alpha_threshold
@@ -12,37 +15,21 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("rightclick"):
-		var startclick = OS.get_ticks_usec()
+		startclick = OS.get_ticks_usec()
 		## toggle original texture and SDF representation
 		if orig == true: 
 			orig = false
 			## sample sprite texture to build boolean field
-			build_boolean_field()
-			#display_new_field(bool_field)
 			## convert boolean field to SDF by marching the parabolas
 			var new_SDF = boolean_to_SDF()
 			## create new image texture from the SDF 
 			## load that as sprite texture 
 			display_new_field(new_SDF)
 			var endclick = OS.get_ticks_usec()
-			print(float(endclick - startclick) / 1000000)
+			print("end = " + str(float(endclick - startclick) / 1000000))
 		else:
 			orig = true
 			$Sprite.texture = orig_tex
-
-func build_boolean_field():
-	bool_field = []
-	var image_raw: Image = $Sprite.texture.get_data()
-	var image_dimensions: Vector2 = $Sprite.texture.get_size()
-	image_raw.lock()
-	for x in image_dimensions.x:
-		bool_field.append([])
-		for y in image_dimensions.y: 
-			if image_raw.get_pixel(x, y).a < alpha_threshold:
-				bool_field[x].append(false)
-			else:
-				bool_field[x].append(true)
-	#image_raw.unlock()
 
 func boolean_to_SDF():
 	## create new Euclidian Distance transform array 
@@ -50,21 +37,33 @@ func boolean_to_SDF():
 	## and inverse
 	var new_real_field = []
 	var new_inv_real_field = []
-	for x in bool_field.size():
+	var image_raw: Image = $Sprite.texture.get_data()
+	var image_dimensions: Vector2 = $Sprite.texture.get_size()
+	image_raw.lock()
+	for x in image_dimensions.x:
 		new_real_field.append([])
 		new_inv_real_field.append([])
-		for y in bool_field[x].size():
-			if bool_field[x][y] == true:
-				new_real_field[x].append(0)
-				new_inv_real_field[x].append(INF)
-			else:
-				new_real_field[x].append(INF)
+		for y in image_dimensions.y: 
+			if image_raw.get_pixel(x, y).a < alpha_threshold:
+				new_real_field[x].append(FIN)
 				new_inv_real_field[x].append(0)
+			else:
+				new_real_field[x].append(0)
+				new_inv_real_field[x].append(FIN)
+	image_raw.unlock()
+	var get_ticks = OS.get_ticks_usec()
+	print("done sampling image = " + str(float(get_ticks - startclick) / 1000000))
 	var new_EDT = compute_EDT(new_real_field)
+	get_ticks = OS.get_ticks_usec()
+	print("done computing EDT = " + str(float(get_ticks - startclick) / 1000000))
 	#return new_EDT
 	var new_inv_EDT = compute_EDT(new_inv_real_field)
+	get_ticks = OS.get_ticks_usec()
+	print("done computing inverse EDT = " + str(float(get_ticks - startclick) / 1000000))
 	#return new_inv_EDT
 	var SDF = compute_SDF(new_EDT, new_inv_EDT)
+	get_ticks = OS.get_ticks_usec()
+	print("done computing SDF = " + str(float(get_ticks - startclick) / 1000000))
 	return SDF
 
 func compute_EDT(field):
@@ -96,13 +95,13 @@ func find_hull_parabolas(col, hull_verts, hull_inters):
 #    k = 0
 	var k = 0
 #    v[0].x = 0
-	hull_verts.append(Vector2(0, 0))
+	hull_verts.append(Vector2(0, FIN))
 #    z[0].x = -INF
-	hull_inters.append(Vector2(-INF, 0))
+	hull_inters.append(Vector2(-FIN, 0))
 #    z[1].x = +INF
-	hull_inters.append(Vector2(INF, 0))
+	hull_inters.append(Vector2(FIN, 0))
 #    for i in range(1, len(d)):
-	for i in range(1, len(col)):
+	for i in range(1, col.size()):
 #        q = (i, d[i])
 		var q = Vector2(i, col[i])
 #        p = v[k]
@@ -122,26 +121,26 @@ func find_hull_parabolas(col, hull_verts, hull_inters):
 		k += 1
 #        v[k] = q
 		if k >= hull_verts.size():
-			hull_verts.append(q)
-		else:
-			hull_verts[k] = q
+			hull_verts.append(Vector2())
+		#else:
+		hull_verts[k] = q
 #        z[k].x = s.x
 		if k >= hull_inters.size():
-			hull_inters.append(Vector2(s.x, 0))
-		else:
-			hull_inters[k].x = s.x
+			hull_inters.append(Vector2())
+		#else:
+		hull_inters[k].x = s.x
 #        z[k + 1].x = +INF
 		if k + 1 >= hull_inters.size():
-			hull_inters.append(Vector2(INF, 0))
-		else:
-			hull_inters[k + 1].x = INF
+			hull_inters.append(Vector2())
+		#else:
+		hull_inters[k + 1].x = FIN
 		
 		
 ## Find intersection between parabolas at the given vertices.
 #def intersect_parabolas(p, q):
 func intersect_parabolas(_p, _q):
 #    x = ((q.y + q.x*q.x) - (p.y + p.x*p.x)) / (2*q.x - 2*p.x)
-	var _x = ((_q.y + _q.x * _q.x) - (_p.y + _p.x * _p.x)) / (2 * _q.x - 2 * _p.x)
+	var _x = ((_q.y + (_q.x * _q.x)) - (_p.y + (_p.x * _p.x))) / ((2 * _q.x) - (2 * _p.x))
 #    return x, _
 	return Vector2(_x, 0)
 
@@ -195,8 +194,14 @@ func display_new_field(field):
 	new_im.lock()
 	for x in field.size():
 		for y in field[x].size(): 
-			var v = clamp(abs(1 - (1 / (float(field[x][y]) + 0.001))), 0.001, 1.0) 
-			new_im.set_pixel(x, y, Color(v, v, v))
+			#var v = clamp(abs(1 - (1 / (float(field[x][y]) + 0.001))), 0.001, 1.0) 
+			if field[x][y] > 0 && int(field[x][y]) % 10 == 0:
+				new_im.set_pixel(x, y, Color.cornflower)
+			elif field[x][y] == 1:
+				new_im.set_pixel(x, y, Color.crimson)
+			else:
+				var v = clamp(float(field[x][y] * 0.025 + 0.5), 0.0, 1.0)
+				new_im.set_pixel(x, y, Color(v, v, v))
 	new_tex = ImageTexture.new()
 	new_tex.create_from_image(new_im, 1)
 	new_im.unlock()
