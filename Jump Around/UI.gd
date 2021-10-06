@@ -28,6 +28,7 @@ var standard_course = [
 var course = []
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	counter = $Counter
 	tween = $Tween
 
@@ -36,6 +37,7 @@ func on_squirrel_jump():
 	counter.text = str(count)
 
 func on_pause_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if get_tree().paused == false:
 		get_tree().call_deferred("set_pause", true)
 		$OrangeScreen.modulate.a = 0.5
@@ -55,6 +57,7 @@ func on_acorn_collected():
 	get_tree().set_pause(true)
 
 func on_acorn_zoom_complete():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	count = int(0)
 	counter.text = "Total = " + str(total)
 	$OrangeScreen.modulate.a = 1.0
@@ -86,6 +89,7 @@ func _on_LevelEditor_pressed():
 	get_parent().call_deferred("add_child", new_editor)
 
 func _on_GameStart_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	count = 0
 	total = 0
 	counter.text = str(count)
@@ -109,12 +113,14 @@ func _on_GameStart_pressed():
 	add_hole()
 
 func _on_Resume_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	get_tree().set_pause(false)
 	$OrangeScreen.modulate.a = 0
 	$CenterContainer.hide()
 	hide_buttons()
 
 func _on_NextHole_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	var holes = get_tree().get_nodes_in_group("hole")
 	if holes.size() > 0:
 		for hole in holes:
@@ -145,6 +151,7 @@ func add_hole():
 	get_tree().set_pause(false)
 
 func _on_QuitMenu_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().set_pause(false)
 	hide_buttons()
 	counter.hide()
@@ -223,7 +230,6 @@ func _on_CustomCourse_toggled(button_pressed):
 				file_name = dir.get_next()
 		else:
 			print("An error occurred when trying to access the path.")
-
 
 func build_custom_course():
 	if $CenterContainer/VBoxContainer/ItemList.get_selected_items().size() > 0:

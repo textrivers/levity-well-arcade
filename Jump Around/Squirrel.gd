@@ -15,6 +15,7 @@ var stand = preload("res://assets/images/squirrel_stand.png")
 var jump1 = preload("res://assets/images/squirrel_jump1.png")
 var jump2 = preload("res://assets/images/squirrel_jump2.png")
 var butt
+var pink_arrow
 
 signal jump
 signal land
@@ -25,9 +26,13 @@ func _ready():
 	butt = $Sprite/Butt
 # warning-ignore:return_value_discarded
 	self.connect("jump", get_node("/root/Room/UI"), "on_squirrel_jump")
+	pink_arrow = $PinkArrow
+	pink_arrow.set_as_toplevel(true)
 
 func _physics_process(delta):
 	mouse_pos = get_global_mouse_position()
+	pink_arrow.position = mouse_pos
+	pink_arrow.look_at(position)
 	
 	if flying: 
 		snap = Vector2(0, 0)
