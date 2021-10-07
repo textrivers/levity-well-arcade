@@ -39,7 +39,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		rotation += right * 0.05
 	else:
-		snap = down * 32
+		snap = Vector2(0, 0)
 		velocity = Vector2(0, 0)
 		if Input.is_action_just_pressed("jump"):
 			emit_signal("jump")
@@ -60,7 +60,7 @@ func _physics_process(delta):
 				rotation += PI
 			velocity = dir * jump_speed
 	
-	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 1, PI / 2, false)
+	velocity = move_and_slide_with_snap(velocity, snap, up, false, 1, PI / 2, false)
 	
 	$Sprite.scale.x = right
 	
@@ -71,15 +71,16 @@ func _physics_process(delta):
 		var ang = collision.normal.angle()
 		if sin(ang) <= 0.01:
 			emit_signal("land")
+			print("landed")
 			$Sprite.texture = stand
 			flying = false
 			velocity = Vector2(0, 0)
 			up = collision.normal
-			down = -up 
+			snap = -up * 32
 			## rotation
 			rotation = up.angle() + deg2rad(90)
 		else: 
 			flying = true
-	
+	$RayCast2D.force_raycast_update()
 	if flying == false && !$RayCast2D.is_colliding():
 			flying = true
