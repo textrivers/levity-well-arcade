@@ -71,7 +71,6 @@ func _physics_process(delta):
 		var ang = collision.normal.angle()
 		if sin(ang) <= 0.01:
 			emit_signal("land")
-			print("landed")
 			$Sprite.texture = stand
 			flying = false
 			velocity = Vector2(0, 0)

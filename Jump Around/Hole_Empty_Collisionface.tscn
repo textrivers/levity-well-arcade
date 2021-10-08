@@ -54,6 +54,7 @@ scale = Vector2( 0.606, 1 )
 script = ExtResource( 5 )
 
 [node name="Sprite2" type="MeshInstance2D" parent="Box/CollisionFace"]
+modulate = Color( 1, 1, 1, 0.568627 )
 mesh = SubResource( 1 )
 texture = ExtResource( 1 )
 
