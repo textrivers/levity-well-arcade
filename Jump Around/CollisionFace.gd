@@ -5,6 +5,7 @@ var tex_width
 var tex_height
 var poly: PoolVector2Array = []
 var verts: PoolVector2Array = []
+var tex = preload("res://assets/images/test_face.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +15,7 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("collidify"):
-		_create_collision_polygon()
+		subtract_from_mesh()
 	if Input.is_action_just_pressed("meshify"):
 		_create_collision_mesh()
 
@@ -46,14 +47,7 @@ func _create_collision_mesh():
 	var mesh = $Sprite2.mesh
 	var startclick = OS.get_ticks_usec()
 	verts = mesh.surface_get_arrays(0)[0]
-#	print(verts.size())
-#	while verts.size() > 10:
-#		for i in range(verts.size() - 1, 0, -2):
-#			verts.remove(i)
-#	print(verts.size())
-#	var my_arr = [verts, [], [], [], [], [], [], [], []]
-#	mesh.add_surface_from_arrays(4, my_arr)
-#	mesh.surface_remove(mesh.get_surface_count() - 1)
+	## verts now an array of vertices
 	update()
 	var my_polygon = Polygon2D.new()
 	my_polygon.set_polygons(verts)
@@ -63,11 +57,53 @@ func _create_collision_mesh():
 	var endclick = OS.get_ticks_usec()
 	print(float(endclick - startclick) / 1000000)
 
+func subtract_from_mesh():
+	randomize()
+	var mesh = $Sprite2.mesh
+	var startclick = OS.get_ticks_usec()
+	var surf = mesh.surface_get_arrays(0)
+	verts = surf[Mesh.ARRAY_VERTEX]
+	var uvs = surf[Mesh.ARRAY_TEX_UV]
+	var indices = surf[Mesh.ARRAY_INDEX]
+	## get random vertex
+	var rand_vert = verts[randi() % verts.size()]
+	for j in range((verts.size() - 1), 0, -1):
+		if verts[j] == rand_vert || verts[j].distance_to(rand_vert) < 50:
+			verts.remove(j)
+			uvs.remove(j)
+			indices.remove(j)
+	## use ArrayMesh functionality to change Sprite2 mesh
+	var arr = []
+	arr.resize(Mesh.ARRAY_MAX)
+	arr[Mesh.ARRAY_VERTEX] = verts
+	arr[Mesh.ARRAY_TEX_UV] = uvs
+	arr[Mesh.ARRAY_INDEX] = indices
+	# Create mesh surface from mesh array and remove previous.
+	mesh.surface_remove(0)
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arr)
+	## use SurfaceTool to index
+	#var st = SurfaceTool.new()
+#	st.create_from(mesh, 0)
+#	st.index()
+#	arr = st.commit_to_arrays()
+#	mesh.surface_remove(0)
+#	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arr)
+	update()
+	var my_polygon = Polygon2D.new()
+	my_polygon.set_polygons(verts)
+	var my_collision = CollisionPolygon2D.new()
+	my_collision.set_polygon(my_polygon.polygons)
+	for child in get_children():
+		if child is CollisionPolygon2D:
+			remove_child(child)
+	call_deferred("add_child", my_collision)
+	var endclick = OS.get_ticks_usec()
+	print(float(endclick - startclick) / 1000000)
+
 func _draw():
 	for i in range(verts.size()):
 		if i == (verts.size() - 1):
 			draw_line(verts[i], verts[0], Color.cornflower)
-			print("last line")
 			continue
 		#draw_circle(vert, 1.0, Color.cornflower)
 		draw_line(verts[i], verts[i + 1], Color.cornflower)
