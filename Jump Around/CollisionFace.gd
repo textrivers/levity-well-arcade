@@ -66,12 +66,27 @@ func subtract_from_mesh():
 	var uvs = surf[Mesh.ARRAY_TEX_UV]
 	var indices = surf[Mesh.ARRAY_INDEX]
 	## get random vertex
-	var rand_vert = verts[randi() % verts.size()]
+	var vert_max = verts.size()
+	var rand_vert = verts[randi() % vert_max]
+	## remove vertices within 50px
+	var count: int = 0
+	var high_index: int = -1
+	var low_index: int = 999999
 	for j in range((verts.size() - 1), 0, -1):
 		if verts[j] == rand_vert || verts[j].distance_to(rand_vert) < 50:
 			verts.remove(j)
 			uvs.remove(j)
 			indices.remove(j)
+			if j > high_index:
+				high_index = j
+			if j < low_index:
+				low_index = j
+	## backfill count of vertices at the same indices but in a straight line; 
+	## set their UVs somehow?
+	## TODO or you could just do what the guy on YouTube did
+	if count > 0:
+		for k in range(count):
+			pass
 	## use ArrayMesh functionality to change Sprite2 mesh
 	var arr = []
 	arr.resize(Mesh.ARRAY_MAX)
@@ -88,15 +103,7 @@ func subtract_from_mesh():
 #	arr = st.commit_to_arrays()
 #	mesh.surface_remove(0)
 #	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arr)
-	update()
-	var my_polygon = Polygon2D.new()
-	my_polygon.set_polygons(verts)
-	var my_collision = CollisionPolygon2D.new()
-	my_collision.set_polygon(my_polygon.polygons)
-	for child in get_children():
-		if child is CollisionPolygon2D:
-			remove_child(child)
-	call_deferred("add_child", my_collision)
+	_create_collision_mesh()
 	var endclick = OS.get_ticks_usec()
 	print(float(endclick - startclick) / 1000000)
 
