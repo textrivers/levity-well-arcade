@@ -20,6 +20,8 @@ func _ready():
 	tween.interpolate_property(self, "global_position", pos_b, pos_a, dur, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.interpolate_property(self, "scale", Vector2(100, 100), Vector2(1, 1), dur, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
+	$AudioStreamPlayer.stream = load("res://assets/audio/AcornBackwards.wav")
+	$AudioStreamPlayer.play()
 	## toggle movement animation
 	if move == true:
 		$AnimationPlayer.set_current_animation("move") 
@@ -35,6 +37,8 @@ func _ready():
 func _on_Acorn_body_entered(body):
 	if body.is_in_group("squirrel"):
 		emit_signal("acorn_collected")
+		$AudioStreamPlayer.stream = load("res://assets/audio/Acorn6.wav")
+		$AudioStreamPlayer.play()
 		tween.connect("tween_all_completed", get_node("/root/Room/UI"), "on_acorn_zoom_complete")
 		tween.interpolate_property(self, "global_position", pos_a, pos_b, dur, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 		tween.interpolate_property(self, "scale", Vector2(1, 1), Vector2(100, 100), dur, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
