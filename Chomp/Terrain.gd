@@ -15,12 +15,15 @@ func _ready():
 	$Collision/Visible.texture_offset.x += ($Collision/Visible.texture.get_width() / 2)
 	$Collision/Visible.texture_offset.y += ($Collision/Visible.texture.get_height() / 2)
 
+func _process(delta):
+	update()
+
 func _input(event):
 	if Input.is_action_pressed("leftclick"):
 		var click_pos = get_global_mouse_position()
 		carve_polygons(click_pos)
 	if Input.is_action_pressed("rightclick"):
-		var smallball = load("res://SmallBall.tscn").instance()
+		var smallball = preload("res://SmallBall.tscn").instance()
 		var click_pos = get_global_mouse_position()
 		add_child(smallball)
 		smallball.position = click_pos
@@ -43,7 +46,10 @@ func carve_polygons(click):
 				new_vis.polygon = result[res]
 				new_col.polygon = result[res]
 				new_vis.texture = $Collision/Visible.texture
-				var new_rig = RigidBody2D.new()
+				var new_rig = StaticBody2D.new()
 				add_child(new_rig)
 				new_rig.add_child(new_col)
 				new_col.add_child(new_vis)
+
+func _draw():
+	draw_polyline(default_sq, Color.black, 1.0, true)
