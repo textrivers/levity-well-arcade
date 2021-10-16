@@ -13,3 +13,7 @@ func _ready():
 func _process(delta):
 	if position.y > 1000:
 		queue_free()
+
+
+func _on_Timer_timeout():
+	sleeping = true

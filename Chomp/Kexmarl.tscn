@@ -28,16 +28,26 @@ animations = [ {
 radius = 60.0
 
 [node name="Kexmarl" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 5
+collision/safe_margin = 0.2
 script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 13, -22 )
 frames = SubResource( 1 )
-animation = "walk"
-frame = 2
+animation = "jump"
+
+[node name="Butt" type="Position2D" parent="AnimatedSprite"]
+position = Vector2( -88.5146, 22 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 65 )
+collision_mask = 5
