@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/jump1.png" type="Texture" id=4]
 [ext_resource path="res://Kexmarl.gd" type="Script" id=5]
 [ext_resource path="res://assets/chomp2.png" type="Texture" id=6]
-[ext_resource path="res://assets/chomp3.png" type="Texture" id=7]
+[ext_resource path="res://assets/chomp3a.png" type="Texture" id=7]
 [ext_resource path="res://assets/chomp1.png" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -26,7 +26,7 @@ animations = [ {
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "chomp",
 "speed": 8.0
@@ -43,10 +43,12 @@ script = ExtResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 13, -22 )
 frames = SubResource( 1 )
-animation = "jump"
+animation = "chomp"
+frame = 4
+playing = true
 
 [node name="Butt" type="Position2D" parent="AnimatedSprite"]
-position = Vector2( -72.5146, 22 )
+position = Vector2( -52.3103, 39.9594 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
