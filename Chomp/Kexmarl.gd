@@ -11,9 +11,8 @@ var snap: Vector2 = Vector2.ZERO
 var butt
 var chomp_counter: int = 0
 var chomping: bool = false
-var chomp_min: int = 4
+var chomp_min: int = 3
 var art_list = []
-signal chomp
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,7 +46,7 @@ func _physics_process(delta):
 			chomp_counter += 1
 		if Input.is_action_pressed("chomp_9"):
 			chomp_counter += 1
-		if chomp_counter >= chomp_min:
+		if chomp_counter >= chomp_min || Input.is_action_just_pressed("chomp_9"):
 			chomping = true
 			$AnimatedSprite.play("chomp")
 	
@@ -92,19 +91,27 @@ func _physics_process(delta):
 				$AnimatedSprite.set_animation("jump")
 				$AnimatedSprite.play()
 			velocity.y -= 800
+	## ORIENTATION =========================================
 	if dir.x > 0: 
 		facing_right = true
-		butt.position.x = -abs(butt.position.x)
 	elif dir.x < 0:
 		facing_right = false
 		butt.position.x = abs(butt.position.x)
-	$AnimatedSprite.flip_h = !facing_right
+		$AnimatedSprite/Area2D/CollisionPolygon2D.scale.x = -1
+	if facing_right:
+		butt.position.x = -abs(butt.position.x)
+		$AnimatedSprite/Area2D/CollisionPolygon2D.scale.x = 1
+		$AnimatedSprite.flip_h = false
+	else:
+		butt.position.x = abs(butt.position.x)
+		$AnimatedSprite/Area2D/CollisionPolygon2D.scale.x = -1
+		$AnimatedSprite.flip_h = true
 	
 	velocity += dir * accel
 	velocity.x = clamp(velocity.x, -400, 400)
 	
 # warning-ignore:return_value_discarded
-	move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP, false, 4, 0.8, false)
+	move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP, true, 4, 0.8, false)
 	
 	## LANDING ===============================
 	if get_slide_count() > 0 && airborn == true:
@@ -125,12 +132,22 @@ func _on_AnimatedSprite_frame_changed():
 		do_chomp()
 
 func do_chomp():
-	for body in art_list:
-		## TODO call carve function, use Geometry.clip_polygons_2D to make the good things happen
-		pass
+	if art_list.size() > 0:
+		for body in art_list:
+			var chomp_poly: PoolVector2Array = []
+			for point in $AnimatedSprite/Area2D/CollisionPolygon2D.polygon:
+				var new_point = (point + global_position) - body.global_position
+				chomp_poly.append(new_point)
+			body.carve_polygons(chomp_poly)
 
 func _on_Area2D_body_entered(body):
+	print(body.name)
 	art_list.append(body)
 
 func _on_Area2D_body_exited(body):
 	art_list.erase(body)
+
+func _draw():
+	draw_colored_polygon($AnimatedSprite/Area2D/CollisionPolygon2D.polygon, Color(0.5, 0.5, 0.5, 0.5))
+	
+	

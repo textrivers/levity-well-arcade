@@ -102,6 +102,14 @@ chomp_9={
  ]
 }
 
+[layer_names]
+
+2d_render/layer_1="Terrain"
+2d_render/layer_2="Kexmarl"
+2d_render/layer_3="Poop"
+2d_render/layer_4="Art"
+2d_render/layer_5="Chomp"
+
 [physics]
 
 common/enable_pause_aware_picking=true
