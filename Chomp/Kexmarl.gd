@@ -12,6 +12,8 @@ var butt
 var chomp_counter: int = 0
 var chomping: bool = false
 var chomp_min: int = 4
+var art_list = []
+signal chomp
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -123,5 +125,12 @@ func _on_AnimatedSprite_frame_changed():
 		do_chomp()
 
 func do_chomp():
-	## TODO carve polygons as in terrain script
-	pass
+	for body in art_list:
+		## TODO call carve function, use Geometry.clip_polygons_2D to make the good things happen
+		pass
+
+func _on_Area2D_body_entered(body):
+	art_list.append(body)
+
+func _on_Area2D_body_exited(body):
+	art_list.erase(body)

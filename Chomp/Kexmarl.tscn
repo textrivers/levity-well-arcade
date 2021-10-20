@@ -43,11 +43,15 @@ script = ExtResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 13, -22 )
 frames = SubResource( 1 )
-animation = "jump"
-playing = true
+animation = "chomp"
 
 [node name="Butt" type="Position2D" parent="AnimatedSprite"]
 position = Vector2( -52.3103, 39.9594 )
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite/Area2D"]
+polygon = PoolVector2Array( -10.1595, 5.63893, -0.051239, -20.5237, 14.2193, -44.3078, 33.8412, -65.7136, 51.0848, -78.7949, 67.7337, -84.1464, 80.815, -84.1464, 89.7341, -79.3895, 98.0585, -68.6866, 105.194, -55.0107, 108.167, -37.7672, 111.734, -12.7938, 111.14, 6.82814, 105.194, 24.6663, 99.2477, 41.3152, 86.1664, 53.2073, 71.8959, 60.3426, 52.274, 61.5318, 29.0844, 54.3965, 10.6516, 40.126, -3.02426, 26.4501, -9.56491, 10.9904 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -62,3 +66,5 @@ collision_mask = 5
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
+[connection signal="body_entered" from="AnimatedSprite/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="AnimatedSprite/Area2D" to="." method="_on_Area2D_body_exited"]
