@@ -96,16 +96,13 @@ func _physics_process(delta):
 		facing_right = true
 	elif dir.x < 0:
 		facing_right = false
-		butt.position.x = abs(butt.position.x)
-		$AnimatedSprite/Area2D/CollisionPolygon2D.scale.x = -1
 	if facing_right:
 		butt.position.x = -abs(butt.position.x)
-		$AnimatedSprite/Area2D/CollisionPolygon2D.scale.x = 1
 		$AnimatedSprite.flip_h = false
 	else:
 		butt.position.x = abs(butt.position.x)
-		$AnimatedSprite/Area2D/CollisionPolygon2D.scale.x = -1
 		$AnimatedSprite.flip_h = true
+	update()
 	
 	velocity += dir * accel
 	velocity.x = clamp(velocity.x, -400, 400)

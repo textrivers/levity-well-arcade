@@ -21,15 +21,15 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "chomp",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -54,7 +54,7 @@ collision_layer = 16
 collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite/Area2D"]
-polygon = PoolVector2Array( -10.1595, 5.63893, -0.051239, -20.5237, 14.2193, -44.3078, 33.8412, -65.7136, 51.0848, -78.7949, 67.7337, -84.1464, 80.815, -84.1464, 89.7341, -79.3895, 98.0585, -68.6866, 105.194, -55.0107, 108.167, -37.7672, 111.734, -12.7938, 111.14, 6.82814, 105.194, 24.6663, 99.2477, 41.3152, 86.1664, 53.2073, 71.8959, 60.3426, 52.274, 61.5318, 29.0844, 54.3965, 10.6516, 40.126, -3.02426, 26.4501 )
+polygon = PoolVector2Array( -118.724, -38.0215, -85.0497, -95.2671, -33.4165, -110.982, 55.2579, -107.614, 108.014, -40.2664, 116.993, 30.4486, 83.3195, 76.4696, 46.2783, 91.0616, -9.84485, 88.8167, -54.7433, 89.9391, -115.356, 63, -123.213, -0.980286 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

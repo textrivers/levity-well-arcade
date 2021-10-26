@@ -15,7 +15,7 @@ scale = Vector2( 100, 1 )
 z_index = 5
 
 [node name="Art" parent="." instance=ExtResource( 4 )]
-position = Vector2( 548.264, -36.9995 )
+position = Vector2( -379.188, -48.986 )
 
 [node name="CollPoly" parent="Art" index="0"]
 polygon = PoolVector2Array( -318.317, -268.495, 283.765, -265.131, 287.128, 323.496, -301.499, 316.768 )

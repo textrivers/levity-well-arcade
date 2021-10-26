@@ -5,6 +5,7 @@ func _ready():
 	$CollPoly/VisPoly.polygon = match_poly
 	##$CollPoly/VisPoly.texture_offset.x += ($CollPoly/VisPoly.texture.get_width() / 2)
 	## $CollPoly/VisPoly.texture_offset.y += ($CollPoly/VisPoly.texture.get_height() / 2)
+	update()
 
 func carve_polygons(chomp_poly):
 	var result = Geometry.clip_polygons_2d($CollPoly/VisPoly.polygon, chomp_poly)
@@ -24,4 +25,5 @@ func carve_polygons(chomp_poly):
 				new_rig.position = position
 				##TODO offset new_vis texture by distance from center of old vis
 
-
+func _draw():
+	draw_circle(position, 10, Color(0.8, 0.4, 0.4, 0.8))
