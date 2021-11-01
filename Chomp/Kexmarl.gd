@@ -9,6 +9,7 @@ var facing_right: bool = true
 var walking: bool = false
 var snap: Vector2 = Vector2.ZERO
 var butt
+var mouth
 var chomp_counter: int = 0
 var chomping: bool = false
 var chomp_min: int = 3
@@ -16,7 +17,8 @@ var art_list = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	butt = $AnimatedSprite/Butt
+	butt = $Butt
+	mouth = $Mouth
 
 func _physics_process(delta):
 	## CHOMP ============================================
@@ -98,11 +100,13 @@ func _physics_process(delta):
 		facing_right = false
 	if facing_right:
 		butt.position.x = -abs(butt.position.x)
+		mouth.position.x = 50
 		$AnimatedSprite.flip_h = false
 	else:
 		butt.position.x = abs(butt.position.x)
+		mouth.position.x = -50
 		$AnimatedSprite.flip_h = true
-	update()
+	#update()
 	
 	velocity += dir * accel
 	velocity.x = clamp(velocity.x, -400, 400)
@@ -118,22 +122,12 @@ func _physics_process(delta):
 			$AnimatedSprite.set_animation("walk")
 		snap = Vector2.DOWN
 
-func _on_AnimatedSprite_animation_finished():
-	if $AnimatedSprite.animation == "chomp":
-		$AnimatedSprite.animation = "walk"
-		$AnimatedSprite.play()
-		chomping = false
-
-func _on_AnimatedSprite_frame_changed():
-	if $AnimatedSprite.frame == 4:
-		do_chomp()
-
 func do_chomp():
 	if art_list.size() > 0:
 		for body in art_list:
 			var chomp_poly: PoolVector2Array = []
-			for point in $AnimatedSprite/Area2D/CollisionPolygon2D.polygon:
-				var new_point = (point + global_position) - body.global_position
+			for point in $Mouth/Area2D/CollisionPolygon2D.polygon:
+				var new_point = (point + mouth.global_position) - body.global_position
 				chomp_poly.append(new_point)
 			body.carve_polygons(chomp_poly)
 
@@ -144,7 +138,7 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	art_list.erase(body)
 
-func _draw():
-	draw_colored_polygon($AnimatedSprite/Area2D/CollisionPolygon2D.polygon, Color(0.5, 0.5, 0.5, 0.5))
+#func _draw():
+#	draw_colored_polygon($Mouth/Area2D/CollisionPolygon2D.polygon, Color(0.5, 0.5, 0.5, 0.5))
 	
 	

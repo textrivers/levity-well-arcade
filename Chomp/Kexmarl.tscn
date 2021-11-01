@@ -1,39 +1,134 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/walk1.png" type="Texture" id=1]
-[ext_resource path="res://assets/walk2.png" type="Texture" id=2]
-[ext_resource path="res://assets/walk3.png" type="Texture" id=3]
-[ext_resource path="res://assets/jump1.png" type="Texture" id=4]
+[ext_resource path="res://assets/pp_bottom-head.png" type="Texture" id=1]
+[ext_resource path="res://assets/pp_back-foot.png" type="Texture" id=2]
+[ext_resource path="res://assets/pp_bottom-teeth.png" type="Texture" id=3]
+[ext_resource path="res://assets/pp_top-head.png" type="Texture" id=4]
 [ext_resource path="res://Kexmarl.gd" type="Script" id=5]
-[ext_resource path="res://assets/chomp2.png" type="Texture" id=6]
-[ext_resource path="res://assets/chomp3a.png" type="Texture" id=7]
-[ext_resource path="res://assets/chomp1.png" type="Texture" id=8]
+[ext_resource path="res://assets/pp_top-teeth.png" type="Texture" id=6]
+[ext_resource path="res://assets/pp_front-leg.png" type="Texture" id=7]
+[ext_resource path="res://assets/pp_back-leg.png" type="Texture" id=8]
+[ext_resource path="res://assets/pp_crest.png" type="Texture" id=9]
+[ext_resource path="res://assets/pp_front-foot.png" type="Texture" id=10]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "chomp",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-} ]
-
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 60.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "chomp"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Rig/Top:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.4, 0, -52, -0.75, 3.80099, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Rig/Bottom:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.57, 1.0272, 15, -0.87, 0.627197, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Rig/Top/TopTeeth:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 65.7014, -0.25, 0, 0.25, 0, 71.4048, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Rig/Top/TopTeeth:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( -6.94794, -0.25, 0, 0.25, 0, 4.68842, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Rig/Bottom/BottomTeeth:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 78.6599, -0.25, 0, 0.25, 0, 76.4465, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Rig/Bottom/BottomTeeth:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 6.6839, -0.25, 0, 0.25, 0, -1.70547, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk_legs"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Rig/Bottom/FrontLeg:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -78.0, 0.0, 78.1, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Rig/Bottom/FrontLeg/FrontFoot:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.35, 0.5, 0.65, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 26.0, 43.4, 0.0, -36.4, -17.3, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Rig/Bottom/BackLeg:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 78.0, 0.0, -78.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Rig/Bottom/BackLeg/BackFoot:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.15, 0.25, 0.5, 0.75, 0.85, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -36.4, -38.0, 0.0, 26.0, 43.0, 0.0 ]
+}
 
 [node name="Kexmarl" type="KinematicBody2D"]
 collision_layer = 2
@@ -41,23 +136,9 @@ collision_mask = 9
 collision/safe_margin = 0.2
 script = ExtResource( 5 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 13, -22 )
-frames = SubResource( 1 )
-animation = "jump"
-
-[node name="Butt" type="Position2D" parent="AnimatedSprite"]
-position = Vector2( -52.3103, 39.9594 )
-
-[node name="Area2D" type="Area2D" parent="AnimatedSprite"]
-collision_layer = 16
-collision_mask = 8
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite/Area2D"]
-polygon = PoolVector2Array( -118.724, -38.0215, -85.0497, -95.2671, -33.4165, -110.982, 55.2579, -107.614, 108.014, -40.2664, 116.993, 30.4486, 83.3195, 76.4696, 46.2783, 91.0616, -9.84485, 88.8167, -54.7433, 89.9391, -115.356, 63, -123.213, -0.980286 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+visible = false
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -67,7 +148,70 @@ enabled = true
 cast_to = Vector2( 0, 65 )
 collision_mask = 13
 
-[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
-[connection signal="body_entered" from="AnimatedSprite/Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="AnimatedSprite/Area2D" to="." method="_on_Area2D_body_exited"]
+[node name="Butt" type="Position2D" parent="."]
+position = Vector2( -37, 18 )
+
+[node name="Mouth" type="Position2D" parent="."]
+visible = false
+position = Vector2( -63, -32 )
+
+[node name="Area2D" type="Area2D" parent="Mouth"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mouth/Area2D"]
+polygon = PoolVector2Array( -118.724, -38.0215, -105.546, -68.4077, -75.5118, -97.7741, -33.4165, -110.982, 11.2528, -117.129, 55.2579, -107.614, 90.6758, -81.7561, 112.701, -45.7154, 121.377, -3.66792, 116.993, 30.4486, 102.689, 58.4021, 77.9948, 80.427, 38.617, 92.4406, -9.43726, 94.4428, -54.7433, 89.9391, -86.858, 74.4202, -110.885, 43.7189, -123.213, -0.980286 )
+
+[node name="Rig" type="Node2D" parent="."]
+
+[node name="Bottom" type="Sprite" parent="Rig"]
+position = Vector2( -26.9158, -50.2474 )
+texture = ExtResource( 1 )
+offset = Vector2( 36.1656, 26.7023 )
+
+[node name="BottomTeeth" type="Sprite" parent="Rig/Bottom"]
+position = Vector2( 78.6599, 6.6839 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="FrontLeg" type="Sprite" parent="Rig/Bottom"]
+position = Vector2( -7.60712, 48.8008 )
+texture = ExtResource( 7 )
+offset = Vector2( 7.95499, 18.4469 )
+
+[node name="FrontFoot" type="Sprite" parent="Rig/Bottom/FrontLeg"]
+position = Vector2( 0, 38.2269 )
+texture = ExtResource( 10 )
+offset = Vector2( 45.8135, -0.529984 )
+
+[node name="BackLeg" type="Sprite" parent="Rig/Bottom"]
+position = Vector2( 29.8214, 45.4411 )
+z_index = -2
+texture = ExtResource( 8 )
+offset = Vector2( 6.88315, 17.5523 )
+
+[node name="BackFoot" type="Sprite" parent="Rig/Bottom/BackLeg"]
+position = Vector2( 0.471924, 34.9233 )
+texture = ExtResource( 2 )
+offset = Vector2( 39.7711, 2.24791 )
+
+[node name="Top" type="Sprite" parent="Rig"]
+position = Vector2( -27.8596, -50.2474 )
+texture = ExtResource( 4 )
+offset = Vector2( 39.2913, -25.0923 )
+
+[node name="TopTeeth" type="Sprite" parent="Rig/Top"]
+position = Vector2( 65.7014, -6.94794 )
+z_index = -1
+texture = ExtResource( 6 )
+
+[node name="Crest" type="Sprite" parent="Rig/Top"]
+position = Vector2( 12.4136, -68.8907 )
+texture = ExtResource( 9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/chomp = SubResource( 2 )
+anims/walk_legs = SubResource( 3 )
+
+[connection signal="body_entered" from="Mouth/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Mouth/Area2D" to="." method="_on_Area2D_body_exited"]
