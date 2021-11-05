@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/pp_bottom-head.png" type="Texture" id=1]
 [ext_resource path="res://assets/pp_back-foot.png" type="Texture" id=2]
@@ -360,7 +360,59 @@ tracks/7/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "open_maw"
+resource_name = "jump"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Rig/Bottom/FrontLeg:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 0.196146, 1 ),
+"update": 0,
+"values": [ 0.0, 49.4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Rig/Bottom/FrontLeg/FrontFoot:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 35.3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Rig/Bottom/BackLeg:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 0.225313, 1 ),
+"update": 0,
+"values": [ 0.0, 42.4 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Rig/Bottom/BackLeg/BackFoot:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 28.2 ]
+}
+
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Rig/Bottom:position")
 tracks/0/interp = 1
@@ -368,10 +420,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -26.9158, -50.2474 ) ]
+"values": [ Vector2( -27.9158, -52.2474 ), Vector2( -26.9158, -50.2474 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Rig/Bottom:rotation_degrees")
@@ -380,10 +432,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 0.25 ),
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 0.25 ),
 "update": 0,
-"values": [ 0.0, 15.0 ]
+"values": [ -5.40017, 0.0, 15.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Rig/Bottom:scale")
@@ -392,10 +444,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Rig/Top:position")
@@ -404,10 +456,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -27.8596, -50.2474 ) ]
+"values": [ Vector2( -30.8596, -48.2474 ), Vector2( -27.8596, -50.2474 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Rig/Top:rotation_degrees")
@@ -416,10 +468,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 0.277392 ),
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 0.277392 ),
 "update": 0,
-"values": [ 0.0, -52.0 ]
+"values": [ 3.90002, 0.0, -52.0 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Rig/Top:scale")
@@ -428,10 +480,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Rig/Bottom/BottomTeeth:position")
@@ -440,7 +492,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0.2, 1 ),
 "transitions": PoolRealArray( 1, 0.210224 ),
 "update": 0,
 "values": [ Vector2( 78.6599, 6.6839 ), Vector2( 76.5, -1.7 ) ]
@@ -452,13 +504,13 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0.2, 1 ),
 "transitions": PoolRealArray( 1, 0.189465 ),
 "update": 0,
 "values": [ Vector2( 65.7014, -6.94794 ), Vector2( 71.4, 4.7 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -546,7 +598,7 @@ tracks/6/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1.2 ), Vector2( 1, 1 ), Vector2( 1, 0.8 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -598,31 +650,29 @@ tracks/3/keys = {
 "values": [ 0.0, -36.4, -62.4752, -20.369, 0.0, 26.0, 43.0, 0.0 ]
 }
 
-[sub_resource type="AnimationNodeTimeScale" id=8]
+[sub_resource type="AnimationNodeTimeScale" id=21]
 
-[sub_resource type="AnimationNodeAnimation" id=9]
-animation = "close_maw"
+[sub_resource type="AnimationNodeTimeScale" id=22]
 
-[sub_resource type="AnimationNodeTransition" id=10]
-input_count = 4
+[sub_resource type="AnimationNodeTransition" id=11]
+input_count = 3
 input_0/name = "idle"
 input_0/auto_advance = false
 input_1/name = "walk"
 input_1/auto_advance = false
 input_2/name = "chomp_open"
 input_2/auto_advance = false
-input_3/name = "chomp_closed"
-input_3/auto_advance = true
-
-[sub_resource type="AnimationNodeAnimation" id=11]
-animation = "idle_head"
 
 [sub_resource type="AnimationNodeAnimation" id=12]
-animation = "idle_legs"
+animation = "idle_head"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
+animation = "idle_legs"
 
-[sub_resource type="AnimationNodeTransition" id=14]
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "jump"
+
+[sub_resource type="AnimationNodeTransition" id=15]
 input_count = 3
 input_0/name = "idle"
 input_0/auto_advance = false
@@ -631,45 +681,46 @@ input_1/auto_advance = false
 input_2/name = "jump"
 input_2/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "open_maw"
 
-[sub_resource type="AnimationNodeBlend2" id=16]
+[sub_resource type="AnimationNodeBlend2" id=17]
 filter_enabled = true
 filters = [ "Rig/Bottom/BackLeg/BackFoot:position", "Rig/Bottom/BackLeg/BackFoot:rotation_degrees", "Rig/Bottom/BackLeg:position", "Rig/Bottom/BackLeg:rotation_degrees", "Rig/Bottom/FrontLeg/FrontFoot:position", "Rig/Bottom/FrontLeg/FrontFoot:rotation_degrees", "Rig/Bottom/FrontLeg:position", "Rig/Bottom/FrontLeg:rotation_degrees" ]
 sync = true
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "walk_head"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "walk_legs"
 
-[sub_resource type="AnimationNodeBlendTree" id=19]
-nodes/TimeScale/node = SubResource( 8 )
-nodes/TimeScale/position = Vector2( 520, 80 )
-nodes/close_maw/node = SubResource( 9 )
-nodes/close_maw/position = Vector2( 320, 160 )
-nodes/head_state/node = SubResource( 10 )
+[sub_resource type="AnimationNodeBlendTree" id=20]
+graph_offset = Vector2( 73.5046, -54.6853 )
+nodes/TimeScaleChomp/node = SubResource( 21 )
+nodes/TimeScaleChomp/position = Vector2( 500, 60 )
+nodes/TimeScaleJump/node = SubResource( 22 )
+nodes/TimeScaleJump/position = Vector2( 580, 340 )
+nodes/head_state/node = SubResource( 11 )
 nodes/head_state/position = Vector2( 740, -40 )
-nodes/idle_head/node = SubResource( 11 )
+nodes/idle_head/node = SubResource( 12 )
 nodes/idle_head/position = Vector2( 460, -180 )
-nodes/idle_legs/node = SubResource( 12 )
+nodes/idle_legs/node = SubResource( 13 )
 nodes/idle_legs/position = Vector2( 560, 220 )
-nodes/jump_legs/node = SubResource( 13 )
-nodes/jump_legs/position = Vector2( 580, 360 )
-nodes/leg_state/node = SubResource( 14 )
+nodes/jump/node = SubResource( 23 )
+nodes/jump/position = Vector2( 460, 460 )
+nodes/leg_state/node = SubResource( 15 )
 nodes/leg_state/position = Vector2( 760, 180 )
-nodes/open_maw/node = SubResource( 15 )
-nodes/open_maw/position = Vector2( 240, 20 )
+nodes/open_maw/node = SubResource( 16 )
+nodes/open_maw/position = Vector2( 320, 60 )
 nodes/output/position = Vector2( 1120, 120 )
-nodes/top_bottom/node = SubResource( 16 )
+nodes/top_bottom/node = SubResource( 17 )
 nodes/top_bottom/position = Vector2( 920, 100 )
-nodes/walk_head/node = SubResource( 17 )
+nodes/walk_head/node = SubResource( 18 )
 nodes/walk_head/position = Vector2( 500, -60 )
-nodes/walk_legs/node = SubResource( 18 )
+nodes/walk_legs/node = SubResource( 19 )
 nodes/walk_legs/position = Vector2( 400, 320 )
-node_connections = [ "output", 0, "top_bottom", "TimeScale", 0, "close_maw", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "open_maw", "head_state", 3, "TimeScale", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "jump_legs", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state" ]
+node_connections = [ "output", 0, "top_bottom", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state", "TimeScaleJump", 0, "jump", "TimeScaleChomp", 0, "open_maw" ]
 
 [node name="Kexmarl" type="KinematicBody2D"]
 collision_layer = 2
@@ -678,7 +729,6 @@ collision/safe_margin = 0.2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -707,11 +757,12 @@ polygon = PoolVector2Array( -118.724, -38.0215, -105.546, -68.4077, -75.5118, -9
 
 [node name="Bottom" type="Sprite" parent="Rig"]
 position = Vector2( -26.9158, -50.2474 )
+rotation = 0.261799
 texture = ExtResource( 1 )
 offset = Vector2( 36.1656, 26.7023 )
 
 [node name="BottomTeeth" type="Sprite" parent="Rig/Bottom"]
-position = Vector2( 78.6599, 6.6839 )
+position = Vector2( 76.5, -1.7 )
 z_index = -1
 texture = ExtResource( 3 )
 
@@ -738,11 +789,12 @@ offset = Vector2( 39.7711, 2.24791 )
 
 [node name="Top" type="Sprite" parent="Rig"]
 position = Vector2( -27.8596, -50.2474 )
+rotation = -0.907571
 texture = ExtResource( 4 )
 offset = Vector2( 39.2913, -25.0923 )
 
 [node name="TopTeeth" type="Sprite" parent="Rig/Top"]
-position = Vector2( 65.7014, -6.94794 )
+position = Vector2( 71.4, 4.7 )
 z_index = -1
 texture = ExtResource( 6 )
 
@@ -754,18 +806,24 @@ texture = ExtResource( 9 )
 anims/close_maw = SubResource( 2 )
 anims/idle_head = SubResource( 3 )
 anims/idle_legs = SubResource( 4 )
-anims/open_maw = SubResource( 5 )
-anims/walk_head = SubResource( 6 )
-anims/walk_legs = SubResource( 7 )
+anims/jump = SubResource( 5 )
+anims/open_maw = SubResource( 6 )
+anims/walk_head = SubResource( 7 )
+anims/walk_legs = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 19 )
+tree_root = SubResource( 20 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/TimeScale/scale = 1.5
+parameters/TimeScaleChomp/scale = 1.5
+parameters/TimeScaleJump/scale = 2.0
 parameters/head_state/current = 0
-parameters/leg_state/current = 0
+parameters/leg_state/current = 2
 parameters/top_bottom/blend_amount = 0.5
+
+[node name="MawTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [connection signal="body_entered" from="Mouth/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Mouth/Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="timeout" from="MawTimer" to="." method="_on_MawTimer_timeout"]

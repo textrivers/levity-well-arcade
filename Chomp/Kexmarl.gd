@@ -11,9 +11,7 @@ var snap: Vector2 = Vector2.ZERO
 var butt
 var mouth
 var anim_tree
-var chomp_counter: int = 0
 var chomping: bool = false
-var chomp_min: int = 3
 var art_list = []
 
 # Called when the node enters the scene tree for the first time.
@@ -25,36 +23,17 @@ func _ready():
 
 func _physics_process(delta):
 	## CHOMP ============================================
-	chomp_counter = 0
 	if chomping == false:
-		if Input.is_action_pressed("chomp_h"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_j"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_k"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_l"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_y"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_u"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_i"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_o"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_6"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_7"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_8"):
-			chomp_counter += 1
-		if Input.is_action_pressed("chomp_9"):
-			chomp_counter += 1
-		if chomp_counter >= chomp_min || Input.is_action_just_pressed("chomp_9"):
+		if Input.is_action_just_pressed("chomp_9"):
 			chomping = true
 			#$AnimatedSprite.play("chomp")
+			anim_tree.set("parameters/TimeScaleChomp/scale", 1.0)
 			anim_tree.set("parameters/head_state/current", 2)
+	if Input.is_action_just_released("chomp_9"):
+		anim_tree.set("parameters/TimeScaleChomp/scale", -12.0)
+		$MawTimer.wait_time = 0.3
+		$MawTimer.start()
+		## TODO do chomp
 	
 	## POOP =============================================
 	if Input.is_action_pressed("rightclick"):
@@ -74,14 +53,16 @@ func _physics_process(delta):
 		airborn = true
 	if airborn:
 		velocity.y += gravity * delta
+		if velocity.y > 0:
+			anim_tree.set("parameters/TimeScaleJump/scale", -1)
 	else:
-		if walking == false:
-			if dir.x != 0:
-				walking = true
-				if chomping == false:
-					#$AnimatedSprite.play("walk")
-					anim_tree.set("parameters/head_state/current", 1)
-				anim_tree.set("parameters/leg_state/current", 1)
+		#if walking == false:
+		if dir.x != 0:
+			walking = true
+			if chomping == false:
+				#$AnimatedSprite.play("walk")
+				anim_tree.set("parameters/head_state/current", 1)
+			anim_tree.set("parameters/leg_state/current", 1)
 		if dir.x == 0:
 			walking = false
 			if chomping == false:
@@ -101,7 +82,8 @@ func _physics_process(delta):
 #				$AnimatedSprite.set_animation("jump")
 #				$AnimatedSprite.play()
 				anim_tree.set("parameters/head_state/current", 0)
-			anim_tree.set("parameters/leg_state/current", 0)
+			anim_tree.set("parameters/TimeScaleJump/scale", 2)
+			anim_tree.set("parameters/leg_state/current", 2)
 			velocity.y -= 800
 	## ORIENTATION =========================================
 	if dir.x > 0: 
@@ -149,3 +131,6 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	art_list.erase(body)
 
+func _on_MawTimer_timeout():
+	anim_tree.set("parameters/head_state/current", 0)
+	chomping = false
