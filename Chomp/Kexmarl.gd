@@ -10,6 +10,7 @@ var walking: bool = false
 var snap: Vector2 = Vector2.ZERO
 var butt
 var mouth
+var anim_tree
 var chomp_counter: int = 0
 var chomping: bool = false
 var chomp_min: int = 3
@@ -19,6 +20,8 @@ var art_list = []
 func _ready():
 	butt = $Butt
 	mouth = $Mouth
+	anim_tree = $AnimationTree
+	anim_tree.active = true
 
 func _physics_process(delta):
 	## CHOMP ============================================
@@ -50,7 +53,8 @@ func _physics_process(delta):
 			chomp_counter += 1
 		if chomp_counter >= chomp_min || Input.is_action_just_pressed("chomp_9"):
 			chomping = true
-			$AnimatedSprite.play("chomp")
+			#$AnimatedSprite.play("chomp")
+			anim_tree.set("parameters/head_state/current", 2)
 	
 	## POOP =============================================
 	if Input.is_action_pressed("rightclick"):
@@ -75,23 +79,29 @@ func _physics_process(delta):
 			if dir.x != 0:
 				walking = true
 				if chomping == false:
-					$AnimatedSprite.play("walk")
+					#$AnimatedSprite.play("walk")
+					anim_tree.set("parameters/head_state/current", 1)
+				anim_tree.set("parameters/leg_state/current", 1)
 		if dir.x == 0:
 			walking = false
 			if chomping == false:
-				$AnimatedSprite.stop()
-				$AnimatedSprite.set_frame(0)
+				#$AnimatedSprite.stop()
+				#$AnimatedSprite.set_frame(0)
+				anim_tree.set("parameters/head_state/current", 0)
+			anim_tree.set("parameters/leg_state/current", 0)
 			velocity.x = 0
 		
 		## JUMP =======================================
 		if Input.is_action_just_pressed("jump"):
-			print(chomp_counter)
 			snap = Vector2.ZERO
 			walking = false
 			airborn = true
 			if chomping == false:
-				$AnimatedSprite.set_animation("jump")
-				$AnimatedSprite.play()
+				## TODO jump animation
+#				$AnimatedSprite.set_animation("jump")
+#				$AnimatedSprite.play()
+				anim_tree.set("parameters/head_state/current", 0)
+			anim_tree.set("parameters/leg_state/current", 0)
 			velocity.y -= 800
 	## ORIENTATION =========================================
 	if dir.x > 0: 
@@ -101,12 +111,13 @@ func _physics_process(delta):
 	if facing_right:
 		butt.position.x = -abs(butt.position.x)
 		mouth.position.x = 50
-		$AnimatedSprite.flip_h = false
+		#$AnimatedSprite.flip_h = false
+		$Rig.scale.x = 1
 	else:
 		butt.position.x = abs(butt.position.x)
 		mouth.position.x = -50
-		$AnimatedSprite.flip_h = true
-	#update()
+		#$AnimatedSprite.flip_h = true
+		$Rig.scale.x = -1
 	
 	velocity += dir * accel
 	velocity.x = clamp(velocity.x, -400, 400)
@@ -119,7 +130,8 @@ func _physics_process(delta):
 		velocity.y = 0
 		airborn = false
 		if chomping == false:
-			$AnimatedSprite.set_animation("walk")
+			#$AnimatedSprite.set_animation("walk")
+			anim_tree.set("parameters/leg_state/current", 1)
 		snap = Vector2.DOWN
 
 func do_chomp():
@@ -132,13 +144,8 @@ func do_chomp():
 			body.carve_polygons(chomp_poly)
 
 func _on_Area2D_body_entered(body):
-	print(body.name)
 	art_list.append(body)
 
 func _on_Area2D_body_exited(body):
 	art_list.erase(body)
 
-#func _draw():
-#	draw_colored_polygon($Mouth/Area2D/CollisionPolygon2D.polygon, Color(0.5, 0.5, 0.5, 0.5))
-	
-	
