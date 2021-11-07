@@ -650,9 +650,9 @@ tracks/3/keys = {
 "values": [ 0.0, -36.4, -62.4752, -20.369, 0.0, 26.0, 43.0, 0.0 ]
 }
 
-[sub_resource type="AnimationNodeTimeScale" id=21]
+[sub_resource type="AnimationNodeTimeScale" id=9]
 
-[sub_resource type="AnimationNodeTimeScale" id=22]
+[sub_resource type="AnimationNodeTimeScale" id=10]
 
 [sub_resource type="AnimationNodeTransition" id=11]
 input_count = 3
@@ -669,7 +669,7 @@ animation = "idle_head"
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "idle_legs"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "jump"
 
 [sub_resource type="AnimationNodeTransition" id=15]
@@ -697,9 +697,9 @@ animation = "walk_legs"
 
 [sub_resource type="AnimationNodeBlendTree" id=20]
 graph_offset = Vector2( 73.5046, -54.6853 )
-nodes/TimeScaleChomp/node = SubResource( 21 )
+nodes/TimeScaleChomp/node = SubResource( 9 )
 nodes/TimeScaleChomp/position = Vector2( 500, 60 )
-nodes/TimeScaleJump/node = SubResource( 22 )
+nodes/TimeScaleJump/node = SubResource( 10 )
 nodes/TimeScaleJump/position = Vector2( 580, 340 )
 nodes/head_state/node = SubResource( 11 )
 nodes/head_state/position = Vector2( 740, -40 )
@@ -707,7 +707,7 @@ nodes/idle_head/node = SubResource( 12 )
 nodes/idle_head/position = Vector2( 460, -180 )
 nodes/idle_legs/node = SubResource( 13 )
 nodes/idle_legs/position = Vector2( 560, 220 )
-nodes/jump/node = SubResource( 23 )
+nodes/jump/node = SubResource( 14 )
 nodes/jump/position = Vector2( 460, 460 )
 nodes/leg_state/node = SubResource( 15 )
 nodes/leg_state/position = Vector2( 760, 180 )
@@ -720,7 +720,7 @@ nodes/walk_head/node = SubResource( 18 )
 nodes/walk_head/position = Vector2( 500, -60 )
 nodes/walk_legs/node = SubResource( 19 )
 nodes/walk_legs/position = Vector2( 400, 320 )
-node_connections = [ "output", 0, "top_bottom", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state", "TimeScaleJump", 0, "jump", "TimeScaleChomp", 0, "open_maw" ]
+node_connections = [ "output", 0, "top_bottom", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp", "TimeScaleChomp", 0, "open_maw", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "TimeScaleJump", 0, "jump", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state" ]
 
 [node name="Kexmarl" type="KinematicBody2D"]
 collision_layer = 2
@@ -743,7 +743,6 @@ collision_mask = 13
 position = Vector2( -37, 18 )
 
 [node name="Mouth" type="Position2D" parent="."]
-visible = false
 position = Vector2( -63, -32 )
 
 [node name="Area2D" type="Area2D" parent="Mouth"]
@@ -787,6 +786,9 @@ position = Vector2( 0.471924, 34.9233 )
 texture = ExtResource( 2 )
 offset = Vector2( 39.7711, 2.24791 )
 
+[node name="BottomLip" type="Position2D" parent="Rig/Bottom"]
+position = Vector2( 110.729, 23.8093 )
+
 [node name="Top" type="Sprite" parent="Rig"]
 position = Vector2( -27.8596, -50.2474 )
 rotation = -0.907571
@@ -801,6 +803,11 @@ texture = ExtResource( 6 )
 [node name="Crest" type="Sprite" parent="Rig/Top"]
 position = Vector2( 12.4136, -68.8907 )
 texture = ExtResource( 9 )
+
+[node name="TopLip" type="Position2D" parent="Rig/Top"]
+position = Vector2( 118.986, -11.4204 )
+
+[node name="JawHinge" type="Position2D" parent="Rig/Top"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/close_maw = SubResource( 2 )

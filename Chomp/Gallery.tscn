@@ -12,6 +12,7 @@ position = Vector2( 0, 300 )
 scale = Vector2( 100, 1 )
 
 [node name="Kexmarl" parent="." instance=ExtResource( 2 )]
+position = Vector2( -353.176, -662.626 )
 z_index = 5
 
 [node name="Art" parent="." instance=ExtResource( 4 )]

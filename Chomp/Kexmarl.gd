@@ -21,6 +21,7 @@ func _ready():
 	anim_tree = $AnimationTree
 	anim_tree.active = true
 
+
 func _physics_process(delta):
 	## CHOMP ============================================
 	if chomping == false:
@@ -33,7 +34,20 @@ func _physics_process(delta):
 		anim_tree.set("parameters/TimeScaleChomp/scale", -12.0)
 		$MawTimer.wait_time = 0.3
 		$MawTimer.start()
-		## TODO do chomp
+		var chomp_poly: PoolVector2Array = []
+		var jaw_point = $Rig/Top/JawHinge.global_position
+		chomp_poly.append(jaw_point)
+		#chomp_poly.append($Rig/Top/TopLip.global_position)
+		var top_angle = $Rig/Top/JawHinge.global_position.angle_to_point($Rig/Top/TopLip.global_position)
+		var bottom_angle = $Rig/Top/JawHinge.global_position.angle_to_point($Rig/Top/TopLip.global_position)
+		var arc_granularity = 5
+		var interval = (top_angle - bottom_angle) / arc_granularity
+		for i in arc_granularity:
+			var new_arc = top_angle - (i * interval) 
+			var direction = Vector2(cos(new_arc), sin(new_arc))
+			var new_point = direction * (120 + (randi() % 10) - 5)
+			chomp_poly.append(new_point + jaw_point)
+		do_chomp(chomp_poly)
 	
 	## POOP =============================================
 	if Input.is_action_pressed("rightclick"):
@@ -116,13 +130,10 @@ func _physics_process(delta):
 			anim_tree.set("parameters/leg_state/current", 1)
 		snap = Vector2.DOWN
 
-func do_chomp():
+func do_chomp(chomp_poly: PoolVector2Array):
+	print(chomp_poly)
 	if art_list.size() > 0:
 		for body in art_list:
-			var chomp_poly: PoolVector2Array = []
-			for point in $Mouth/Area2D/CollisionPolygon2D.polygon:
-				var new_point = (point + mouth.global_position) - body.global_position
-				chomp_poly.append(new_point)
 			body.carve_polygons(chomp_poly)
 
 func _on_Area2D_body_entered(body):
