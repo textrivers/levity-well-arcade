@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Floor100.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Kexmarl.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/test_face_green-bg.png" type="Texture" id=3]
 [ext_resource path="res://Art.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/small_brown_sq.png" type="Texture" id=5]
 
 [node name="Gallery" type="Node2D"]
 
@@ -16,7 +17,7 @@ position = Vector2( -353.176, -662.626 )
 z_index = 5
 
 [node name="Art" parent="." instance=ExtResource( 4 )]
-position = Vector2( -379.188, -48.986 )
+position = Vector2( -227.827, -45.6224 )
 
 [node name="CollPoly" parent="Art" index="0"]
 polygon = PoolVector2Array( -318.317, -268.495, 283.765, -265.131, 287.128, 323.496, -301.499, 316.768 )
@@ -24,4 +25,14 @@ polygon = PoolVector2Array( -318.317, -268.495, 283.765, -265.131, 287.128, 323.
 [node name="VisPoly" parent="Art/CollPoly" index="0"]
 texture = ExtResource( 3 )
 
+[node name="Art2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1106.62, -121.089 )
+
+[node name="CollPoly" parent="Art2" index="0"]
+polygon = PoolVector2Array( -110.771, -118.625, 142.849, -86.5889, 149.523, 296.51, -97.4224, 297.845 )
+
+[node name="VisPoly" parent="Art2/CollPoly" index="0"]
+texture = ExtResource( 5 )
+
 [editable path="Art"]
+[editable path="Art2"]

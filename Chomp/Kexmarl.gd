@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends KinematicBody2D 
 
 var gravity = 1400
 var dir: Vector2 = Vector2(0, 0)
@@ -35,19 +35,13 @@ func _physics_process(delta):
 		$MawTimer.wait_time = 0.3
 		$MawTimer.start()
 		var chomp_poly: PoolVector2Array = []
-		var jaw_point = $Rig/Top/JawHinge.global_position
-		chomp_poly.append(jaw_point)
-		#chomp_poly.append($Rig/Top/TopLip.global_position)
-		var top_angle = $Rig/Top/JawHinge.global_position.angle_to_point($Rig/Top/TopLip.global_position)
-		var bottom_angle = $Rig/Top/JawHinge.global_position.angle_to_point($Rig/Top/TopLip.global_position)
-		var arc_granularity = 5
-		var interval = (top_angle - bottom_angle) / arc_granularity
-		for i in arc_granularity:
-			var new_arc = top_angle - (i * interval) 
-			var direction = Vector2(cos(new_arc), sin(new_arc))
-			var new_point = direction * (120 + (randi() % 10) - 5)
-			chomp_poly.append(new_point + jaw_point)
-		do_chomp(chomp_poly)
+		var chomp_xform: Transform2D
+		for child in $Mouth/Area2D.get_children():
+			if child.disabled == false:
+				chomp_poly = child.polygon
+				chomp_xform = child.global_transform
+				break
+		do_chomp(chomp_poly, chomp_xform)
 	
 	## POOP =============================================
 	if Input.is_action_pressed("rightclick"):
@@ -63,8 +57,9 @@ func _physics_process(delta):
 		dir += Vector2.LEFT
 	if Input.is_action_pressed("move_right"):
 		dir += Vector2.RIGHT
-	if !$RayCast2D.is_colliding() && airborn == false:
-		airborn = true
+	if !$RayRight.is_colliding() && !$RayLeft.is_colliding():
+		if airborn == false:
+			airborn = true
 	if airborn:
 		velocity.y += gravity * delta
 		if velocity.y > 0:
@@ -106,14 +101,16 @@ func _physics_process(delta):
 		facing_right = false
 	if facing_right:
 		butt.position.x = -abs(butt.position.x)
-		mouth.position.x = 50
 		#$AnimatedSprite.flip_h = false
 		$Rig.scale.x = 1
+		$Mouth/Area2D/RightCollision.disabled = false
+		$Mouth/Area2D/LeftCollision.disabled = true
 	else:
 		butt.position.x = abs(butt.position.x)
-		mouth.position.x = -50
 		#$AnimatedSprite.flip_h = true
 		$Rig.scale.x = -1
+		$Mouth/Area2D/RightCollision.disabled = true
+		$Mouth/Area2D/LeftCollision.disabled = false
 	
 	velocity += dir * accel
 	velocity.x = clamp(velocity.x, -400, 400)
@@ -130,11 +127,10 @@ func _physics_process(delta):
 			anim_tree.set("parameters/leg_state/current", 1)
 		snap = Vector2.DOWN
 
-func do_chomp(chomp_poly: PoolVector2Array):
-	print(chomp_poly)
+func do_chomp(chomp_poly: PoolVector2Array, chomp_xform):
 	if art_list.size() > 0:
 		for body in art_list:
-			body.carve_polygons(chomp_poly)
+			body.carve_polygons(chomp_poly, chomp_xform)
 
 func _on_Area2D_body_entered(body):
 	art_list.append(body)
@@ -145,3 +141,7 @@ func _on_Area2D_body_exited(body):
 func _on_MawTimer_timeout():
 	anim_tree.set("parameters/head_state/current", 0)
 	chomping = false
+
+func _draw():
+	draw_circle(Vector2(65, 65), 4, Color.rebeccapurple)
+	draw_circle(Vector2(-65, 65), 4, Color.rebeccapurple)

@@ -720,7 +720,7 @@ nodes/walk_head/node = SubResource( 18 )
 nodes/walk_head/position = Vector2( 500, -60 )
 nodes/walk_legs/node = SubResource( 19 )
 nodes/walk_legs/position = Vector2( 400, 320 )
-node_connections = [ "output", 0, "top_bottom", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp", "TimeScaleChomp", 0, "open_maw", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "TimeScaleJump", 0, "jump", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state" ]
+node_connections = [ "output", 0, "top_bottom", "TimeScaleJump", 0, "jump", "TimeScaleChomp", 0, "open_maw", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state" ]
 
 [node name="Kexmarl" type="KinematicBody2D"]
 collision_layer = 2
@@ -729,30 +729,41 @@ collision/safe_margin = 0.2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayRight" type="RayCast2D" parent="."]
+z_index = 4
 enabled = true
-cast_to = Vector2( 0, 65 )
+cast_to = Vector2( 65, 65 )
 collision_mask = 13
+
+[node name="RayLeft" type="RayCast2D" parent="."]
+z_index = 2
+enabled = true
+cast_to = Vector2( -65, 65 )
 
 [node name="Butt" type="Position2D" parent="."]
 position = Vector2( -37, 18 )
 
 [node name="Mouth" type="Position2D" parent="."]
-position = Vector2( -63, -32 )
+position = Vector2( 0, 24 )
 
 [node name="Area2D" type="Area2D" parent="Mouth"]
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mouth/Area2D"]
-polygon = PoolVector2Array( -118.724, -38.0215, -105.546, -68.4077, -75.5118, -97.7741, -33.4165, -110.982, 11.2528, -117.129, 55.2579, -107.614, 90.6758, -81.7561, 112.701, -45.7154, 121.377, -3.66792, 116.993, 30.4486, 102.689, 58.4021, 77.9948, 80.427, 38.617, 92.4406, -9.43726, 94.4428, -54.7433, 89.9391, -86.858, 74.4202, -110.885, 43.7189, -123.213, -0.980286 )
+[node name="RightCollision" type="CollisionPolygon2D" parent="Mouth/Area2D"]
+polygon = PoolVector2Array( -29.3583, -51.5806, 13.479, -151.114, 38.6774, -164.973, 77.7349, -138.515, 102.933, -88.1183, 99.1536, -33.9417, 85.2944, 3.8559, 57.5762, 10.1555, -31.8781, -33.9417 )
+
+[node name="LeftCollision" type="CollisionPolygon2D" parent="Mouth/Area2D"]
+polygon = PoolVector2Array( 34.8976, -67.9596, -21.7988, -162.454, -52.0369, -166.233, -74.7155, -137.255, -94.8741, -100.717, -99.9138, -56.6203, -91.0944, -8.74332, -60.8563, 10.1555, 36.1575, -41.5013 )
 
 [node name="Rig" type="Node2D" parent="."]
+position = Vector2( 0, 24 )
 
 [node name="Bottom" type="Sprite" parent="Rig"]
 position = Vector2( -26.9158, -50.2474 )
