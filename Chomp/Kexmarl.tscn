@@ -720,7 +720,7 @@ nodes/walk_head/node = SubResource( 18 )
 nodes/walk_head/position = Vector2( 500, -60 )
 nodes/walk_legs/node = SubResource( 19 )
 nodes/walk_legs/position = Vector2( 400, 320 )
-node_connections = [ "output", 0, "top_bottom", "TimeScaleChomp", 0, "open_maw", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "TimeScaleJump", 0, "jump", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state" ]
+node_connections = [ "output", 0, "top_bottom", "TimeScaleChomp", 0, "open_maw", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state", "TimeScaleJump", 0, "jump", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp" ]
 
 [node name="Kexmarl" type="KinematicBody2D"]
 collision_layer = 2

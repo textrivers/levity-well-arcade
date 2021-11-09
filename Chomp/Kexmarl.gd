@@ -36,6 +36,8 @@ func _physics_process(delta):
 		$MawTimer.start()
 		var chomp_poly: PoolVector2Array = []
 		var chomp_xform: Transform2D
+		print(rad2deg($Rig/Top/JawHinge.global_position.angle_to_point($Rig/Top/TopLip.global_position)))
+		print(rad2deg($Rig/Top/JawHinge.global_position.angle_to_point($Rig/Bottom/BottomLip.global_position)))
 		for child in $Mouth/Area2D.get_children():
 			if child.disabled == false:
 				## small variations in bite shape

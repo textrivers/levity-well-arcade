@@ -22,7 +22,6 @@ func carve_polygons(chomp_poly, chomp_xform):
 			get_parent().add_child(new_art)
 			## set new art center to polygon centroid
 			var centroid = plib.calculatePolygonCentroid(final[res])
-			print(centroid)
 			new_art.global_position = centroid + position
 			## center polygon on polygon centroid
 			var centered_poly = plib.centerPolygon(final[res])
