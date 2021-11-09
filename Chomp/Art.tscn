@@ -12,3 +12,4 @@ script = ExtResource( 1 )
 polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
 
 [node name="VisPoly" type="Polygon2D" parent="CollPoly"]
+z_index = -2

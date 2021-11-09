@@ -420,10 +420,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -27.9158, -52.2474 ), Vector2( -26.9158, -50.2474 ) ]
+"values": [ Vector2( -26.9158, -50.2474 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Rig/Bottom:rotation_degrees")
@@ -432,10 +432,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 1 ),
-"transitions": PoolRealArray( 1, 1, 0.25 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 0.25 ),
 "update": 0,
-"values": [ -5.40017, 0.0, 15.0 ]
+"values": [ 0.0, 15.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Rig/Bottom:scale")
@@ -444,10 +444,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Rig/Top:position")
@@ -456,10 +456,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -30.8596, -48.2474 ), Vector2( -27.8596, -50.2474 ) ]
+"values": [ Vector2( -27.8596, -50.2474 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Rig/Top:rotation_degrees")
@@ -468,10 +468,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.2, 1 ),
-"transitions": PoolRealArray( 1, 1, 0.277392 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 0.277392 ),
 "update": 0,
-"values": [ 3.90002, 0.0, -52.0 ]
+"values": [ 0.0, -52.0 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Rig/Top:scale")
@@ -480,10 +480,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Rig/Bottom/BottomTeeth:position")
@@ -492,7 +492,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.2, 1 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 0.210224 ),
 "update": 0,
 "values": [ Vector2( 78.6599, 6.6839 ), Vector2( 76.5, -1.7 ) ]
@@ -504,7 +504,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.2, 1 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 0.189465 ),
 "update": 0,
 "values": [ Vector2( 65.7014, -6.94794 ), Vector2( 71.4, 4.7 ) ]
@@ -720,7 +720,7 @@ nodes/walk_head/node = SubResource( 18 )
 nodes/walk_head/position = Vector2( 500, -60 )
 nodes/walk_legs/node = SubResource( 19 )
 nodes/walk_legs/position = Vector2( 400, 320 )
-node_connections = [ "output", 0, "top_bottom", "TimeScaleJump", 0, "jump", "TimeScaleChomp", 0, "open_maw", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state" ]
+node_connections = [ "output", 0, "top_bottom", "TimeScaleChomp", 0, "open_maw", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "TimeScaleJump", 0, "jump", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state" ]
 
 [node name="Kexmarl" type="KinematicBody2D"]
 collision_layer = 2
@@ -745,6 +745,7 @@ collision_mask = 13
 z_index = 2
 enabled = true
 cast_to = Vector2( -65, 65 )
+collision_mask = 13
 
 [node name="Butt" type="Position2D" parent="."]
 position = Vector2( -37, 18 )
@@ -757,22 +758,21 @@ collision_layer = 16
 collision_mask = 8
 
 [node name="RightCollision" type="CollisionPolygon2D" parent="Mouth/Area2D"]
-polygon = PoolVector2Array( -29.3583, -51.5806, 13.479, -151.114, 38.6774, -164.973, 77.7349, -138.515, 102.933, -88.1183, 99.1536, -33.9417, 85.2944, 3.8559, 57.5762, 10.1555, -31.8781, -33.9417 )
+polygon = PoolVector2Array( -29.3583, -51.5806, 7.82883, -164.728, 38.6774, -164.973, 77.7349, -138.515, 102.933, -88.1183, 99.1536, -33.9417, 68.9351, 32.4498, 2.15918, 35.5996, -31.8781, -33.9417 )
 
 [node name="LeftCollision" type="CollisionPolygon2D" parent="Mouth/Area2D"]
-polygon = PoolVector2Array( 34.8976, -67.9596, -21.7988, -162.454, -52.0369, -166.233, -74.7155, -137.255, -94.8741, -100.717, -99.9138, -56.6203, -91.0944, -8.74332, -60.8563, 10.1555, 36.1575, -41.5013 )
+polygon = PoolVector2Array( 34.8976, -67.9596, -21.7988, -162.454, -55.1673, -163.468, -83.5155, -138.9, -103.674, -94.8023, -98.6346, -33.0661, -69.6564, 33.7097, -10.44, 34.9697, 36.1575, -41.5013 )
 
 [node name="Rig" type="Node2D" parent="."]
 position = Vector2( 0, 24 )
 
 [node name="Bottom" type="Sprite" parent="Rig"]
 position = Vector2( -26.9158, -50.2474 )
-rotation = 0.261799
 texture = ExtResource( 1 )
 offset = Vector2( 36.1656, 26.7023 )
 
 [node name="BottomTeeth" type="Sprite" parent="Rig/Bottom"]
-position = Vector2( 76.5, -1.7 )
+position = Vector2( 78.6599, 6.6839 )
 z_index = -1
 texture = ExtResource( 3 )
 
@@ -802,12 +802,11 @@ position = Vector2( 110.729, 23.8093 )
 
 [node name="Top" type="Sprite" parent="Rig"]
 position = Vector2( -27.8596, -50.2474 )
-rotation = -0.907571
 texture = ExtResource( 4 )
 offset = Vector2( 39.2913, -25.0923 )
 
 [node name="TopTeeth" type="Sprite" parent="Rig/Top"]
-position = Vector2( 71.4, 4.7 )
+position = Vector2( 65.7014, -6.94794 )
 z_index = -1
 texture = ExtResource( 6 )
 

@@ -16,11 +16,11 @@ var art_list = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	butt = $Butt
 	mouth = $Mouth
 	anim_tree = $AnimationTree
 	anim_tree.active = true
-
 
 func _physics_process(delta):
 	## CHOMP ============================================
@@ -38,7 +38,9 @@ func _physics_process(delta):
 		var chomp_xform: Transform2D
 		for child in $Mouth/Area2D.get_children():
 			if child.disabled == false:
-				chomp_poly = child.polygon
+				## small variations in bite shape
+				for point in child.polygon:
+					chomp_poly.append(point + Vector2(3 - (randi() % 7), 3 - (randi() % 7)))
 				chomp_xform = child.global_transform
 				break
 		do_chomp(chomp_poly, chomp_xform)

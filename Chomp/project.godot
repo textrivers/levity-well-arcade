@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "PolygonFracture",
+"language": "GDScript",
+"path": "res://polygon2d-fracture/PolygonFracture.gd"
+}, {
+"base": "Reference",
+"class": "PolygonLib",
+"language": "GDScript",
+"path": "res://polygon2d-fracture/PolygonLib.gd"
+}, {
+"base": "Reference",
+"class": "PolygonRestorer",
+"language": "GDScript",
+"path": "res://polygon2d-fracture/PolygonRestorer.gd"
+} ]
+_global_script_class_icons={
+"PolygonFracture": "",
+"PolygonLib": "",
+"PolygonRestorer": ""
+}
+
 [application]
 
 config/name="Chomp"
@@ -99,6 +121,7 @@ chomp_8={
 chomp_9={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":57,"unicode":0,"echo":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 
