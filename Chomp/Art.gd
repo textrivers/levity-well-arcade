@@ -20,11 +20,12 @@ func carve_polygons(chomp_poly, chomp_xform):
 		if res > 0:
 			var new_art = load("res://Art.tscn").instance()
 			get_parent().add_child(new_art)
-			## set new art center to polygon centroid
+			## set art center to polygon centroid
 			var centroid = plib.calculatePolygonCentroid(final[res])
 			new_art.global_position = centroid + position
 			## center polygon on polygon centroid
 			var centered_poly = plib.centerPolygon(final[res])
+			centered_poly = plib.rotatePolygon(centered_poly, rotation)
 			## set new art coll poly and vis poly
 			new_art.get_node("CollPoly").polygon = centered_poly
 			new_art.get_node("CollPoly/VisPoly").polygon = centered_poly

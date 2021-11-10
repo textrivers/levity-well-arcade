@@ -17,16 +17,6 @@ scale = Vector2( 100, 1 )
 position = Vector2( 0.377411, -6.43085 )
 z_index = 5
 
-[node name="WallBody2" type="StaticBody2D" parent="."]
-position = Vector2( -966.424, -264.298 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallBody2"]
-polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
-
-[node name="PinJoint2D" type="PinJoint2D" parent="WallBody2"]
-node_a = NodePath("..")
-node_b = NodePath("../../Art")
-
 [node name="Art" parent="." instance=ExtResource( 4 )]
 position = Vector2( -765.228, -76.7351 )
 
@@ -36,16 +26,6 @@ polygon = PoolVector2Array( -318.317, -268.495, 283.765, -265.131, 287.128, 323.
 [node name="VisPoly" parent="Art/CollPoly" index="0"]
 texture = ExtResource( 3 )
 texture_offset = Vector2( 50, 50 )
-
-[node name="WallBody" type="StaticBody2D" parent="."]
-position = Vector2( -1393.57, -210.905 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallBody"]
-polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
-
-[node name="PinJoint2D" type="PinJoint2D" parent="WallBody"]
-node_a = NodePath("..")
-node_b = NodePath("../../Art2")
 
 [node name="Art2" parent="." instance=ExtResource( 4 )]
 position = Vector2( -1413.51, -225.741 )

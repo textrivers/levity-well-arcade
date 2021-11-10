@@ -126,7 +126,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -26.9158, -50.2474 ) ]
+"values": [ Vector2( -27, -50 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Rig/Bottom:scale")
@@ -162,7 +162,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -27.8596, -50.2474 ) ]
+"values": [ Vector2( -27, -50 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Rig/Top:rotation_degrees")
@@ -423,7 +423,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -26.9158, -50.2474 ) ]
+"values": [ Vector2( -27, -50 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Rig/Bottom:rotation_degrees")
@@ -435,7 +435,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 0.25 ),
 "update": 0,
-"values": [ 0.0, 15.0 ]
+"values": [ 0.0, 40.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Rig/Bottom:scale")
@@ -459,7 +459,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -27.8596, -50.2474 ) ]
+"values": [ Vector2( -27, -50.247 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Rig/Top:rotation_degrees")
@@ -523,7 +523,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -27.8596, -50.2474 ), Vector2( -27.8596, -58.2474 ), Vector2( -27.8596, -50.2474 ), Vector2( -27.8596, -57.2474 ), Vector2( -27.8596, -50.2474 ) ]
+"values": [ Vector2( -27, -50 ), Vector2( -27.8596, -58.2474 ), Vector2( -27, -50 ), Vector2( -27.8596, -57.2474 ), Vector2( -27, -50 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Rig/Bottom:position")
@@ -535,7 +535,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -26.9158, -50.2474 ), Vector2( -26.9158, -58.2474 ), Vector2( -26.9158, -50.2474 ), Vector2( -26.9158, -60.2474 ), Vector2( -26.9158, -50.2474 ) ]
+"values": [ Vector2( -27, -50 ), Vector2( -26.9158, -58.2474 ), Vector2( -27, -50 ), Vector2( -26.9158, -60.2474 ), Vector2( -27, -50 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Rig/Top/Crest:z_index")
@@ -720,7 +720,7 @@ nodes/walk_head/node = SubResource( 18 )
 nodes/walk_head/position = Vector2( 500, -60 )
 nodes/walk_legs/node = SubResource( 19 )
 nodes/walk_legs/position = Vector2( 400, 320 )
-node_connections = [ "output", 0, "top_bottom", "TimeScaleChomp", 0, "open_maw", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state", "TimeScaleJump", 0, "jump", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp" ]
+node_connections = [ "output", 0, "top_bottom", "top_bottom", 0, "head_state", "top_bottom", 1, "leg_state", "TimeScaleChomp", 0, "open_maw", "head_state", 0, "idle_head", "head_state", 1, "walk_head", "head_state", 2, "TimeScaleChomp", "leg_state", 0, "idle_legs", "leg_state", 1, "walk_legs", "leg_state", 2, "TimeScaleJump", "TimeScaleJump", 0, "jump" ]
 
 [node name="Kexmarl" type="KinematicBody2D"]
 collision_layer = 2
@@ -767,7 +767,7 @@ polygon = PoolVector2Array( 34.8976, -67.9596, -21.7988, -162.454, -55.1673, -16
 position = Vector2( 0, 24 )
 
 [node name="Bottom" type="Sprite" parent="Rig"]
-position = Vector2( -26.9158, -50.2474 )
+position = Vector2( -27, -50 )
 texture = ExtResource( 1 )
 offset = Vector2( 36.1656, 26.7023 )
 
@@ -800,8 +800,11 @@ offset = Vector2( 39.7711, 2.24791 )
 [node name="BottomLip" type="Position2D" parent="Rig/Bottom"]
 position = Vector2( 110.729, 23.8093 )
 
+[node name="BottomMouth" type="Position2D" parent="Rig/Bottom"]
+position = Vector2( 68.0358, 54.1766 )
+
 [node name="Top" type="Sprite" parent="Rig"]
-position = Vector2( -27.8596, -50.2474 )
+position = Vector2( -27, -50 )
 texture = ExtResource( 4 )
 offset = Vector2( 39.2913, -25.0923 )
 
@@ -818,6 +821,9 @@ texture = ExtResource( 9 )
 position = Vector2( 118.986, -11.4204 )
 
 [node name="JawHinge" type="Position2D" parent="Rig/Top"]
+
+[node name="TopMouth" type="Position2D" parent="Rig/Top"]
+position = Vector2( 86.3047, -48.507 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/close_maw = SubResource( 2 )
