@@ -16,6 +16,7 @@ func _process(delta):
 
 func _on_area_entered(area):
 	explode()
+	area.queue_free()
 
 func explode():
 	## TODO instantiate an explosion at current location
