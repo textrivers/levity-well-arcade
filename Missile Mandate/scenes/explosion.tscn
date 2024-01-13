@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b15ukm3xtdrff"]
+
+[ext_resource type="Script" path="res://scenes/explosion.gd" id="1_87hgc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qsrem"]
+radius = 0.01
+
+[node name="Explosion" type="Area2D"]
+script = ExtResource("1_87hgc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qsrem")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
