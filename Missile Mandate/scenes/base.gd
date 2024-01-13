@@ -40,7 +40,10 @@ func fire_missile(target_pos):
 	new_missile.speed = fire_speed
 	new_missile.direction = (target_pos - global_position).normalized()
 	new_missile.global_position = global_position
+	new_missile.target = target_pos
 	add_sibling(new_missile)
-	var new_target = target.instantiate()
-	new_target.global_position = target_pos
-	add_sibling(new_target)
+	## deprecated: now using a frame countdown on the projectile 
+	## instead of counting on it colliding with a target object
+	#var new_target = target.instantiate()
+	#new_target.global_position = target_pos
+	#add_sibling(new_target)
