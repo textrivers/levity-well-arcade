@@ -1,8 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp8hh1m82romq"]
+[gd_scene load_steps=4 format=3 uid="uid://cp8hh1m82romq"]
 
 [ext_resource type="PackedScene" uid="uid://64vfb50e11fg" path="res://scenes/base.tscn" id="1_4j7nb"]
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_sa7op"]
+[ext_resource type="PackedScene" uid="uid://j5tqvrv7ace4" path="res://town.tscn" id="3_0c4xq"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_sa7op")
 
 [node name="Base" parent="." instance=ExtResource("1_4j7nb")]
+position = Vector2(30, 379)
+
+[node name="Base2" parent="." instance=ExtResource("1_4j7nb")]
 position = Vector2(300, 380)
+
+[node name="Base3" parent="." instance=ExtResource("1_4j7nb")]
+position = Vector2(570, 380)
+
+[node name="town" parent="." instance=ExtResource("3_0c4xq")]
+position = Vector2(120, 380)
+
+[node name="town2" parent="." instance=ExtResource("3_0c4xq")]
+position = Vector2(210, 380)
+
+[node name="town3" parent="." instance=ExtResource("3_0c4xq")]
+position = Vector2(390, 380)
+
+[node name="town4" parent="." instance=ExtResource("3_0c4xq")]
+position = Vector2(480, 380)

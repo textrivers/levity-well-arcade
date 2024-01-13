@@ -28,10 +28,7 @@ func _draw():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("fire"):
-		if missile_count > 0:
-			var targ = get_viewport().get_mouse_position()
-			fire_missile(targ)
+	pass
 
 func fire_missile(target_pos):
 	missile_count -= 1
@@ -42,8 +39,4 @@ func fire_missile(target_pos):
 	new_missile.global_position = global_position
 	new_missile.target = target_pos
 	add_sibling(new_missile)
-	## deprecated: now using a frame countdown on the projectile 
-	## instead of counting on it colliding with a target object
-	#var new_target = target.instantiate()
-	#new_target.global_position = target_pos
-	#add_sibling(new_target)
+	
