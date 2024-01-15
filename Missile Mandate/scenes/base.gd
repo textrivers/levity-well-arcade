@@ -40,3 +40,15 @@ func fire_missile(target_pos):
 	new_missile.target = target_pos
 	add_sibling(new_missile)
 	
+
+
+func _on_body_entered(body):
+	print("hit")
+	queue_free()
+	pass # Replace with function body.
+
+
+func _on_area_entered(area):
+	print("hit")
+	queue_free()
+	pass # Replace with function body.

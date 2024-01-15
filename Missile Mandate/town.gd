@@ -13,6 +13,13 @@ func _process(delta):
 	pass
 
 func _on_area_entered(area):
-	pass 
+	print("hit")
+	hide()
 	## TODO explosion, loss of life, etc.
 	queue_free()
+
+
+func _on_body_entered(body):
+	print("hit")
+	queue_free()
+	pass # Replace with function body.

@@ -17,8 +17,7 @@ func _process(delta):
 
 func _draw():
 	draw_circle(Vector2.ZERO, radius[radius_counter], Color.WHITE)
-	collision_obj = $CollisionShape2D
-	collision_obj.shape.radius = float(radius[radius_counter])
+	$CollisionShape2D.shape.radius = float(radius[radius_counter])
 
 
 func _on_timer_timeout():
@@ -28,3 +27,9 @@ func _on_timer_timeout():
 		radius_counter = 0
 		queue_free()
 	queue_redraw()
+
+
+func _on_body_entered(body):
+	#print(body)
+	body.queue_free()
+	pass # Replace with function body.

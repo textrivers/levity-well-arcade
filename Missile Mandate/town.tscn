@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://j5tqvrv7ace4"]
+[gd_scene load_steps=3 format=3 uid="uid://dxf1150ogdrm3"]
 
 [ext_resource type="Script" path="res://town.gd" id="1_fubqb"]
 
@@ -13,3 +13,4 @@ script = ExtResource("1_fubqb")
 shape = SubResource("RectangleShape2D_wbwmf")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
